@@ -1,0 +1,33 @@
+{
+  "name": "course-business-app",
+  "version": "1.0.0",
+  "description": "Course Business App",
+  "scripts": {
+    "dev": "next dev -p 8080",
+    "start": "next start",
+    "build": "next build",
+    "prettier": "prettier -write .",
+    "lint": "eslint ./"
+  },
+  "keywords": [],
+  "author": "Ridho Purnomo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "next": "^12.0.4",
+    "nookies": "^2.5.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.21.0",
+    "react-responsive": "^9.0.0-beta.5",
+    "styled-components": "^5.3.3",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.2",
+    "eslint": "^8.3.0",
+    "eslint-config-next": "^12.0.4"
+  }
+}
