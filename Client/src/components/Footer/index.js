@@ -1,35 +1,34 @@
 import React from "react";
-import { 
-    FooterContainer, 
-    InfoContainer, 
-    TextInfo, 
-    Container, 
+import {
+    FooterContainer,
+    InfoContainer,
+    TextInfo,
+    Container,
     ListLink,
-    SupportList 
+    SupportList,
 } from "./styles";
 import Link from "next/link";
-
 
 const MenuLink = {
     "/catalog": "Catalog",
     "/events": "Events",
-    "/articles": "Articles"
+    "/articles": "Articles",
 };
 
 const SupportLink = {
     "/terms": "Terms & Condition",
     "/faq": "Faq",
-    "/help": "Help"
+    "/help": "Help",
 };
-
-
 
 const Footer = () => (
     <FooterContainer>
         <Container>
             <InfoContainer>
                 <h1>Swedda</h1>
-                <TextInfo>Swedda is platform to learing more about bussiness course, and improve your skill bussiness future.
+                <TextInfo>
+                    Swedda is platform to learing more about bussiness course, and improve your
+                    skill bussiness future.
                 </TextInfo>
             </InfoContainer>
             <ListLink>
@@ -38,8 +37,7 @@ const Footer = () => (
                     <Link href={link} key={link}>
                         <p className="pointer mx-s semibold">{MenuLink[link]}</p>
                     </Link>
-                )
-                )}
+                ))}
             </ListLink>
             <SupportList>
                 <h3>Support</h3>
@@ -47,12 +45,10 @@ const Footer = () => (
                     <Link href={link} key={link}>
                         <p className="pointer mx-s semibold">{SupportLink[link]}</p>
                     </Link>
-                )
-                )}
+                ))}
             </SupportList>
         </Container>
-    </FooterContainer>        
+    </FooterContainer>
 );
 
-
-export default Footer;                                                                                                               
+export default Footer;

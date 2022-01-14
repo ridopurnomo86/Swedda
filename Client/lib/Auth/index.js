@@ -2,10 +2,9 @@ import Cookies from "js-cookie";
 import instance from "../../pages/api/instance";
 import jwt from "jsonwebtoken";
 
-
 const TOKEN_NAME = process.env.COOKIE_USER || "swedda-login";
 
-// const getUserCookies = Cookies.get(TOKEN_NAME);
+export const getCookiesUser = Cookies.get(TOKEN_NAME);
 
 let user;
 
@@ -29,19 +28,17 @@ const Session = {
             return null;
         }
     },
-    destroy: ( path = "/signin" ) => {
+    destroy: (path = "/signin") => {
         Cookies.remove(TOKEN_NAME);
         window.localStorage.removeItem(TOKEN_NAME);
         window.location.replace(path);
     },
-    requestLogout: ( callback = () => {}) => {
-        instance.get("auth/logout")
-            .then((res) => {
-                Session.destroy();
-                callback(res.data);
-            });
-    }
+    requestLogout: (callback = () => {}) => {
+        instance.get("auth/logout").then((res) => {
+            Session.destroy();
+            callback(res.data);
+        });
+    },
 };
-
 
 export default Session;

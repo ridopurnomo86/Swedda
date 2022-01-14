@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import Form from "../src/components/Form";
+import Form from "../../src/components/Form";
 import OptionalContent from "./OptionalContent";
 import { SignupContainer, ButtonForm, Title } from "./styles";
 import { useForm } from "react-hook-form";
 import usePOST from "../api/usePOST";
 import CircularLoading from "../../src/components/CircularLoading";
 import nookies from "nookies";
+import Notification from "../../src/components/Notification";
 
 const Signup = () => {
     const [isPOSTING, setIsPOSTING] = useState(false);
+    const [error, setError] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -25,12 +28,20 @@ const Signup = () => {
                 body: values,
                 config,
                 setIsPOSTING,
+                errorCallback: () => {
+                    setError(true);
+                },
             });
         }
     };
 
     return (
         <SignupContainer>
+            <Notification
+                state={error}
+                message="Sorry, Something Wrong"
+                onClose={() => setError(false)}
+            />
             <Title>Get Started for free</Title>
             <Form
                 FormList={[
@@ -68,12 +79,7 @@ const Signup = () => {
                 handleSubmit={handleSubmit}
                 onSubmit={onSubmit}
             >
-                <ButtonForm
-                    classNames="mt-m"
-                    padding="16px"
-                    type="submit"
-                    disable={isPOSTING}
-                >
+                <ButtonForm classNames="mt-m" padding="16px" type="submit" disable={isPOSTING}>
                     {isPOSTING ? <CircularLoading /> : "Sign Up"}
                 </ButtonForm>
                 <OptionalContent />
@@ -82,21 +88,20 @@ const Signup = () => {
     );
 };
 
-
-export async function getServerSideProps(context) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+export async function getServerSideProps(context) {
     const cookie = nookies.get(context);
     const token = cookie[`${process.env.COOKIE_USER}`];
-    if(token){
-        return {                                                                    
+    if (token) {
+        return {
             redirect: {
-                destination: "/",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                permanent: true
-            }
+                destination: "/",
+                permanent: true,
+            },
         };
     }
-    
+
     return {
-        props: {}
+        props: {},
     };
 }
 

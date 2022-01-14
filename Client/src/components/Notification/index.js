@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import { MessageContainer, NotificationContainer, CloseAction, TextMessage } from "./styles";
 
 const Notification = ({ state, onClose, message }) => {
+    setTimeout(() => {
+        onClose(false);
+    }, 5000);
 
-    return ( 
+    return (
         <NotificationContainer show={state}>
             <MessageContainer>
                 <i className="fas fa-bell mr-m"></i>
@@ -16,15 +19,15 @@ const Notification = ({ state, onClose, message }) => {
         </NotificationContainer>
     );
 };
- 
+
 export default Notification;
 
 Notification.propTypes = {
     message: PropTypes.string,
     state: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
 };
 
 Notification.defaultProps = {
-    message: ""
+    message: "",
 };
