@@ -20,6 +20,7 @@ const Session = {
     },
     getUser: () => {
         try {
+            if (!Cookies.get(TOKEN_NAME)) return window?.localStorage.removeItem(TOKEN_NAME);
             const userInfoString = window?.localStorage.getItem(TOKEN_NAME);
             user = JSON.parse(userInfoString);
             return user;

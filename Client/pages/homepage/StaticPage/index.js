@@ -1,14 +1,16 @@
 import React from "react";
+import ExclusiveLesson from "./ExclusiveLesson";
 import Hero from "./Hero";
-// import HeroReviewer from "./HeroReviewer";
+import HeroReviewer from "./HeroReviewer";
 import OurFeatures from "./OurFeatures";
 import StaticPageContainer from "./styles";
 
 const StaticPage = () => (
     <StaticPageContainer>
         <Hero />
-        {/* <HeroReviewer /> */}
+        <ExclusiveLesson />
         <OurFeatures />
+        <HeroReviewer />
     </StaticPageContainer>
 );
 

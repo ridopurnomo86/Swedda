@@ -5,13 +5,7 @@ import usePOST from "../api/usePOST";
 import Notification from "../../src/components/Notification";
 import Form from "../../src/components/Form";
 import Link from "next/link";
-import {
-    SignupContainer,
-    ButtonForm,
-    OptionalText,
-    Wrapper,
-    Title,
-} from "./styles";
+import { SignupContainer, ButtonForm, OptionalText, Wrapper, Title } from "./styles";
 import CircularLoading from "../../src/components/CircularLoading";
 
 import nookies from "nookies";
@@ -21,15 +15,15 @@ import Session from "../../lib/Auth";
 const Signin = () => {
     const [isPOSTING, setIsPOSTING] = useState(false);
     const [isError, setIsError] = useState(false);
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
     const router = useRouter();
-    
-    const onSubmit = (values, e) => {
-        e.preventDefault();
+
+    const onSubmit = (values) => {
         if (!isPOSTING) {
             const config = {
                 Headers: "Content-Type: application/json",
@@ -52,11 +46,7 @@ const Signin = () => {
 
     return (
         <SignupContainer>
-            <Notification
-                state={isError}
-                onClose={setIsError}
-                message="Something Gone Wrong..."
-            />
+            <Notification state={isError} onClose={setIsError} message="Something Gone Wrong..." />
             <Wrapper>
                 <Title>Sign in to Swedda</Title>
                 <Form
@@ -83,16 +73,11 @@ const Signin = () => {
                     errors={errors}
                     onSubmit={onSubmit}
                 >
-                    <ButtonForm
-                        classNames="mt-m"
-                        padding="16px"
-                        type="submit"
-                        disable={isPOSTING}
-                    >
+                    <ButtonForm classNames="mt-m" padding="16px" type="submit" disable={isPOSTING}>
                         {isPOSTING ? <CircularLoading /> : "Sign In"}
                     </ButtonForm>
                     <OptionalText>
-            Not a member yet?&nbsp;
+                        Not a member yet?&nbsp;
                         <Link href="/signup">
                             <span className="underline">Sign Up</span>
                         </Link>
@@ -103,23 +88,21 @@ const Signin = () => {
     );
 };
 
-export async function getServerSideProps(context) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+export async function getServerSideProps(context) {
     const cookie = nookies.get(context);
     const token = cookie[`${process.env.COOKIE_USER}`];
-    if(token){
-        return {                                                                    
+    if (token) {
+        return {
             redirect: {
-                destination: "/",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                permanent: true
-            }
+                destination: "/",
+                permanent: true,
+            },
         };
     }
-    
+
     return {
-        props: {}
+        props: {},
     };
 }
-
-
 
 export default Signin;

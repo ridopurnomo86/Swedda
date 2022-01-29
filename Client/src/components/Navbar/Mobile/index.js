@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import { 
-    MobileContainer, 
-    LogoContainer, 
-    HumbergerContainer, 
-    ContentContainer, 
-    HumbergerIcon, 
-    CloseIcon, 
+import {
+    MobileContainer,
+    LogoContainer,
+    HumbergerContainer,
+    ContentContainer,
+    HumbergerIcon,
+    CloseIcon,
 } from "./styles";
 import Sidebar from "./Sidebar";
 
-const Mobile = ({ open, onClick, ref }) => (
+const Mobile = ({ open, onClick, ref, isUser }) => (
     <MobileContainer ref={ref}>
         <ContentContainer>
             <LogoContainer transition={open}>
@@ -20,27 +20,25 @@ const Mobile = ({ open, onClick, ref }) => (
                 </Link>
             </LogoContainer>
             <HumbergerContainer onClick={onClick}>
-                { open ? <CloseIcon /> : <HumbergerIcon />}
+                {open ? <CloseIcon /> : <HumbergerIcon />}
             </HumbergerContainer>
-            <Sidebar isOpen={open} />
+            <Sidebar isOpen={open} isUser={isUser} />
         </ContentContainer>
     </MobileContainer>
 );
 
- 
 export default Mobile;
 
 Mobile.propTypes = {
     open: PropTypes.bool,
     onClick: PropTypes.func,
-    ref: PropTypes.oneOfType([
-        PropTypes.func, 
-        PropTypes.shape({ current: PropTypes.any })
-    ])
+    ref: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
+    isUser: PropTypes.bool,
 };
 
 Mobile.defaultProps = {
     open: false,
     onClick: () => {},
-    ref: undefined
+    ref: undefined,
+    isUser: false,
 };

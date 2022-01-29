@@ -4,7 +4,6 @@ import { devices } from "../../../styles/breakpoint";
 
 export const FooterContainer = styled.footer`
     width: 100%;
-    margin-top: 32px;
     background-color: #252328;
     padding: 24px 0px;
     color: ${({ theme }) => theme.shader.primary};
@@ -36,24 +35,17 @@ export const InfoContainer = styled.div`
     margin: 0px 0px 24px 0px;
 `;
 
-export const ListLink = styled.div`
-    margin: 0;
-
-    @media ${devices.mobileL} {
-        margin: 0px 16px;
-    }
-`;
-
-export const SupportList = styled.div`
-    margin: 0;
-
-    @media ${devices.mobileL} {
-        margin: 0px 16px;
-    }
-`;
-
 export const TextInfo = styled.div`
     font-size: 14px;
     font-weight: 400;
     max-width: 300px;
+    margin-top: 24px;
+`;
+
+export const Copyright = styled(MainContainer)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid ${({ theme }) => theme.shader.primary};
+    margin-top: 64px;
 `;

@@ -12,23 +12,10 @@ const Button = ({
     backgroundColor,
     width,
     classNames,
-    onClick
+    onClick,
 }) => {
-    return (
-        direction ? (
-            <Link href={`${direction}`} >
-                <ButtonContainer
-                    type={type}
-                    padding={padding}
-                    textColor={color}
-                    backgroundColor={backgroundColor}
-                    width={width}
-                    className={classNames}
-                >
-                    {children}
-                </ButtonContainer>
-            </Link>
-        ) : (
+    return direction ? (
+        <Link href={`${direction}`}>
             <ButtonContainer
                 type={type}
                 padding={padding}
@@ -36,11 +23,22 @@ const Button = ({
                 backgroundColor={backgroundColor}
                 width={width}
                 className={classNames}
-                onClick={onClick}
             >
                 {children}
             </ButtonContainer>
-        )
+        </Link>
+    ) : (
+        <ButtonContainer
+            type={type}
+            padding={padding}
+            textColor={color}
+            backgroundColor={backgroundColor}
+            width={width}
+            className={classNames}
+            onClick={onClick}
+        >
+            {children}
+        </ButtonContainer>
     );
 };
 
@@ -55,7 +53,7 @@ Button.propTypes = {
     width: PropTypes.string,
     classNames: PropTypes.string,
     type: PropTypes.string,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
 };
 Button.defaultProps = {
     children: undefined,
@@ -66,5 +64,5 @@ Button.defaultProps = {
     width: "",
     classNames: "",
     type: "",
-    onClick: () => {}
+    onClick: () => {},
 };

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Dekstop from "./Dekstop";
 import Mobile from "./Mobile";
@@ -22,10 +22,18 @@ const Navbar = () => {
         if (open) return setOpen(false);
     });
 
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [open]);
+
     return isMobile ? (
         <Dekstop isUser={Session.getUser()} />
     ) : (
-        <Mobile refContainer={Ref} open={open} onClick={handleBars} />
+        <Mobile refContainer={Ref} open={open} onClick={handleBars} isUser={Session.getUser()} />
     );
 };
 

@@ -1,19 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import {
-    LogoContainer,
-    MenuContainer,
-    NavbarContainer,
-    ChildContainer,
-} from "./styles";
+import { LogoContainer, MenuContainer, NavbarContainer, ChildContainer } from "./styles";
 import Button from "../../Button";
 import Menu from "./Menu";
 
 import Session from "../../../../lib/Auth";
 
-
-const Dekstop = ({ isUser }) => ( 
+const Dekstop = ({ isUser }) => (
     <NavbarContainer>
         <ChildContainer>
             <MenuContainer>
@@ -25,29 +19,26 @@ const Dekstop = ({ isUser }) => (
                 <Menu />
             </MenuContainer>
             <MenuContainer>
-                { isUser ? (
+                {isUser ? (
                     <Button onClick={() => Session.requestLogout()}>
                         <p className="pointer">Logout</p>
                     </Button>
-                ) : ( 
-
-                    <Button direction="/signup">
-                        <p className="pointer">Sign Up</p>
+                ) : (
+                    <Button direction="/signin">
+                        <p className="pointer">Sign In</p>
                     </Button>
-                ) }
+                )}
             </MenuContainer>
         </ChildContainer>
     </NavbarContainer>
 );
 
- 
 export default Dekstop;
 
-
 Dekstop.propTypes = {
-    isUser: PropTypes.object
+    isUser: PropTypes.object,
 };
 
 Dekstop.defaultProps = {
-    isUser: undefined
+    isUser: undefined,
 };

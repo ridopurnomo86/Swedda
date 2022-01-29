@@ -1,19 +1,19 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const requireAuth = (req, res, next) => {
-    const token = req.cookie.authLogin;
-    // Check json web token exists & is Verified
-    if (token) {
-        jwt.verify(token, process.env.JWT_TOKENKEY, (err, decodedToken) => {
-            if (err) {
-                res.status(400).json({ message: err.message, code: err.code });
-                next();
-            } else {
-                console.log(decodedToken);
-                next();
-            }
-        });
-    }
+	const token = req.cookie.authLogin;
+	// Check json web token exists & is Verified
+	if (token) {
+		jwt.verify(token, process.env.JWT_TOKENKEY, (err, decodedToken) => {
+			if (err) {
+				res.status(400).json({ message: err.message, code: err.code });
+				next();
+			} else {
+				console.log(decodedToken);
+				next();
+			}
+		});
+	}
 };
 
 // const checkUser = (req, res, next) => {

@@ -1,25 +1,6 @@
 import React from "react";
-import {
-    FooterContainer,
-    InfoContainer,
-    TextInfo,
-    Container,
-    ListLink,
-    SupportList,
-} from "./styles";
-import Link from "next/link";
-
-const MenuLink = {
-    "/catalog": "Catalog",
-    "/events": "Events",
-    "/articles": "Articles",
-};
-
-const SupportLink = {
-    "/terms": "Terms & Condition",
-    "/faq": "Faq",
-    "/help": "Help",
-};
+import { FooterContainer, InfoContainer, TextInfo, Container, Copyright } from "./styles";
+import ListLink from "./ListLink";
 
 const Footer = () => (
     <FooterContainer>
@@ -31,23 +12,11 @@ const Footer = () => (
                     skill bussiness future.
                 </TextInfo>
             </InfoContainer>
-            <ListLink>
-                <h3>Quick Link</h3>
-                {Object.keys(MenuLink).map((link) => (
-                    <Link href={link} key={link}>
-                        <p className="pointer mx-s semibold">{MenuLink[link]}</p>
-                    </Link>
-                ))}
-            </ListLink>
-            <SupportList>
-                <h3>Support</h3>
-                {Object.keys(SupportLink).map((link) => (
-                    <Link href={link} key={link}>
-                        <p className="pointer mx-s semibold">{SupportLink[link]}</p>
-                    </Link>
-                ))}
-            </SupportList>
+            <ListLink />
         </Container>
+        <Copyright>
+            <TextInfo>&#169;2022 Swedda All rights reserved.</TextInfo>
+        </Copyright>
     </FooterContainer>
 );
 

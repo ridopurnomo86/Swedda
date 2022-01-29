@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { devices } from "../../../../styles/breakpoint";
+import { MainContainer } from "../../../../styles";
 
-export const OurFeaturesContainer = styled.div`
-    margin-top: 64px;
+export const Wrapper = styled.div`
+    margin: 128px 0px;
+    padding: 0px 24px;
+`;
+
+export const OurFeaturesContainer = styled(MainContainer)`
     padding: 24px;
     display: flex;
     flex-direction: column;

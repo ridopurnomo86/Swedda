@@ -1,11 +1,11 @@
 import React from "react";
-import  { MenuContainer, MenuList } from "./styles";
 import Link from "next/link";
+import { MenuContainer, MenuList, TextLink } from "./styles";
 
 const MenuLink = {
     "/catalog": "Catalog",
     "/events": "Events",
-    "/articles": "Articles"
+    "/articles": "Articles",
 };
 
 const Menu = () => (
@@ -13,11 +13,10 @@ const Menu = () => (
         {Object.keys(MenuLink).map((link) => (
             <MenuList key={link}>
                 <Link href={link}>
-                    <p className="link">{MenuLink[link]}</p>
+                    <TextLink className="link">{MenuLink[link]}</TextLink>
                 </Link>
             </MenuList>
-        )
-        )}
+        ))}
     </MenuContainer>
 );
 

@@ -1,21 +1,16 @@
 import React from "react";
-import { ChildTitle, HeroContainer, HeroTitle, SubTitle } from "./styles";
+import { HeroContainer, HeroTitle, SubTitle, Wrapper } from "./styles";
 
 const HeroReviewer = () => (
-    <HeroContainer>
-        <ChildTitle>
-                Learning
-        </ChildTitle>
-        <HeroTitle>
-                Easy and Reliable to Learn
-        </HeroTitle>
-        <SubTitle>
-                We provide various kinds of business courses for you, 
-                Bussiness Development, Sales Trainee, Management Trainee,
-                and Many more.
-        </SubTitle>
-    </HeroContainer>
+    <Wrapper>
+        <HeroContainer>
+            <HeroTitle>Join the largest developer network</HeroTitle>
+            <SubTitle>
+                Classes in Swedda are available for those who do not have business skills (basic) to
+                those who are already professional.
+            </SubTitle>
+        </HeroContainer>
+    </Wrapper>
 );
-
 
 export default HeroReviewer;

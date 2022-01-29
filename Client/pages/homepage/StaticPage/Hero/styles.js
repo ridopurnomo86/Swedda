@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { devices } from "../../../../styles/breakpoint";
+import { MainContainer } from "../../../../styles";
 
-export const HeroContainer = styled.div`
+export const Wrapper = styled.div`
+    padding: 0px 24px;
+`;
+
+export const HeroContainer = styled(MainContainer)`
     width: 100%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 100%),
         url(https://source.unsplash.com/nF0nQuqBsrI) no-repeat center center;
@@ -34,8 +39,11 @@ export const HeroTitle = styled.p`
 
 export const SubTitle = styled.p`
     color: ${({ theme }) => theme.shader.primary};
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     max-width: 500px;
     margin-top: 32px;
+    @media ${devices.mobileL} {
+        font-size: 18px;
+    }
 `;

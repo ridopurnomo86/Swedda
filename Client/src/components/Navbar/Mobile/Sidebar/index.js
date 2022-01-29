@@ -1,24 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
-import  { SidebarContainer, HumbergerMenu } from "./styles";
+import { SidebarContainer, HumbergerMenu } from "./styles";
 import Button from "../../../Button";
 import Menu from "../Menu";
 
 import Session from "../../../../../lib/Auth";
 
-const Sidebar = ({ isOpen }) => (
+const Sidebar = ({ isOpen, isUser }) => (
     <HumbergerMenu transition={isOpen}>
         <SidebarContainer>
             <Menu />
-            <Button classNames="mt-m" onClick={() => Session.requestLogout()}>Logout</Button>
+            {isUser ? (
+                <Button classNames="mt-m" onClick={() => Session.requestLogout()}>
+                    Logout
+                </Button>
+            ) : (
+                <Button classNames="mt-m" direction="/signin">
+                    Sign in
+                </Button>
+            )}
         </SidebarContainer>
     </HumbergerMenu>
 );
 
- 
 export default Sidebar;
 
 Sidebar.propTypes = {
-    isOpen: PropTypes.bool.isRequired
+    isOpen: PropTypes.bool.isRequired,
+    isUser: PropTypes.bool,
 };
 
+Sidebar.defaultProps = {
+    isUser: false,
+};
