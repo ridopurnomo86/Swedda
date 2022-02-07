@@ -1,24 +1,25 @@
 const User = require("../../models/userSchema");
-// const csurf = require('csurf');
 const filterData = require("../../modules/filterData");
 const createToken = require("../../modules/createToken");
 const handleErrors = require("../../modules/handleError");
-
 const nodemailer = require("nodemailer");
+
 require("dotenv").config();
 
 module.exports.signup_post = async (req, res) => {
 	const data = req.body;
 	try {
 		const user = await User.create(data);
-		res.status(200).json({ user: user._id, message: "Success Create User" });
+		res.status(200).json({
+			user: user._id,
+			message: "Success Create User",
+		});
 	} catch (error) {
 		const errors = handleErrors(error);
-		res.status(400).json({ errors });
+		if (errors) return res.status(400).json({ message: errors.email || errors.password });
 	}
+	return res.status(500).send("Internal Server Error");
 };
-
-// export const csrfProtection = csurf({ cookie: { httpOnly: true, maxAge: maxAge }});
 
 module.exports.signin_post = async (req, res, next) => {
 	const { email, password } = req.body;
@@ -34,7 +35,6 @@ module.exports.signin_post = async (req, res, next) => {
 		res.cookie("swedda-login", token, {
 			maxAge: 2 * 60 * 60 * 1000, // two Hours
 		});
-
 		res.status(200).json({ user: user._id });
 	} catch (error) {
 		const errors = handleErrors(error);
@@ -56,6 +56,7 @@ module.exports.logout_get = async (req, res, next) => {
 };
 
 module.exports.verify_post = async (req, res, next) => {
+	console.log(req.cookies);
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
