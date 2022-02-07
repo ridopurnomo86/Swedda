@@ -4,7 +4,7 @@ import { devices } from "../../../styles/breakpoint";
 
 export const FooterContainer = styled.footer`
     width: 100%;
-    background-color: #252328;
+    background-color: rgba(0,0,0, 0.9);
     padding: 24px 0px;
     color: ${({ theme }) => theme.shader.primary};
 

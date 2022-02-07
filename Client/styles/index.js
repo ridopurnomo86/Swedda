@@ -53,3 +53,8 @@ export const MainContainer = styled.div`
         max-width: 1600px;
     }
 `;
+
+export const NavbarTopSpacing = styled.div`
+    padding-top: 90px;
+    background-color: ${({ theme }) => theme.bg.primary};
+`;

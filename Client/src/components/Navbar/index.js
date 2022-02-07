@@ -2,9 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Dekstop from "./Dekstop";
 import Mobile from "./Mobile";
-
 import Session from "../../../lib/Auth";
-
 import useClickOutside from "../../hooks/useClickOutside";
 
 const Navbar = () => {

@@ -1,9 +1,12 @@
 import React from "react";
-import ExclusiveLesson from "./ExclusiveLesson";
-import Hero from "./Hero";
-import HeroReviewer from "./HeroReviewer";
-import OurFeatures from "./OurFeatures";
-import StaticPageContainer from "./styles";
+import Dynamic from "next/dynamic";
+
+const Hero = Dynamic(() => import("./Hero"));
+const ExclusiveLesson = Dynamic(() => import("./ExclusiveLesson"));
+const HeroReviewer = Dynamic(() => import("./HeroReviewer")) ;
+const OurFeatures = Dynamic(() => import("./OurFeatures")) ;
+const StaticPageContainer = Dynamic(() => import("./styles"));
+
 
 const StaticPage = () => (
     <StaticPageContainer>

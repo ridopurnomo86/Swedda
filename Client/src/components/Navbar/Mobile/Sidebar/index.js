@@ -26,10 +26,11 @@ const Sidebar = ({ isOpen, isUser }) => (
 export default Sidebar;
 
 Sidebar.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool,
     isUser: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
+    isOpen: false,
     isUser: false,
 };

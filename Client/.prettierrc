@@ -4,8 +4,10 @@
     "doubleQuote": true,
     "tabWidth": 4,
     "trailingComma": "es5",
-    "printWidth": 100,
-    "useTabs": false
+    "printWidth": 120,
+    "useTabs": false,
+    "bracketSameLine": false,
+    "bracketSpacing": true
   }
   
 

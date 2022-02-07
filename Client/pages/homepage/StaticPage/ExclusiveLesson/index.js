@@ -1,44 +1,40 @@
 import React from "react";
 import {
-    CardContent,
-    CardExclusiveClass,
-    CardText,
-    CardTitle,
     ExclusiveLessonContainer,
     ExclusiveText,
     ExclusiveTitle,
     ListExclusiveClass,
 } from "./styles";
-import Image from "next/image";
+import CardExclusiveClass from "./CardExclusiveClass";
 
 const DATA = [
     {
         class_exclusiveid: 1,
         image_src: "https://source.unsplash.com/Yeit9w-RWUA",
-        class_title: "Bussiness Development",
+        class_title: "Sales Manager",
         class_description:
-            "Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "Sales managers hire and motivate high-performing sales teams, and lead them to generate leads, hit or exceed revenue forecasts, and ultimately meet customer needs. From pharmaceuticals to software to financial management, nearly every business sector has a sales manager building relationships and closing deals.",
     },
     {
         class_exclusiveid: 2,
         image_src: "https://source.unsplash.com/Um4iB59lS2A",
         class_title: "Accountant",
         class_description:
-            "Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "An accountant is a person who records business transactions on behalf of an organization, reports on company performance to management, and issues financial statements.",
     },
     {
         class_exclusiveid: 3,
         image_src: "https://source.unsplash.com/7okkFhxrxNw",
         class_title: "Bussiness Administration",
         class_description:
-            "Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "Business administration (also known as business management) is the administration of a commercial enterprise. It includes all aspects of overseeing and supervising business operations. From the point of view of management and leadership, it also covers fields that include office building administration, accounting, finance, designing, development, quality assurance, data analysis, sales, project management, information-technology management, research and development, and marketing.",
     },
     {
         class_exclusiveid: 4,
         image_src: "https://source.unsplash.com/pypeCEaJeZY",
         class_title: "Data Analyst",
         class_description:
-            "Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            "Data analysis is a process of inspecting, cleansing, transforming, and modelling data with the goal of discovering useful information, informing conclusions, and supporting decision-making. Data analysis has multiple facets and approaches, encompassing diverse techniques under a variety of names, and is used in different business, science, and social science domains.",
     },
 ];
 
@@ -48,20 +44,12 @@ const ExclusiveLesson = () => (
         <ExclusiveText>Improve your skill with our exclusive lesson.</ExclusiveText>
         <ListExclusiveClass>
             {DATA?.map((info) => (
-                <CardExclusiveClass key={info.class_exclusiveid}>
-                    <Image
-                        src={info.image_src}
-                        width={300}
-                        height={150}
-                        alt="pic"
-                        objectFit="cover"
-                        layout="responsive"
-                    />
-                    <CardContent>
-                        <CardTitle>{info.class_title}</CardTitle>
-                        <CardText>{info.class_description}</CardText>
-                    </CardContent>
-                </CardExclusiveClass>
+                <CardExclusiveClass 
+                    key={info.class_exclusiveid} 
+                    imgSrc={info.image_src} 
+                    title={info.class_title} 
+                    desc={info.class_description} 
+                />
             ))}
         </ListExclusiveClass>
     </ExclusiveLessonContainer>
