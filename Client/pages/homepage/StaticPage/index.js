@@ -1,11 +1,12 @@
 import React from "react";
 import Dynamic from "next/dynamic";
+import StaticPageContainer from "./styles";
 
 const Hero = Dynamic(() => import("./Hero"));
 const ExclusiveLesson = Dynamic(() => import("./ExclusiveLesson"));
 const HeroReviewer = Dynamic(() => import("./HeroReviewer")) ;
 const OurFeatures = Dynamic(() => import("./OurFeatures")) ;
-const StaticPageContainer = Dynamic(() => import("./styles"));
+const SignupSection = Dynamic(() => import("./SignupSection"));
 
 
 const StaticPage = () => (
@@ -14,6 +15,7 @@ const StaticPage = () => (
         <ExclusiveLesson />
         <OurFeatures />
         <HeroReviewer />
+        <SignupSection />
     </StaticPageContainer>
 );
 

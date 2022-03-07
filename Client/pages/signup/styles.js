@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Button from "../../src/components/Button";
 
+
+
 export const SignupContainer = styled.div`
   width: 40%;
   padding: 0px 12px;
@@ -10,7 +12,7 @@ export const SignupContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-
+  
   .mt-m {
     margin-top: 16px;
   }

@@ -2,7 +2,7 @@ const User = require("../../models/userSchema");
 const filterData = require("../../modules/filterData");
 const createToken = require("../../modules/createToken");
 const handleErrors = require("../../modules/handleError");
-const nodemailer = require("nodemailer");
+
 
 require("dotenv").config();
 
@@ -14,6 +14,7 @@ module.exports.signup_post = async (req, res) => {
 			user: user._id,
 			message: "Success Create User",
 		});
+		
 	} catch (error) {
 		const errors = handleErrors(error);
 		if (errors) return res.status(400).json({ message: errors.email || errors.password });
@@ -26,8 +27,7 @@ module.exports.signin_post = async (req, res, next) => {
 
 	try {
 		const user = await User.login(email, password);
-
-		const filteredKeys = ["username", "email"];
+		const filteredKeys = ["username", "email", "gender", "is_verified"];
 		const userInfo = filterData(filteredKeys, user);
 
 		const token = createToken(user._id, userInfo);
@@ -36,6 +36,7 @@ module.exports.signin_post = async (req, res, next) => {
 			maxAge: 2 * 60 * 60 * 1000, // two Hours
 		});
 		res.status(200).json({ user: user._id });
+		
 	} catch (error) {
 		const errors = handleErrors(error);
 		res.status(401).json({ error: "Cannot Login", errorMessage: errors });
@@ -55,44 +56,4 @@ module.exports.logout_get = async (req, res, next) => {
 	next();
 };
 
-module.exports.verify_post = async (req, res, next) => {
-	console.log(req.cookies);
-	const transporter = nodemailer.createTransport({
-		service: "gmail",
-		auth: {
-			user: process.env.EMAIL_USER_NODEMAILER,
-			pass: process.env.PASSWORD_USER_NODEMAILER,
-		},
-		tls: {
-			rejectUnauthorized: false,
-		},
-	});
 
-	try {
-		const info = await transporter.sendMail({
-			from: process.env.EMAIL_USER_NODEMAILER,
-			to: "ridopurnomo86@gmail.com",
-			subject: "Email Verification Swedda",
-			html: "<p>Hello Bro??</p>",
-		});
-
-		if (info.response.includes("250")) {
-			res.status(200).json({
-				messageId: info.messageId,
-				message: "Success Deliveried Verification",
-			});
-		}
-
-		transporter.verify((error) => {
-			if (error) return console.log(error);
-			return console.log("Ready For Send Message");
-		});
-
-		next();
-	} catch (error) {
-		res.status(500);
-		next();
-	}
-
-	// send mail with defined transport object
-};

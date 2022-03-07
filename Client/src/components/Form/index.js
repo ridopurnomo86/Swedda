@@ -1,34 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormContainer, Input, Label, ErrorMessage } from "./styles";
+import { FormContainer, Input, Label, ErrorMessage, InputComment } from "./styles";
 
-const Form = ({ 
-    FormList = [], 
-    register, 
-    handleSubmit, 
-    errors, 
-    onSubmit, 
-    children
-}) => (
+const Form = ({ FormList = [], register, handleSubmit, errors, onSubmit, children }) => (
     <form onSubmit={handleSubmit(onSubmit)}>
         {FormList.map((form) => (
             <FormContainer key={form.id}>
                 <Label id={form.id}>{form.label}</Label>
-                <Input
-                    id={form.id}
-                    name={form.name}
-                    placeholder={form.placeholder}
-                    type={form.type}
-                    {...register(form.name, form.validation && { ...form.validation })}
-                    error={errors[form.name]}
-                />
+                {form.type === "textarea" && <InputComment name={form.name} id={form.id} rows={5} cols={50} required />}
+                {form.type !== "textarea" && (
+                    <Input
+                        id={form.id}
+                        name={form.name}
+                        placeholder={form.placeholder}
+                        type={form.type}
+                        {...register(form.name, form.validation && { ...form.validation })}
+                        error={errors[form.name]}
+                    />
+                )}
                 {errors[form.name] && <ErrorMessage>This field Must Required</ErrorMessage>}
             </FormContainer>
         ))}
         {children}
     </form>
 );
-
 
 export default Form;
 

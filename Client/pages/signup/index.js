@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import Head from "next/head";
+import nookies from "nookies";
 import Form from "../../src/components/Form";
 import OptionalContent from "./OptionalContent";
 import { SignupContainer, ButtonForm, Title } from "./styles";
-import { useForm } from "react-hook-form";
 import usePOST from "../api/usePOST";
 import CircularLoading from "../../src/components/CircularLoading";
-import nookies from "nookies";
 import Notification from "../../src/components/Notification";
 
 const Signup = () => {
@@ -37,11 +38,11 @@ const Signup = () => {
 
     return (
         <SignupContainer>
-            <Notification
-                state={error}
-                message="Sorry, Something Wrong"
-                onClose={() => setError(false)}
-            />
+            <Head>
+                <title>Sign Up</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Notification state={error} message="Sorry, Something Wrong" onClose={() => setError(false)} />
             <Title>Get Started for free</Title>
             <Form
                 FormList={[

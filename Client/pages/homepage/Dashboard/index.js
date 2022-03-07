@@ -1,9 +1,10 @@
 import React from "react";
+import Banner from "./Banner";
 import { DashboardContainer } from "./styles";
 
 const Dashboard = () => (
     <DashboardContainer>
-        <h1>Dashboard Page</h1>
+        <Banner />
     </DashboardContainer>
 );
 

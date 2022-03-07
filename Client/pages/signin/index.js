@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import Head from "next/head";
 import usePOST from "../api/usePOST";
 import Notification from "../../src/components/Notification";
 import Form from "../../src/components/Form";
@@ -46,6 +47,10 @@ const Signin = () => {
 
     return (
         <SignupContainer>
+            <Head>
+                <title>Sign In</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <Notification state={isError} onClose={setIsError} message="Something Gone Wrong..." />
             <Wrapper>
                 <Title>Sign in to Swedda</Title>

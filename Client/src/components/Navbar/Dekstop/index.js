@@ -8,14 +8,16 @@ import Menu from "./Menu";
 import Session from "../../../../lib/Auth";
 
 const Dekstop = ({ isUser }) => {
-    const [onScroll, setOnScroll] = useState(null);
+    const [onScroll, setOnScroll] = useState(false);
 
     useEffect(() => {
         const media = document.body.getBoundingClientRect();
         const onScrollY = () => setOnScroll(media.y);
+
         window.addEventListener("scroll", onScrollY);
+
         return () => window.removeEventListener("scroll", onScrollY);
-    },[onScroll]);
+    }, [onScroll]);
 
     return (
         <>
@@ -42,7 +44,6 @@ const Dekstop = ({ isUser }) => {
                     </MenuContainer>
                 </ChildContainer>
             </NavbarContainer>
-
         </>
     );
 };

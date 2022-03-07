@@ -3,10 +3,19 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import nookies from "nookies";
+import WrapperLoading from "./events/styles";
+import Loader from "../src/components/Loader";
 
-const Dashboard = dynamic(() => import("./homepage/Dashboard"));
-const StaticPage = dynamic(() => import("./homepage/StaticPage"), {
+const Dashboard = dynamic(() => import("./homepage/Dashboard"), {
     ssr: true,
+});
+const StaticPage = dynamic(() => import("./homepage/StaticPage"), {
+    loading: () => (
+        <WrapperLoading>
+            <Loader />,
+        </WrapperLoading>
+    ),
+    ssr: false,
 });
 
 const Homepage = ({ token }) =>

@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
 	},
 	is_verified: {
 		type: Boolean,
-		default: null,
+		default: false,
 	},
 	created_at: { type: Date },
 	updated_at: { type: Date },
@@ -59,12 +59,6 @@ userSchema.statics.login = async function (email, password) {
 	}
 	throw Error("Email Doesnt Exist");
 };
-
-// fire a function after doc save to database
-// userSchema.post("save", function (doc, next) {
-//   console.log("new User has created", doc);
-//   next();
-// });
 
 const User = mongoose.model("user", userSchema);
 
