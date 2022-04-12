@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const Text = styled.p`
+    font-size: 14px;
+    font-weight: 600;
+`;
+
 export const TagContainer = styled.div`
     display: inline-block;
     padding: 6px;
@@ -7,9 +12,4 @@ export const TagContainer = styled.div`
     border-radius: 8px;
     align-items: center;
     border: 1px solid ${({ theme }) => theme.shader.secondaryOptional};
-`;
-
-export const Text = styled.p`
-    font-size: 14px;
-    font-weight: 600;
 `;

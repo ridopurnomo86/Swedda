@@ -3,8 +3,8 @@ import { MainContainer } from "../../../../styles";
 
 export const NavbarContainer = styled.div`
     width: 100%;
-    box-shadow: ${({ onScroll }) => onScroll ? "none" : "rgba(0, 0, 0, 0.1) 0px 4px 12px"};
-    background-color: ${({ theme, onScroll }) => onScroll ? theme.bg.primary : theme.shader.primary};
+    box-shadow: ${({ isScroll }) => (isScroll ? "none" : "rgba(0, 0, 0, 0.1) 0px 4px 12px")};
+    background-color: ${({ theme, isScroll }) => (isScroll ? theme.bg.primary : theme.shader.primary)};
     padding: 16px 0px;
     position: fixed;
     z-index: 10;

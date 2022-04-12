@@ -3,22 +3,15 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import nookies from "nookies";
-import WrapperLoading from "./events/styles";
-import Loader from "../src/components/Loader";
 
 const Dashboard = dynamic(() => import("./homepage/Dashboard"), {
     ssr: true,
 });
 const StaticPage = dynamic(() => import("./homepage/StaticPage"), {
-    loading: () => (
-        <WrapperLoading>
-            <Loader />,
-        </WrapperLoading>
-    ),
-    ssr: false,
+    ssr: true,
 });
 
-const Homepage = ({ token }) =>
+const Homepage = ({ token, data }) =>
     token ? (
         <>
             <Head>
@@ -33,11 +26,23 @@ const Homepage = ({ token }) =>
                 <title>Swedda</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <StaticPage />
+            <StaticPage data={data} />
         </>
     );
 
+Homepage.propTypes = {
+    token: PropTypes.string,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+Homepage.defaultProps = {
+    token: null,
+};
+
+export default Homepage;
+
 export async function getServerSideProps(context) {
+    // Auth
     const cookie = nookies.get(context);
     const token = cookie[`${process.env.COOKIE_USER}`];
 
@@ -50,19 +55,14 @@ export async function getServerSideProps(context) {
     //     };
     // }
 
+    // Catalog
+    const res = await fetch(`${process.env.BACKEND_URL}/catalog`);
+    const { data } = await res.json();
+
     return {
         props: {
             token: token ? token : null,
+            data: data ? data : null,
         },
     };
 }
-
-export default Homepage;
-
-Homepage.propTypes = {
-    token: PropTypes.string,
-};
-
-Homepage.defaultProps = {
-    token: null,
-};

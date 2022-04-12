@@ -9,21 +9,24 @@ const InfoEvent = () => (
         <FlexInfo>
             <ListInfo
                 icon={<i className="fa fa-graduation-cap" style={{ fontSize: "64px" }}></i>}
-                title="Upgrade Kemampuan Teknik"
-                infoText="Banyak pembicara yang sudah lama di dunia IT dari berbagai bidang, sehingga Anda dapat memilih event yang
-            sesuai dengan kemampuan/minat anda."
+                title="Technical Ability Upgrade"
+                infoText="There are many speakers who have been in the IT world for a 
+                long time from various fields, 
+                so you can choose the event that suits you best
+                according to your abilities/interests."
             />
             <ListInfo
                 icon={<i className="fa fa-network-wired" style={{ fontSize: "64px" }}></i>}
-                title="Bangun Jaringan"
-                infoText="Event dihadiri oleh pembicara yang top dan peserta dari berbagai daerah, 
-                sehingga Anda bisa berkesempatan membangun relasi dengan pembicara, peserta dan orang-orang hebat di sana."
+                title="Build Network"
+                infoText="The event was attended by top speakers and participants from various regions,
+                so you have the opportunity to build relationships with great speakers, attendees and people there."
             />
             <ListInfo
                 icon={<i className="fa fa-highlighter" style={{ fontSize: "60px" }}></i>}
-                title="Up-to-Date Perkembangan"
-                infoText="Materi yang dibawakan sesuai perberkembang IT saat ini, 
-                sehingga Anda tidak ketinggalan perkembangan teknologi terkini."
+                title="Up-to-Date Development"
+                infoText="
+                The material presented is in accordance with current IT developments, 
+                so you don't miss the latest technological developments."
             />
         </FlexInfo>
     </InfoEventContainer>

@@ -8,7 +8,7 @@ const Comment = ({ infoComments, catalogid }) => (
         <Title>Comment</Title>
         <PublishComment catalogid={catalogid} />
         {infoComments.map((info) => (
-            <CommentWrapper key={info.comment_id}>
+            <CommentWrapper key={info.post_id}>
                 <Author>{info.author}</Author>
                 <TitleComment>{info.title}</TitleComment>
                 <TextContent>{info.content_text}</TextContent>

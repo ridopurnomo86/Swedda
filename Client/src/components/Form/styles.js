@@ -26,12 +26,3 @@ export const ErrorMessage = styled.span`
     font-size: 14px;
     color: ${({ theme }) => theme.main.error};
 `;
-
-export const InputComment = styled.textarea`
-    padding: 16px;
-    max-width: 400px;
-    border: 1px solid ${({ theme }) => theme.shader.secondaryOptional};
-    outline: none;
-    border-radius: 4px;
-    display: block;
-`;

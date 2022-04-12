@@ -5,13 +5,15 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const mongoConnection = require("./config/MongoDB");
 const routes = require("./routes");
+const path = require("path");
 const app = express();
 require("dotenv").config();
 
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended: false }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan());
 async () => await mongoConnection();
 
@@ -20,6 +22,7 @@ app.use(
 		origin: process.env.CLIENT_ORIGIN,
 		methods: "GET,PUT,POST,DELETE",
 		credentials: true,
+		allowedHeaders: "Content-Type: application/json",
 		preflightContinue: false,
 		optionsSuccessStatus: 204,
 	})

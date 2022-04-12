@@ -4,19 +4,17 @@ import { SidebarContainer, HumbergerMenu } from "./styles";
 import Button from "../../../Button";
 import Menu from "../Menu";
 
-import Session from "../../../../../lib/Auth";
-
-const Sidebar = ({ isOpen, isUser }) => (
+const Sidebar = ({ isOpen, isUser, handleLogout }) => (
     <HumbergerMenu transition={isOpen}>
         <SidebarContainer>
             <Menu />
             {isUser ? (
-                <Button classNames="mt-m" onClick={() => Session.requestLogout()}>
-                    Logout
+                <Button classNames="mt-m" onClick={handleLogout}>
+                    <p>Logout</p>
                 </Button>
             ) : (
                 <Button classNames="mt-m" direction="/signin">
-                    Sign in
+                    <p>Sign In</p>
                 </Button>
             )}
         </SidebarContainer>
@@ -28,9 +26,11 @@ export default Sidebar;
 Sidebar.propTypes = {
     isOpen: PropTypes.bool,
     isUser: PropTypes.bool,
+    handleLogout: PropTypes.func,
 };
 
 Sidebar.defaultProps = {
     isOpen: false,
     isUser: false,
+    handleLogout: () => {},
 };

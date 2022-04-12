@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import Dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import CatalogDetailsContainer from "./styles";
-import HeaderCatalog from "./HeaderCatalog";
-import ContentInfo from "./ContentInfo";
+
+const HeaderCatalog = Dynamic(() => import("./HeaderCatalog"));
+const ContentInfo = Dynamic(() => import("./ContentInfo"));
 
 const CatalogDetails = ({ data, comments, catalogid }) => {
     const [indexLink, setIndexLink] = useState(0);

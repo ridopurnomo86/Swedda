@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
-import { InfoContainer, Title, Subtitle, HeaderCatalogContainer } from "./styles";
-import Tag from "../../../../src/components/Tag";
+import HeaderCatalogContainer from "./styles";
 import Breadcrumb from "./Breadcrumb";
+import Info from "./Info";
 
 const HeaderCatalog = ({ stateLink, setStateLink, data }) => {
     return (
@@ -16,17 +16,9 @@ const HeaderCatalog = ({ stateLink, setStateLink, data }) => {
                 width={100}
                 height={20}
                 objectFit="cover"
+                priority
             />
-            <InfoContainer>
-                <Title>{data.title}</Title>
-                {data.tag.map((info, key) => (
-                    <Tag text={info} key={key} />
-                ))}
-                <Subtitle>
-                    The complete curriculum was compiled by Swedda together with Harapan University Medan and other
-                    industry players. Students are prepared to become Sales Management according to industry needs.
-                </Subtitle>
-            </InfoContainer>
+            <Info infoCatalog={data} />
             <Breadcrumb stateLink={stateLink} setStateLink={setStateLink} />
         </HeaderCatalogContainer>
     );

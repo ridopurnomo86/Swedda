@@ -1,19 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ExclusiveLessonContainer, ExclusiveText, ExclusiveTitle, ListExclusiveClass } from "./styles";
 import CardExclusiveClass from "./CardExclusiveClass";
-import DATA from "./static";
 
-const ExclusiveLesson = () => (
+const ExclusiveLesson = ({ catalog }) => (
     <ExclusiveLessonContainer>
         <ExclusiveTitle>Exclusive Lesson</ExclusiveTitle>
         <ExclusiveText>Improve your skill with our exclusive lesson.</ExclusiveText>
         <ListExclusiveClass>
-            {DATA?.map((info) => (
+            {catalog?.map((info) => (
                 <CardExclusiveClass
-                    key={info.class_exclusiveid}
-                    imgSrc={info.image_src}
-                    title={info.class_title}
-                    desc={info.class_description}
+                    key={info.catalog_id}
+                    imgSrc={info.poster_img}
+                    title={info.title}
+                    desc={info.text_content}
+                    direction={`catalog/${info.catalog_id}`}
                 />
             ))}
         </ListExclusiveClass>
@@ -21,3 +22,11 @@ const ExclusiveLesson = () => (
 );
 
 export default ExclusiveLesson;
+
+ExclusiveLesson.propTypes = {
+    catalog: PropTypes.arrayOf(PropTypes.object),
+};
+
+ExclusiveLesson.defaultProps = {
+    catalog: undefined,
+};

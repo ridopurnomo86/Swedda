@@ -3,16 +3,9 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import nookies from "nookies";
-import CircularLoading from "../../src/components/CircularLoading";
-import WrapperLoading from "./styles";
 
 const EventDashboard = dynamic(() => import("./Eventdashboard"));
 const EventStatic = dynamic(() => import("./Static"), {
-    loading: () => (
-        <WrapperLoading>
-            <CircularLoading />,
-        </WrapperLoading>
-    ),
     ssr: false,
 });
 

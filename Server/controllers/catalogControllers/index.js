@@ -1,5 +1,6 @@
 const supabase = require("../../config/Supabase");
 const { randomUUID } = require("crypto");
+const verifyToken = require("../../modules/verifyToken");
 
 module.exports.catalog_get = async (req, res) => {
 	const { data } = await supabase.from("catalog").select();
@@ -16,31 +17,39 @@ module.exports.catalog_by_id_get = async (req, res) => {
 
 module.exports.catalog_comment_get = async (req, res) => {
 	const { id } = await req.params;
-	const { data } = await supabase.from("catalog").select("comment").eq("catalog_id", `${id}`);
-	if (data) return res.status(200).json({ message: "Success", data: data[0].comment });
+	const { data } = await supabase.from("catalog_comment").select().eq("catalog_id", `${id}`);
+	if (data) return res.status(200).json({ message: "Success", data });
 	return res.status(500).send("Internal Server Error");
 };
 
 module.exports.catalog_comment_post = async (req, res) => {
-	const { id } = await req.params;
 	const uuid = randomUUID();
+	const { id } = await req.params;
 	const { title, comment } = await req.body;
 
-	const { data, error } = await supabase
-		.from("catalog")
-		.update([
-			{
-				comment: [
+	try {
+		const token = await req.cookies["swedda-login"];
+		const username = await verifyToken(token).username;
+
+		if (!token) return res.status(500).send("Internal Server Error");
+
+		if (username) {
+			const { data, error } = await supabase
+				.from("catalog_comment")
+				.insert([
 					{
-						comment_id: uuid,
-						title,
+						post_id: uuid,
+						catalog_id: id,
+						author: username,
 						content_text: comment,
+						title,
 					},
-				],
-			},
-		])
-		.eq("catalog_id", `${id}`);
-	if (data) return res.status(200).json({ message: "Success", data });
-	if (error) return res.status(500).send(error);
-	return res.status(500).send("Internal Server Error");
+				])
+				.eq("catalog_id", `${id}`);
+			if (data) return res.status(200).json({ message: "Success" });
+			if (error) return res.status(500).send("Internal Server Error");
+		}
+	} catch (err) {
+		return res.status(500).send("Internal Server Error");
+	}
 };

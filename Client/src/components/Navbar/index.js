@@ -3,7 +3,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import Dekstop from "./Dekstop";
 import Mobile from "./Mobile";
 import Session from "../../../lib/Auth";
-import useClickOutside from "../../hooks/useClickOutside";
+// import useClickOutside from "../../hooks/useClickOutside";
 
 const Navbar = () => {
     const isMobile = useMediaQuery("(min-width: 968px)");
@@ -12,13 +12,17 @@ const Navbar = () => {
     const Ref = useRef(null);
 
     const handleBars = () => {
-        setOpen(!open);
+        setOpen((prev) => !prev);
+    };
+
+    const handleLogout = () => {
+        Session.requestLogout();
     };
 
     // Click Outside
-    useClickOutside(Ref, () => {
-        if (open) return setOpen(false);
-    });
+    // useClickOutside(Ref, () => {
+    //     if (open && Ref) return setOpen(false);
+    // });
 
     useEffect(() => {
         if (open) {
@@ -31,7 +35,13 @@ const Navbar = () => {
     return isMobile ? (
         <Dekstop isUser={Session.getUser()} />
     ) : (
-        <Mobile refContainer={Ref} open={open} onClick={handleBars} isUser={Session.getUser()} />
+        <Mobile
+            refContainer={Ref}
+            open={open}
+            onClick={handleBars}
+            handleLogout={handleLogout}
+            isUser={Boolean(Session.getUser())}
+        />
     );
 };
 

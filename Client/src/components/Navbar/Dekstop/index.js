@@ -8,7 +8,7 @@ import Menu from "./Menu";
 import Session from "../../../../lib/Auth";
 
 const Dekstop = ({ isUser }) => {
-    const [onScroll, setOnScroll] = useState(false);
+    const [onScroll, setOnScroll] = useState(null);
 
     useEffect(() => {
         const media = document.body.getBoundingClientRect();
@@ -19,9 +19,13 @@ const Dekstop = ({ isUser }) => {
         return () => window.removeEventListener("scroll", onScrollY);
     }, [onScroll]);
 
+    const handleLogout = () => {
+        Session.requestLogout();
+    };
+
     return (
         <>
-            <NavbarContainer onScroll={Boolean(onScroll > -21)}>
+            <NavbarContainer isScroll={Boolean(onScroll >= -21)}>
                 <ChildContainer>
                     <MenuContainer>
                         <LogoContainer>
@@ -33,7 +37,7 @@ const Dekstop = ({ isUser }) => {
                     </MenuContainer>
                     <MenuContainer>
                         {isUser ? (
-                            <Button onClick={() => Session.requestLogout()}>
+                            <Button onClick={handleLogout}>
                                 <p className="pointer">Logout</p>
                             </Button>
                         ) : (

@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
 		minlength: 8,
 		required: [true, "Password has Required..."],
 	},
+	birth_date: {
+		type: Date,
+		default: null,
+	},
 	gender: {
 		type: String,
 		default: null,

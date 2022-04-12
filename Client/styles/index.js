@@ -19,6 +19,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
       background-color: #EFEFF1;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
   }
 
   a {
@@ -34,17 +37,23 @@ export const GlobalStyle = createGlobalStyle`
   
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px grey; 
-  }
+    background: #e7ebed; 
+    }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #000000; 
-    border-radius: 10px;
+    background: #323330; 
+    border-radius: 8px;
   }
-  
 
-
+  @media (prefers-reduces-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !imporatant;
+      scroll-behavior: auto !important;
+    }
+  }
 `;
 
 export const MainContainer = styled.div`
