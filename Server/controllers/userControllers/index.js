@@ -2,7 +2,8 @@ const User = require("../../models/userSchema");
 const verifyToken = require("../../modules/verifyToken");
 const filterData = require("../../modules/filterData");
 const transporter = require("../../modules/emailTransporter");
-const supabase = require("../../config/Supabase");
+const cloudinary = require("../../config/Cloudinary");
+const fs = require("fs");
 
 module.exports = {
 	user_info_get: async (req, res) => {
@@ -37,22 +38,34 @@ module.exports = {
 		}
 	},
 	user_profile_img_post: async (req, res) => {
-		console.log(req.file);
-		const image = req.file.path;
-		const finalImageURL =
-            req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
-		const { data, error } = await supabase.storage
-			.from("avatars")
-			.upload(`/public/uploads/${req.file.filename}`, image, {
-				cacheControl: "3600",
-				upsert: false,
-				contentType: "image/png",
-			});
-		try {
-			if (data)
-				return res.status(200).json({ message: "success", data, imageUrl: finalImageURL });
-		} catch (err) {
-			if (error || err) return res.status(500).send("Internal Server Error");
+		const token = await req.cookies["swedda-login"];
+		if (token) {
+			const userId = verifyToken(token).id;
+			await cloudinary.uploader
+				.upload(req.file.path, {
+					public_id: userId,
+				})
+				.then((result) => {
+					if (result) {
+						fs.unlinkSync(req.file.path);
+						res.status(200).json({
+							message: "success",
+							result,
+						});
+					}
+				})
+				.catch((err) => {
+					if (err) {
+						fs.unlinkSync(req.file.path);
+						res.status(400).json({
+							messge: "someting went wrong while processing your request",
+							data: err,
+						});
+					}
+				});
+		} else {
+			fs.unlinkSync(req.file.path);
+			res.status(500).send("Internal Server Error");
 		}
 	},
 	verify_user_post: async (req, res) => {

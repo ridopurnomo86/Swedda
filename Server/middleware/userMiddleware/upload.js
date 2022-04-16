@@ -2,13 +2,14 @@ const multer = require("multer");
 const path = require("path");
 
 const maxSize = 512 * 512;
+const fileName = new Date().toISOString().replace(/:/g, "-");
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, path.join(__dirname, "../../public/uploads"));
+		cb(null, path.join(__dirname, "../../public/"));
 	},
 	filename: function (req, file, cb) {
-		cb(null, `${new Date().toISOString()}-${file.originalname}`);
+		cb(null, `${fileName}${file.originalname}`);
 	},
 });
 
