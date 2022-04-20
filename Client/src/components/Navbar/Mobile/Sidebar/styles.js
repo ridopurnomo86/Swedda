@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MainContainer } from "../../../../../styles";
 
-export const HumbergerMenu = styled(MainContainer)`
+export const SidebarMenu = styled(MainContainer)`
     position: fixed;
     display: flex;
     flex-direction: column;

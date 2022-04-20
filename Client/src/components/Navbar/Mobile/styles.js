@@ -42,7 +42,7 @@ export const HumbergerContainer = styled.div`
     padding: 8px;
     border-radius: 4px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 100;
     transition: 0.5s;
     &:hover {
         background-color: #282829;

@@ -41,20 +41,17 @@ module.exports = {
 		const token = await req.cookies["swedda-login"];
 		if (token) {
 			const userId = verifyToken(token).id;
-			await cloudinary.uploader
-				.upload(req.file.path, {
-					public_id: userId,
-				})
-				.then((result) => {
+			await cloudinary.uploader.upload(
+				`${req.file.path}`,
+				{ public_id: userId, folder: "avatars" },
+				(err, result) => {
 					if (result) {
 						fs.unlinkSync(req.file.path);
 						res.status(200).json({
-							message: "success",
+							message: "Success Uploaded",
 							result,
 						});
 					}
-				})
-				.catch((err) => {
 					if (err) {
 						fs.unlinkSync(req.file.path);
 						res.status(400).json({
@@ -62,7 +59,8 @@ module.exports = {
 							data: err,
 						});
 					}
-				});
+				}
+			);
 		} else {
 			fs.unlinkSync(req.file.path);
 			res.status(500).send("Internal Server Error");

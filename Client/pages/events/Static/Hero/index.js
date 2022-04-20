@@ -13,6 +13,7 @@ const Hero = () => (
                 alt="pic"
                 className="rounded"
                 objectFit="cover"
+                priority
             />
         </ImageContainer>
     </HeroContainer>

@@ -30,7 +30,7 @@ const Signin = () => {
                 Headers: "Content-Type: application/json",
             };
             usePOST({
-                path: "auth/signin",
+                path: "/auth/signin",
                 body: values,
                 config,
                 setIsPOSTING,

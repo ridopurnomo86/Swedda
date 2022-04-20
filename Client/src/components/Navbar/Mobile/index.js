@@ -11,8 +11,8 @@ import {
 } from "./styles";
 import Sidebar from "./Sidebar";
 
-const Mobile = ({ open, onClick, ref, isUser, handleLogout }) => (
-    <MobileContainer ref={ref}>
+const Mobile = ({ open = false, onClick, isUser, handleLogout, Ref }) => (
+    <MobileContainer>
         <ContentContainer>
             <LogoContainer transition={open}>
                 <Link href="/">
@@ -20,7 +20,7 @@ const Mobile = ({ open, onClick, ref, isUser, handleLogout }) => (
                 </Link>
             </LogoContainer>
             <HumbergerContainer onClick={onClick}>{open ? <CloseIcon /> : <HumbergerIcon />}</HumbergerContainer>
-            <Sidebar isOpen={open} isUser={isUser} handleLogout={handleLogout} />
+            <Sidebar isOpen={open} isUser={isUser} handleLogout={handleLogout} sidebarRef={Ref} />
         </ContentContainer>
     </MobileContainer>
 );
@@ -30,7 +30,7 @@ export default Mobile;
 Mobile.propTypes = {
     open: PropTypes.bool,
     onClick: PropTypes.func,
-    ref: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
+    Ref: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
     isUser: PropTypes.bool,
     handleLogout: PropTypes.func,
 };
@@ -39,6 +39,6 @@ Mobile.defaultProps = {
     open: false,
     onClick: () => {},
     handleLogout: () => {},
-    ref: undefined,
+    Ref: null,
     isUser: false,
 };

@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { SidebarContainer, HumbergerMenu } from "./styles";
+import { SidebarContainer, SidebarMenu } from "./styles";
 import Button from "../../../Button";
 import Menu from "../Menu";
+import ProfileMenu from "../ProfileMenu";
 
-const Sidebar = ({ isOpen, isUser, handleLogout }) => (
-    <HumbergerMenu transition={isOpen}>
+const Sidebar = ({ isOpen = false, isUser, handleLogout, sidebarRef }) => (
+    <SidebarMenu transition={isOpen} ref={sidebarRef}>
         <SidebarContainer>
             <Menu />
+            {isUser && <ProfileMenu />}
             {isUser ? (
                 <Button classNames="mt-m" onClick={handleLogout}>
                     <p>Logout</p>
@@ -18,7 +20,7 @@ const Sidebar = ({ isOpen, isUser, handleLogout }) => (
                 </Button>
             )}
         </SidebarContainer>
-    </HumbergerMenu>
+    </SidebarMenu>
 );
 
 export default Sidebar;
@@ -27,10 +29,12 @@ Sidebar.propTypes = {
     isOpen: PropTypes.bool,
     isUser: PropTypes.bool,
     handleLogout: PropTypes.func,
+    sidebarRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]),
 };
 
 Sidebar.defaultProps = {
     isOpen: false,
     isUser: false,
     handleLogout: () => {},
+    sidebarRef: undefined,
 };

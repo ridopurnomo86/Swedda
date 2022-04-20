@@ -5,7 +5,7 @@ import { LogoContainer, MenuContainer, NavbarContainer, ChildContainer } from ".
 import Button from "../../Button";
 import Menu from "./Menu";
 
-import Session from "../../../../lib/Auth";
+import ProfileMenu from "./ProfileMenu";
 
 const Dekstop = ({ isUser }) => {
     const [onScroll, setOnScroll] = useState(null);
@@ -18,10 +18,6 @@ const Dekstop = ({ isUser }) => {
 
         return () => window.removeEventListener("scroll", onScrollY);
     }, [onScroll]);
-
-    const handleLogout = () => {
-        Session.requestLogout();
-    };
 
     return (
         <>
@@ -37,9 +33,7 @@ const Dekstop = ({ isUser }) => {
                     </MenuContainer>
                     <MenuContainer>
                         {isUser ? (
-                            <Button onClick={handleLogout}>
-                                <p className="pointer">Logout</p>
-                            </Button>
+                            <ProfileMenu />
                         ) : (
                             <Button direction="/signin">
                                 <p className="pointer">Sign In</p>

@@ -6,20 +6,18 @@ import ArticleContainer from "./styles";
 import HeroSection from "./HeroSection";
 import ListSection from "./ListSection";
 
-const Articles = () => {
-    return (
-        <>
-            <Head>
-                <title>Articles</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <ArticleContainer>
-                <HeroSection />
-                <ListSection />
-            </ArticleContainer>
-        </>
-    );
-};
+const Articles = ({ data }) => (
+    <>
+        <Head>
+            <title>Articles</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <ArticleContainer>
+            <HeroSection />
+            <ListSection articles={data} />
+        </ArticleContainer>
+    </>
+);
 export default Articles;
 
 Articles.propTypes = {
@@ -27,19 +25,12 @@ Articles.propTypes = {
 };
 
 export async function getServerSideProps() {
-    // const cookie = nookies.get(context);
-    // const token = cookie[`${process.env.COOKIE_USER}`];
-
-    // if (!token) {
-    //     return {
-    //         redirect: {
-    //             destination: "/signin",
-    //             permanent: false,
-    //         },
-    //     };
-    // }
+    const res = await fetch(`${process.env.NEWS_API_URL}everything?q=economy&apiKey=${process.env.NEWS_API_KEY}`);
+    const { articles } = await res.json();
 
     return {
-        props: {},
+        props: {
+            data: articles ? articles : null,
+        },
     };
 }
