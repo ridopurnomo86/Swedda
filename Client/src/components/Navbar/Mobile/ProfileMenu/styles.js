@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const animateTabs = keyframes`
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+`;
 
 export const ProfileMenuContainer = styled.div`
     cursor: pointer;
@@ -22,6 +33,7 @@ export const MenuContainer = styled.div`
 
 export const MenuListContainer = styled.div`
     padding: 0px 32px;
+    animation: ${animateTabs} 1s forwards;
 `;
 
 export const MenuList = styled.div`

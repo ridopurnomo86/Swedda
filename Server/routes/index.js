@@ -1,5 +1,5 @@
-const authRoutes = require("./authRoutes");
-const catalogRoutes = require("./catalogRoutes");
-const userRoutes = require("./userRoutes");
+const account = require("./account");
+const catalog = require("./catalog");
+const profile = require("./profile");
 
-module.exports = [authRoutes, catalogRoutes, userRoutes];
+module.exports = [account, catalog, profile];

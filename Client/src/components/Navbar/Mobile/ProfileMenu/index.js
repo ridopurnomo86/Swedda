@@ -23,11 +23,11 @@ const ProfileMenu = () => {
             </MenuContainer>
             {show && (
                 <MenuListContainer>
-                    <MenuList>
-                        <Link href="/profile">
+                    <Link href="/profile">
+                        <MenuList>
                             <TitleText className="link">Profile</TitleText>
-                        </Link>
-                    </MenuList>
+                        </MenuList>
+                    </Link>
                 </MenuListContainer>
             )}
         </ProfileMenuContainer>

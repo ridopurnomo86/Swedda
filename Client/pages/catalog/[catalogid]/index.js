@@ -9,7 +9,6 @@ const ContentInfo = Dynamic(() => import("./ContentInfo"));
 
 const CatalogDetails = ({ data, comments, catalogid }) => {
     const [indexLink, setIndexLink] = useState(0);
-
     return (
         <>
             <Head>
