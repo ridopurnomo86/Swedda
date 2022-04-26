@@ -41,7 +41,9 @@ module.exports = {
 		try {
 			if (res.cookie) {
 				res.cookie("swedda-login", "", { maxAge: 0 });
-				res.status(200).json();
+				res.status(200).json({
+					message: "Success Logout",
+				});
 			}
 		} catch (error) {
 			res.status(500).json({ error: "Error" });

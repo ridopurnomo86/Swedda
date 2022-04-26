@@ -3,6 +3,11 @@ const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
+	name: {
+		type: String,
+		minlength: 8,
+		required: [true, "name has Required..."],
+	},
 	username: {
 		type: String,
 		minlength: 8,
