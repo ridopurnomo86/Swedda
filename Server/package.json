@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
     "lint": "eslint ./"
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@supabase/supabase-js": "^1.30.7",
+    "apicache": "^1.6.3",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.29.0",
     "cookie-parser": "^1.4.5",
