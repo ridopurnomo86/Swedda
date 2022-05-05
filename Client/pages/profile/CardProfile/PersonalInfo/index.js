@@ -2,28 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import Form from "../../../../src/components/Form";
 import { PersonalInfoContainer, ButtonForm } from "./styles";
+import CircularLoading from "../../../../src/components/CircularLoading";
 
 const PersonalInfo = ({ register, handleSubmit, errors, isLoading, onSubmit, defaultValue }) => (
     <PersonalInfoContainer>
         <Form
             FormList={[
                 {
+                    id: "name",
+                    label: "Name",
+                    name: "name",
+                    placeholder: "Name...",
+                    type: "text",
+                },
+                {
                     id: "email",
                     label: "Email",
                     name: "email",
                     placeholder: "Email...",
                     type: "text",
-                    validation: { required: true },
-                    defaultValue: defaultValue?.email,
                 },
-                // {
-                //     id: "image_profile",
-                //     label: "Image Profile",
-                //     name: "image_profile",
-                //     placeholder: "image_profile",
-                //     type: "file",
-                //     validation: { required: true },
-                // },
+                {
+                    id: "birth_date",
+                    label: "Birth Date",
+                    name: "birth_date",
+                    type: "date",
+                },
                 {
                     id: "gender",
                     label: "Gender",
@@ -35,7 +39,7 @@ const PersonalInfo = ({ register, handleSubmit, errors, isLoading, onSubmit, def
                         { key: "Male", value: "male" },
                         { key: "Female", value: "female" },
                     ],
-                    validation: { required: true },
+                    selected: defaultValue?.gender,
                 },
             ]}
             register={register}
@@ -44,7 +48,7 @@ const PersonalInfo = ({ register, handleSubmit, errors, isLoading, onSubmit, def
             onSubmit={onSubmit}
         >
             <ButtonForm classNames="mt-m" padding="16px" type="submit" disable={isLoading}>
-                Edit Profile
+                {isLoading ? <CircularLoading /> : "Edit Profile"}
             </ButtonForm>
         </Form>
     </PersonalInfoContainer>

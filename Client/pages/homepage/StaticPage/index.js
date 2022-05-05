@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import StaticPageContainer from "./styles";
 
-const Hero = Dynamic(() => import("./Hero"));
-const ExclusiveLesson = Dynamic(() => import("./ExclusiveLesson"));
-const HeroReviewer = Dynamic(() => import("./HeroReviewer"));
-const OurFeatures = Dynamic(() => import("./OurFeatures"));
-const SignupSection = Dynamic(() => import("./SignupSection"));
+const Hero = dynamic(() => import("./Hero"));
+const ExclusiveLesson = dynamic(() => import("./ExclusiveLesson"));
+const HeroReviewer = dynamic(() => import("./HeroReviewer"));
+const OurFeatures = dynamic(() => import("./OurFeatures"));
+const SignupSection = dynamic(() => import("./SignupSection"));
 
 const StaticPage = ({ data }) => (
     <StaticPageContainer>

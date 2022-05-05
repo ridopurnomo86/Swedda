@@ -22,6 +22,7 @@ module.exports = {
 					"gender",
 					"birth_date",
 					"is_verified",
+					"image_poster",
 				];
 				const info = filterData(filteredKeys, userInfo);
 
@@ -41,7 +42,7 @@ module.exports = {
 				const userId = verifyToken(token).id;
 				const userInfo = await User.findByIdAndUpdate(userId, body, { new: true });
 
-				if (userInfo) return res.status(200).json({ message: "Success" });
+				if (userInfo) return res.status(200).json({ message: "Success Edit Profile" });
 				if (!userInfo) return res.status(500).send("Internal Server Error");
 			}
 		} catch (err) {
@@ -58,6 +59,11 @@ module.exports = {
 				{ public_id: userId, folder: "avatars" },
 				(err, result) => {
 					if (result) {
+						User.findByIdAndUpdate(
+							userId,
+							{ $set: { image_poster: result.url } },
+							{ new: true }
+						);
 						fs.unlinkSync(req.file.path);
 						res.status(200).json({
 							message: "Success Uploaded",
@@ -84,7 +90,7 @@ module.exports = {
 		const verifyCredential = verifyToken(token);
 		const { email, id } = verifyCredential;
 
-		const confirmationToken = createToken(id, "5m");
+		const confirmationToken = createToken(id);
 		try {
 			if (token && email) {
 				const info = await transporter.sendMail({

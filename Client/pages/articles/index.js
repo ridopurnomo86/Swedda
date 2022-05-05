@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 import Head from "next/head";
 // import nookies from "nookies";
 import ArticleContainer from "./styles";
-import HeroSection from "./HeroSection";
-import ListSection from "./ListSection";
+
+const HeroSection = dynamic(() => import("./HeroSection"));
+const ListSection = dynamic(() => import("./ListSection"));
 
 const Articles = ({ data }) => (
     <>
@@ -25,7 +27,7 @@ Articles.propTypes = {
 };
 
 export async function getServerSideProps() {
-    const res = await fetch(`${process.env.NEWS_API_URL}everything?q=economy&apiKey=${process.env.NEWS_API_KEY}`);
+    const res = await fetch(`${process.env.NEWS_API_URL}top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`);
     const { articles } = await res.json();
 
     return {

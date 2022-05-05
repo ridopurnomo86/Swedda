@@ -1,8 +1,10 @@
 import React from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import { CatalogContainer, SubtitleText, TitleContainer, CardDisplay } from "./styles";
-import CardCatalog from "./components/CardCatalog";
+
+const CardCatalog = dynamic(() => import("./components/CardCatalog"));
 
 const Catalog = ({ data }) => {
     return (

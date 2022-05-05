@@ -4,14 +4,19 @@ import Header from "./Header";
 import PersonalInfo from "./PersonalInfo";
 import { CardProfileContainer } from "./styles";
 
-const CardProfile = ({ profile, errors, register, handleSubmit, onSubmit, isPUTTING = false }) => (
+const CardProfile = ({ defaultValue, errors, register, handleSubmit, onSubmit, isPUTTING = false }) => (
     <CardProfileContainer>
-        <Header />
+        <Header
+            isVerified={defaultValue?.is_verified}
+            username={defaultValue?.username}
+            name={defaultValue?.name}
+            imageSrc={defaultValue?.image_poster}
+        />
         <PersonalInfo
             errors={errors}
             register={register}
             handleSubmit={handleSubmit}
-            defaultValue={profile}
+            defaultValue={defaultValue}
             onSubmit={onSubmit}
             isLoading={isPUTTING}
         />
@@ -21,7 +26,7 @@ const CardProfile = ({ profile, errors, register, handleSubmit, onSubmit, isPUTT
 export default CardProfile;
 
 CardProfile.propTypes = {
-    profile: PropTypes.object,
+    defaultValue: PropTypes.object,
     errors: PropTypes.any.isRequired,
     register: PropTypes.any.isRequired,
     handleSubmit: PropTypes.any.isRequired,
@@ -30,5 +35,5 @@ CardProfile.propTypes = {
 };
 
 CardProfile.defaultValue = {
-    profile: undefined,
+    defaultValue: undefined,
 };

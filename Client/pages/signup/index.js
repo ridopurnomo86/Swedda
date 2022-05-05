@@ -2,35 +2,52 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Head from "next/head";
 import nookies from "nookies";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useToasts } from "react-toast-notifications";
 import Form from "../../src/components/Form";
 import OptionalContent from "./OptionalContent";
 import { SignupContainer, ButtonForm, Title } from "./styles";
 import usePOST from "../api/usePOST";
 import CircularLoading from "../../src/components/CircularLoading";
-import Notification from "../../src/components/Notification";
+import schemaValidation from "../../src/modules/validation/signup";
+
+export async function getServerSideProps(context) {
+    const cookie = nookies.get(context);
+    const token = cookie[`${process.env.COOKIE_USER}`];
+    if (token) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: true,
+            },
+        };
+    }
+    return {
+        props: {},
+    };
+}
 
 const Signup = () => {
+    const { addToast } = useToasts();
     const [isPOSTING, setIsPOSTING] = useState(false);
-    const [error, setError] = useState(false);
 
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        resolver: yupResolver(schemaValidation),
+    });
 
     const onSubmit = (values) => {
         if (!isPOSTING) {
-            const config = {
-                Headers: "Content-Type: application/json",
-            };
             usePOST({
                 path: "auth/signup",
                 body: values,
-                config,
+                undefined,
                 setIsPOSTING,
-                errorCallback: () => {
-                    setError(true);
+                errorCallback: (err) => {
+                    if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
                 },
             });
         }
@@ -42,7 +59,6 @@ const Signup = () => {
                 <title>Sign Up</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Notification state={error} message="Sorry, Something Wrong" onClose={() => setError(false)} />
             <Title>Get Started for free</Title>
             <Form
                 FormList={[
@@ -88,22 +104,5 @@ const Signup = () => {
         </SignupContainer>
     );
 };
-
-export async function getServerSideProps(context) {
-    const cookie = nookies.get(context);
-    const token = cookie[`${process.env.COOKIE_USER}`];
-    if (token) {
-        return {
-            redirect: {
-                destination: "/",
-                permanent: true,
-            },
-        };
-    }
-
-    return {
-        props: {},
-    };
-}
 
 export default Signup;

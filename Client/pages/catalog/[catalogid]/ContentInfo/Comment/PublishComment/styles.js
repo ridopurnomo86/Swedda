@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import Button from "../../../../../../src/components/Button";
 
-const PublishCommentContainer = styled.div`
+export const PublishCommentContainer = styled.div`
     position: relative;
     margin-bottom: 32px;
     overflow: hidden;
@@ -18,4 +19,7 @@ const PublishCommentContainer = styled.div`
     }
 `;
 
-export default PublishCommentContainer;
+export const ButtonSubmit = styled(Button)`
+    display: block;
+    width: 100%;
+`;

@@ -14,7 +14,7 @@ const CardCatalog = ({ imgUrl, title, subtitle, direction }) => (
     </Link>
 );
 
-export default CardCatalog;
+export default React.memo(CardCatalog);
 
 CardCatalog.propTypes = {
     imgUrl: PropTypes.string,

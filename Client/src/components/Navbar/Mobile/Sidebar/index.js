@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import dynamic from "next/dynamic";
 import { SidebarContainer, SidebarMenu } from "./styles";
 import Button from "../../../Button";
 import Menu from "../Menu";
-import ProfileMenu from "../ProfileMenu";
+
+const ProfileMenu = dynamic(() => import("../ProfileMenu"));
 
 const Sidebar = ({ isOpen = false, isUser, handleLogout, sidebarRef }) => (
     <SidebarMenu transition={isOpen} ref={sidebarRef}>

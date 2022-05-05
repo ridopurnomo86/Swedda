@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import {
@@ -9,7 +10,8 @@ import {
     HumbergerIcon,
     CloseIcon,
 } from "./styles";
-import Sidebar from "./Sidebar";
+
+const Sidebar = dynamic(() => import("./Sidebar"));
 
 const Mobile = ({ open = false, onClick, isUser, handleLogout, Ref }) => (
     <MobileContainer>

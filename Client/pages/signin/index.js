@@ -1,45 +1,62 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useToasts } from "react-toast-notifications";
+import nookies from "nookies";
 import Head from "next/head";
-import usePOST from "../api/usePOST";
-import Notification from "../../src/components/Notification";
-import Form from "../../src/components/Form";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import usePOST from "../api/usePOST";
+import Form from "../../src/components/Form";
 import { SignupContainer, ButtonForm, OptionalText, Wrapper, Title } from "./styles";
 import CircularLoading from "../../src/components/CircularLoading";
-
-import nookies from "nookies";
-
 import Session from "../../lib/Auth";
+import schemaValidation from "../../src/modules/validation/signin";
+
+export async function getServerSideProps(context) {
+    const cookie = nookies.get(context);
+    const token = cookie[`${process.env.COOKIE_USER}`];
+    if (token) {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: true,
+            },
+        };
+    }
+    return {
+        props: {},
+    };
+}
 
 const Signin = () => {
+    const router = useRouter();
+    const { addToast } = useToasts();
     const [isPOSTING, setIsPOSTING] = useState(false);
-    const [isError, setIsError] = useState(false);
-
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
-    const router = useRouter();
+    } = useForm({
+        resolver: yupResolver(schemaValidation),
+    });
 
     const onSubmit = (values) => {
         if (!isPOSTING) {
-            const config = {
-                Headers: "Content-Type: application/json",
-            };
             usePOST({
                 path: "/auth/signin",
                 body: values,
-                config,
+                undefined,
                 setIsPOSTING,
-                callback: () => {
-                    Session.setUserFromCookie();
-                    router.push("/");
+                callback: (res) => {
+                    setTimeout(() => {
+                        Session.setUserFromCookie();
+                        router.push("/");
+                    }, 2000);
+                    if (res) return addToast(res?.data?.message, { appearance: "success", autoDismiss: true });
                 },
-                errorCallback: () => {
-                    setIsError(true);
+                errorCallback: (err) => {
+                    if (err) return addToast("Cannot Login", { appearance: "error", autoDismiss: true });
                 },
             });
         }
@@ -51,7 +68,6 @@ const Signin = () => {
                 <title>Sign In</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Notification state={isError} onClose={setIsError} message="Something Gone Wrong..." />
             <Wrapper>
                 <Title>Sign in to Swedda</Title>
                 <Form
@@ -63,6 +79,7 @@ const Signin = () => {
                             placeholder: "Email...",
                             type: "email",
                             validation: { required: true },
+                            disabled: isPOSTING,
                         },
                         {
                             id: "Password",
@@ -71,6 +88,7 @@ const Signin = () => {
                             placeholder: "Password...",
                             type: "password",
                             validation: { required: true },
+                            disabled: isPOSTING,
                         },
                     ]}
                     register={register}
@@ -92,22 +110,5 @@ const Signin = () => {
         </SignupContainer>
     );
 };
-
-export async function getServerSideProps(context) {
-    const cookie = nookies.get(context);
-    const token = cookie[`${process.env.COOKIE_USER}`];
-    if (token) {
-        return {
-            redirect: {
-                destination: "/",
-                permanent: true,
-            },
-        };
-    }
-
-    return {
-        props: {},
-    };
-}
 
 export default Signin;

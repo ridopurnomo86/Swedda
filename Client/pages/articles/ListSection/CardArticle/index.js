@@ -35,7 +35,7 @@ const CardArticle = ({ imgSrc, title, url, date, desc }) => (
     </CardArticleContainer>
 );
 
-export default React.memo(CardArticle);
+export default React.memo(CardArticle, () => true);
 
 CardArticle.propTypes = {
     imgSrc: PropTypes.string,

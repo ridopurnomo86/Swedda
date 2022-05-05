@@ -29,6 +29,12 @@ const userSchema = new mongoose.Schema({
 		minlength: 8,
 		required: [true, "Password has Required..."],
 	},
+	image_poster: {
+		type: String,
+		unique: true,
+		trim: true,
+		default: "",
+	},
 	birth_date: {
 		type: Date,
 		default: null,

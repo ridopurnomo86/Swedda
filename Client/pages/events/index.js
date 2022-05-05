@@ -4,9 +4,11 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import nookies from "nookies";
 
-const EventDashboard = dynamic(() => import("./Eventdashboard"));
+const EventDashboard = dynamic(() => import("./Eventdashboard"), {
+    ssr: true,
+});
 const EventStatic = dynamic(() => import("./Static"), {
-    ssr: false,
+    ssr: true,
 });
 
 const Homepage = ({ token }) =>

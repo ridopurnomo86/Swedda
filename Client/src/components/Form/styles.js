@@ -15,6 +15,7 @@ export const Input = styled.input`
     outline: none;
     margin-bottom: 16px;
 `;
+
 export const Label = styled.label`
     display: block;
     width: 100%;

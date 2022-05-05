@@ -1,7 +1,7 @@
 module.exports = {
     reactStrictMode: true,
     images: {
-        domains: ["source.unsplash.com"],
+        domains: ["source.unsplash.com", "res.cloudinary.com"],
     },
     env: {
         COOKIE_USER: process.env.COOKIE_USER,

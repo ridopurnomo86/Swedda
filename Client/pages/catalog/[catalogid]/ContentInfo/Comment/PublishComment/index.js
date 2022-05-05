@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
+import { yupResolver } from "@hookform/resolvers/yup";
 import usePOST from "../../../../../api/usePOST";
 import CircularLoading from "../../../../../../src/components/CircularLoading";
-import PublishCommentContainer from "./styles";
+import { PublishCommentContainer, ButtonSubmit } from "./styles";
 import Form from "../../../../../../src/components/Form";
-import Button from "../../../../../../src/components/Button";
+import schemaValidation from "../../../../../../src/modules/validation/comment";
 
 const PublishComment = ({ catalogid }) => {
     const [isPOSTING, setIsPOSTING] = useState(false);
@@ -15,18 +16,17 @@ const PublishComment = ({ catalogid }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        resolver: yupResolver(schemaValidation),
+    });
     const onSubmit = (values) => {
         if (!isPOSTING) {
-            const config = {
-                Headers: "Content-Type: application/json",
-            };
             usePOST({
                 path: `/catalog/${catalogid}/comment`,
                 body: values,
-                config,
+                undefined,
                 callback: (res) => {
-                    if (res.data.message === "success") return window.location.reload();
+                    if (res.data.message === "Success") return window.location.reload();
                 },
                 errorCallback: (err) => {
                     if (err) return addToast("Sorry, You Must Login First", { appearance: "error", autoDismiss: true });
@@ -62,9 +62,9 @@ const PublishComment = ({ catalogid }) => {
                 errors={errors}
                 onSubmit={onSubmit}
             >
-                <Button classNames="mt-m" type="submit" disable={isPOSTING}>
+                <ButtonSubmit classNames="mt-m" type="submit" disable={isPOSTING}>
                     {isPOSTING ? <CircularLoading /> : "Publish"}
-                </Button>
+                </ButtonSubmit>
             </Form>
         </PublishCommentContainer>
     );

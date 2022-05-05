@@ -18,9 +18,11 @@ RenderSelect.propTypes = {
     name: PropTypes.string,
     register: PropTypes.any.isRequired,
     options: PropTypes.arrayOf(PropTypes.object).isRequired,
+    selected: PropTypes.string,
 };
 
 RenderSelect.defaultProps = {
     name: "",
     options: undefined,
+    selected: "",
 };

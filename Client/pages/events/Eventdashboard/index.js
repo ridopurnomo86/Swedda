@@ -1,7 +1,9 @@
 import React from "react";
-import Hero from "./Hero";
+import dynamic from "next/dynamic";
 import EventsContainer from "./styles";
-import ListEvent from "./ListEvent";
+
+const Hero = dynamic(() => import("./Hero"));
+const ListEvent = dynamic(() => import("./ListEvent"));
 
 const EventsDashboard = () => (
     <>

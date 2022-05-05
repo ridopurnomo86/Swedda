@@ -28,9 +28,10 @@ const MyApp = ({ Component, pageProps }) => {
                 />
                 <link
                     rel="stylesheet"
-                    href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-                    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+                    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
                     crossOrigin="anonymous"
+                    referrerPolicy="no-referrer"
                 />
                 <link
                     rel="stylesheet"
@@ -44,7 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
             <ThemeProvider theme={theme}>
                 <ToastProvider placement="bottom-center">
                     <BlurContainer active={isLoading}>
-                        <Navbar />
+                        <Navbar s />
                         <NavbarTopSpacing />
                         <Component {...pageProps} />
                         <Footer />

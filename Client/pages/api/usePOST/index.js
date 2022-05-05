@@ -1,17 +1,11 @@
 import instance from "../instance";
 
-const usePOST = ({ 
-    path = "", 
-    body, 
-    config, 
-    setIsPOSTING, 
-    callback = () => {}, 
-    errorCallback = () => {} 
-}) => {
+const usePOST = ({ path = "", body, config, setIsPOSTING, callback = () => {}, errorCallback = () => {} }) => {
     setIsPOSTING(true);
-    instance.post(path, body, config)
+    instance
+        .post(path, body, config)
         .then((res) => {
-            callback(res);
+            callback(res.data);
             setIsPOSTING(false);
         })
         .catch((error) => {
@@ -19,5 +13,5 @@ const usePOST = ({
             setIsPOSTING(false);
         });
 };
- 
+
 export default usePOST;

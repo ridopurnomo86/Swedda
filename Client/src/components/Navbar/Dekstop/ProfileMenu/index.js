@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import Session from "../../../../../lib/Auth";
-import Button from "../../../Button";
-import { LinkNavigation, MenuContainer, ProfileMenuContainer, LinkText } from "./styles";
+import {
+    LinkNavigation,
+    MenuContainer,
+    ProfileMenuContainer,
+    LinkText,
+    UserIcon,
+    EllipsisIcon,
+    FlexContainer,
+    RightBracketIcon,
+} from "./styles";
 
 const ProfileMenu = () => {
     const [show, setShow] = useState(false);
@@ -11,17 +19,22 @@ const ProfileMenu = () => {
     const handleLogout = () => {
         Session.requestLogout();
     };
+
     return (
         <ProfileMenuContainer onClick={handleProfileMenu}>
-            <i className="fa fa-user"></i>
+            <EllipsisIcon />
             {show && (
                 <MenuContainer>
                     <LinkNavigation href="/profile">
-                        <LinkText>Profile</LinkText>
+                        <FlexContainer>
+                            <UserIcon />
+                            <LinkText>Profile</LinkText>
+                        </FlexContainer>
                     </LinkNavigation>
-                    <Button onClick={handleLogout}>
-                        <p>Logout</p>
-                    </Button>
+                    <FlexContainer onClick={handleLogout}>
+                        <RightBracketIcon />
+                        <LinkText>Logout</LinkText>
+                    </FlexContainer>
                 </MenuContainer>
             )}
         </ProfileMenuContainer>

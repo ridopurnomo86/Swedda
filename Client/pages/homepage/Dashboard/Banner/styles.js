@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const BannerContainer = styled.div`
     background-color: ${({ theme }) => theme.main.primary};
     padding: 32px 0px;
-    color: ${({ theme }) => theme.shader.primary}; 
+    color: ${({ theme }) => theme.shader.primary};
+    margin-bottom: 32px;
 `;
-
 
 export const BannerTitle = styled.p`
     font-size: 24px;
-    font-weight: 700
+    font-weight: 700;
 `;
 
 export const BannerContent = styled.p`

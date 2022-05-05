@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import image from "next/image";
 import { devices } from "../../../../styles/breakpoint";
+import BlankProfile from "../../../../src/assets/images/blank_profile.png";
 
 export const HeaderContainer = styled.div`
     width: 100%;
@@ -11,19 +12,38 @@ export const HeaderContainer = styled.div`
 export const TitleText = styled.p`
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 8px;
 `;
 
 export const SubtitleText = styled.p`
     font-size: 14px;
     font-weight: 400;
+    margin-bottom: 8px;
     color: ${({ theme }) => theme.shader.secondaryOptional};
 `;
 
-export const ProfileImage = styled(image)`
+export const ProfileImage = styled(image).attrs(({ imagesrc }) => ({
+    src: imagesrc ? imagesrc : BlankProfile,
+    alt: `${imagesrc ? imagesrc : "Blank Profile"}`,
+    layout: "fixed",
+    width: 100,
+    height: 100,
+    quality: 100,
+    objectFit: "cover",
+}))`
     border-radius: 50%;
     aspect-ratio: 1 / 1;
 `;
+
+export const HeaderImage = styled(image).attrs({
+    src: "https://source.unsplash.com/-G3rw6Y02D0",
+    alt: "https://source.unsplash.com/-G3rw6Y02D0",
+    layout: "responsive",
+    quality: 100,
+    width: 100,
+    height: 30,
+    objectFit: "cover",
+    priority: true,
+})``;
 
 export const PrimaryInfoContainer = styled.div`
     padding: 16px 64px;

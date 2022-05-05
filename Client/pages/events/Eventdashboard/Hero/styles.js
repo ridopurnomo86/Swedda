@@ -8,8 +8,6 @@ export const HeroBanner = styled.div`
     padding: 64px 0px;
 `;
 
-export const ContentImage = styled.div``;
-
 export const ContentText = styled(MainContainer)``;
 
 export const Title = styled.p`

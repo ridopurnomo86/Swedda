@@ -13,6 +13,7 @@ const Button = ({
     width,
     classNames,
     onClick,
+    disabled,
 }) => {
     return direction ? (
         <Link href={`${direction}`}>
@@ -23,6 +24,7 @@ const Button = ({
                 backgroundColor={backgroundColor}
                 width={width}
                 className={classNames}
+                disabled={disabled}
             >
                 {children}
             </ButtonContainer>
@@ -36,6 +38,7 @@ const Button = ({
             width={width}
             className={classNames}
             onClick={onClick}
+            disabled={disabled}
         >
             {children}
         </ButtonContainer>
@@ -54,6 +57,7 @@ Button.propTypes = {
     classNames: PropTypes.string,
     type: PropTypes.string,
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
 };
 Button.defaultProps = {
     children: undefined,
@@ -65,4 +69,5 @@ Button.defaultProps = {
     classNames: "",
     type: "",
     onClick: () => {},
+    disabled: false,
 };
