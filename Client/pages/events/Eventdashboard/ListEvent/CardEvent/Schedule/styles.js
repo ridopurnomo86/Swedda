@@ -14,7 +14,7 @@ export const ScheduleWrapper = styled.div`
 export const ScheduleList = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 `;
 
 export const ScheduleIcon = styled.i.attrs({
@@ -40,4 +40,3 @@ export const LocationIcon = styled.i.attrs({
     padding: 0px 2px;
     margin-right: 12px;
 `;
-

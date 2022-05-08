@@ -4,20 +4,12 @@ import Image from "next/image";
 import Schedule from "./Schedule";
 import { CardWrapper, Text, Title, Content, DirectingBy } from "./styles";
 
-const CardEvent = ({ 
-    imgSrc, 
-    title, 
-    content, 
-    sourcePerson, 
-    time,
-    users,
-    location
-}) => (
+const CardEvent = ({ imgSrc, title, desc, sourcePerson, time, users, location }) => (
     <CardWrapper>
         <Image
             src={imgSrc}
-            width={600}
-            height={250}
+            width={550}
+            height={350}
             alt={imgSrc}
             objectFit="cover"
             layout="intrinsic"
@@ -25,19 +17,18 @@ const CardEvent = ({
         />
         <Content>
             <Title>{title}</Title>
-            <Text>{content}</Text>
+            <Text>{desc}</Text>
             <DirectingBy>{sourcePerson ? `Directing By: ${sourcePerson}` : "-"}</DirectingBy>
             <Schedule time={time} users={users} location={location} />
         </Content>
     </CardWrapper>
-
 );
 export default CardEvent;
 
 CardEvent.propTypes = {
     imgSrc: PropTypes.string,
     title: PropTypes.string,
-    content: PropTypes.string,
+    desc: PropTypes.string,
     sourcePerson: PropTypes.string,
     time: PropTypes.string,
     users: PropTypes.number,
@@ -47,9 +38,9 @@ CardEvent.propTypes = {
 CardEvent.defaultProps = {
     imgSrc: "",
     title: "",
-    content: "",
+    desc: "",
     sourcePerson: "",
     time: "",
     users: undefined,
-    location: ""
+    location: "",
 };

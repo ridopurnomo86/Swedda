@@ -27,6 +27,7 @@ export async function getServerSideProps(context) {
             },
         };
     }
+
     return {
         props: {
             token: token ? token : null,
@@ -36,12 +37,7 @@ export async function getServerSideProps(context) {
 
 const Profile = () => {
     const { addToast } = useToasts();
-    const [initialValues, setInitialValues] = useState({
-        name: "",
-        email: "",
-        gender: "",
-        birth_date: "",
-    });
+    const [initialValues, setInitialValues] = useState(null);
     const [isPUTTING, setIsPUTTING] = useState(false);
 
     const {
@@ -58,13 +54,7 @@ const Profile = () => {
         useGET({
             path: "/user/info",
             callback: (res) => {
-                setInitialValues({
-                    ...res.info,
-                    name: res.info.name,
-                    email: res.info.email,
-                    gender: res.info.gender,
-                    birth_date: dayjs(res.info.birth_date).format("YYYY-MM-DD"),
-                });
+                setInitialValues(res.info);
                 reset({
                     name: res.info.name,
                     email: res.info.email,
@@ -76,18 +66,20 @@ const Profile = () => {
     }, []);
 
     const onSubmit = (values) => {
-        usePUT({
-            path: "/user/infof",
-            body: { ...values, birth_date: dayjs(values.birth_date).format() },
-            config: undefined,
-            setIsPUTTING,
-            callback: (res) => {
-                if (res) return addToast(res.message, { appearance: "success", autoDismiss: true });
-            },
-            errorCallback: (err) => {
-                if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
-            },
-        });
+        if (!isPUTTING) {
+            usePUT({
+                path: "/user/info",
+                body: { ...values, birth_date: dayjs(values.birth_date).format() },
+                config: undefined,
+                setIsPUTTING,
+                callback: (res) => {
+                    if (res) return addToast(res.message, { appearance: "success", autoDismiss: true });
+                },
+                errorCallback: (err) => {
+                    if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
+                },
+            });
+        }
     };
 
     return (

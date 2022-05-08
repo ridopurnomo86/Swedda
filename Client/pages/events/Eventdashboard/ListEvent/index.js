@@ -1,29 +1,35 @@
 import React from "react";
+import PropTypes from "prop-types";
 import CardEvent from "./CardEvent";
 import { CardList, ListEventWrapper, Text, Title } from "./styles";
 
-const ListEvent = () => (
+const ListEvent = ({ events = [] }) => (
     <ListEventWrapper>
-        <Title>
-            Next Event.
-        </Title>
-        <Text>
-            Improve your skills by learning at events organized by our partners.
-        </Text>
+        <Title>Next Event.</Title>
+        <Text>Improve your skills by learning at events organized by our partners.</Text>
         <CardList>
-            <CardEvent 
-                imgSrc="https://source.unsplash.com/pypeCEaJeZY" 
-                title="Learning About Sales Management" 
-                content="Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Veritatis magnam deserunt maiores saepe quisquam libero porro rem quod, 
-                corrupti beatae quaerat rerum numquam ex autem commodi. Voluptatum, officia. Cupiditate, obcaecati!"
-                sourcePerson="John Doe"
-                time="25 Feb 2022 19:30 PM"
-                users={35}
-                location="Online"
-            />
+            {events.map((info) => (
+                <CardEvent
+                    key={info.event_id}
+                    imgSrc={info.image_source}
+                    title={info.title}
+                    desc={info.description}
+                    sourcePerson={info.director}
+                    time={info.time_start}
+                    users={info.total_participant}
+                    location={info.type_event}
+                />
+            ))}
         </CardList>
     </ListEventWrapper>
 );
 
-export default ListEvent;
+export default React.memo(ListEvent, () => true);
+
+ListEvent.propTypes = {
+    events: PropTypes.arrayOf(PropTypes.object),
+};
+
+ListEvent.defaultProps = {
+    events: undefined,
+};

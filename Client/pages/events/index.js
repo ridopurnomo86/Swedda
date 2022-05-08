@@ -11,14 +11,30 @@ const EventStatic = dynamic(() => import("./Static"), {
     ssr: true,
 });
 
-const Homepage = ({ token }) =>
+
+export async function getServerSideProps(context) {
+    const cookie = nookies.get(context);
+    const token = cookie[`${process.env.COOKIE_USER}`];
+    const res = await fetch(`${process.env.BACKEND_URL}/events/`);
+    const { data: events } = await res.json();
+
+    return {
+        props: {
+            token: token ? token : null,
+            events: events ? events : null,
+        },
+    };
+}
+
+
+const Event = ({ token, events }) =>
     token ? (
         <>
             <Head>
                 <title>Events</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <EventDashboard />
+            <EventDashboard listEvent={events} />
         </>
     ) : (
         <>
@@ -30,32 +46,14 @@ const Homepage = ({ token }) =>
         </>
     );
 
-export async function getServerSideProps(context) {
-    const cookie = nookies.get(context);
-    const token = cookie[`${process.env.COOKIE_USER}`];
+export default Event;
 
-    // if (!token) {
-    //     return {
-    //         redirect: {
-    //             destination: "/signin",
-    //             permanent: false,
-    //         },
-    //     };
-    // }
-
-    return {
-        props: {
-            token: token ? token : null,
-        },
-    };
-}
-
-export default Homepage;
-
-Homepage.propTypes = {
+Event.propTypes = {
     token: PropTypes.string,
+    events: PropTypes.arrayOf(PropTypes.object),
 };
 
-Homepage.defaultProps = {
+Event.defaultProps = {
     token: null,
+    events: null,
 };

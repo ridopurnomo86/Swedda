@@ -91,6 +91,6 @@ export const NavbarTopSpacing = styled.div`
     background-color: ${({ theme }) => theme.bg.primary};
 
     @media ${devices.mobileL} {
-        padding-top: 90px;
+        padding-top: 120px;
     }
 `;

@@ -45,7 +45,7 @@ const MyApp = ({ Component, pageProps }) => {
             <ThemeProvider theme={theme}>
                 <ToastProvider placement="bottom-center">
                     <BlurContainer active={isLoading}>
-                        <Navbar s />
+                        <Navbar />
                         <NavbarTopSpacing />
                         <Component {...pageProps} />
                         <Footer />

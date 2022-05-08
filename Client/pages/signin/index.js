@@ -53,7 +53,7 @@ const Signin = () => {
                         Session.setUserFromCookie();
                         router.push("/");
                     }, 2000);
-                    if (res) return addToast(res?.data?.message, { appearance: "success", autoDismiss: true });
+                    if (res) return addToast(res?.message, { appearance: "success", autoDismiss: true });
                 },
                 errorCallback: (err) => {
                     if (err) return addToast("Cannot Login", { appearance: "error", autoDismiss: true });

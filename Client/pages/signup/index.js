@@ -46,6 +46,9 @@ const Signup = () => {
                 body: values,
                 undefined,
                 setIsPOSTING,
+                callback: (res) => {
+                    if (res) return addToast(res?.message, { appearance: "success", autoDismiss: true });
+                },
                 errorCallback: (err) => {
                     if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
                 },
