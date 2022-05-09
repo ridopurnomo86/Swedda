@@ -5,6 +5,7 @@ export const Text = styled.p`
     font-weight: 400px;
     text-align: justify;
     max-width: 900px;
+    font-weight: 500;
 `;
 
 export const ScheduleWrapper = styled.div`

@@ -27,7 +27,9 @@ Articles.propTypes = {
 };
 
 export async function getServerSideProps() {
-    const res = await fetch(`${process.env.NEWS_API_URL}top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`);
+    const res = await fetch(
+        `${process.env.NEWS_API_URL}top-headlines?country=us&category=business&apiKey=${process.env.NEWS_API_KEY}`
+    );
     const { articles } = await res.json();
 
     return {

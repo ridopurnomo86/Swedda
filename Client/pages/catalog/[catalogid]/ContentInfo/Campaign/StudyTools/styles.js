@@ -1,0 +1,18 @@
+import styled from "styled-components";
+
+export const StudyToolsContainer = styled.div``;
+
+export const Title = styled.p`
+    font-size: 18px;
+    font-weight: 600;
+`;
+
+export const SubTitle = styled.p`
+    font-size: 14px;
+    font-weight: 500;
+    margin: 8px 0px;
+`;
+
+export const Text = styled.p`
+    font-size: 14px;
+`;

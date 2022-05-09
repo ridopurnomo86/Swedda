@@ -18,12 +18,12 @@ const CardEvent = ({ imgSrc, title, desc, sourcePerson, time, users, location })
         <Content>
             <Title>{title}</Title>
             <Text>{desc}</Text>
-            <DirectingBy>{sourcePerson ? `Directing By: ${sourcePerson}` : "-"}</DirectingBy>
             <Schedule time={time} users={users} location={location} />
+            <DirectingBy>{sourcePerson ? `Directing By: ${sourcePerson}` : "-"}</DirectingBy>
         </Content>
     </CardWrapper>
 );
-export default CardEvent;
+export default React.memo(CardEvent, () => true);
 
 CardEvent.propTypes = {
     imgSrc: PropTypes.string,

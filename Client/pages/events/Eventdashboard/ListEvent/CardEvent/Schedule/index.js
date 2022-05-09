@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import { ScheduleList, ScheduleWrapper, ScheduleIcon, UserIcon, LocationIcon, Text } from "./styles";
 
@@ -6,7 +7,7 @@ const Schedule = ({ time, users, location }) => (
     <ScheduleWrapper>
         <ScheduleList>
             <ScheduleIcon />
-            <Text>{time ? time : "-"}</Text>
+            <Text>{time ? dayjs(time).format("DD-MM-YYYY") : "-"}</Text>
         </ScheduleList>
         <ScheduleList>
             <UserIcon />

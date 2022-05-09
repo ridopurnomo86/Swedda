@@ -5,9 +5,9 @@ import { ContentInfoContainer } from "./styles";
 import Campaign from "./Campaign";
 import Comment from "./Comment";
 
-const ContentInfo = ({ activeIndexComp, campaignTextContent, comments, catalogid }) => {
+const ContentInfo = ({ activeIndexComp, campaignTextContent, campaignDescription, comments, catalogid }) => {
     const Template = [
-        <Campaign textContent={campaignTextContent} />,
+        <Campaign textContent={campaignTextContent} description={campaignDescription} />,
         <Comment infoComments={comments} catalogid={catalogid} />,
     ];
     return <ContentInfoContainer>{Template[activeIndexComp]}</ContentInfoContainer>;
@@ -20,6 +20,7 @@ ContentInfo.propTypes = {
     campaignTextContent: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     catalogid: PropTypes.string,
+    campaignDescription: PropTypes.string,
 };
 
 ContentInfo.defaultProps = {
@@ -27,4 +28,5 @@ ContentInfo.defaultProps = {
     campaignTextContent: "",
     comments: undefined,
     catalogid: "",
+    campaignDescription: "",
 };

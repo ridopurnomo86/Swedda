@@ -3,6 +3,7 @@ import Head from "next/head";
 import Dynamic from "next/dynamic";
 import PropTypes from "prop-types";
 import CatalogDetailsContainer from "./styles";
+import DataAnalyst from "./ContentInfo/data-desc/data-analyst";
 
 const HeaderCatalog = Dynamic(() => import("./HeaderCatalog"));
 const ContentInfo = Dynamic(() => import("./ContentInfo"));
@@ -22,6 +23,7 @@ const CatalogDetails = ({ data, comments, catalogid }) => {
                     campaignTextContent={data?.text_content}
                     comments={comments}
                     catalogid={catalogid}
+                    campaignDescription={DataAnalyst}
                 />
             </CatalogDetailsContainer>
         </>
