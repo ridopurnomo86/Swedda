@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../../../../styles/breakpoint";
+import { devices } from "@styles/breakpoint";
 
 export const SectionContainer = styled.div`
     margin-right: 0px;

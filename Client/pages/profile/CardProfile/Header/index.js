@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useToasts } from "react-toast-notifications";
+import schemaValidation from "@modules/validation/imageProfile";
+import Form from "@components/Form";
 import {
     HeaderContainer,
     TitleText,
@@ -14,9 +16,7 @@ import {
 } from "./styles";
 import Action from "./Action";
 import Verify from "./Verify";
-import Form from "../../../../src/components/Form";
-import usePOST from "../../../api/usePOST";
-import schemaValidation from "../../../../src/modules/validation/imageProfile";
+import Post from "../../../api/usePOST";
 
 const Header = ({ isVerified, username, name, imageSrc }) => {
     const { addToast } = useToasts();
@@ -31,12 +31,13 @@ const Header = ({ isVerified, username, name, imageSrc }) => {
     const onSubmit = (values) => {
         const formData = new FormData();
         formData.append("image_profile", values.file[0]);
-        usePOST({
+        Post({
             path: "/user/upload",
             body: formData,
             config: undefined,
             callback: (res) => {
-                if (res.message) return addToast(res.message, { appearance: "success", autoDismiss: true });
+                if (res.message)
+                    return addToast(res.message, { appearance: "success", autoDismiss: true });
             },
         });
     };

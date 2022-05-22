@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import image from "next/image";
-import { devices } from "../../../../styles/breakpoint";
-import BlankProfile from "../../../../src/assets/images/blank_profile.png";
+import { devices } from "@styles/breakpoint";
+import BlankProfile from "@assets/images/blank_profile.png";
 
 export const HeaderContainer = styled.div`
     width: 100%;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { devices } from "../../../../styles/breakpoint";
-import { MainContainer } from "../../../../styles";
+import { devices } from "@styles/breakpoint";
+import { MainContainer } from "@styles/index";
 
 export const Wrapper = styled.div`
     padding: 0px 24px;

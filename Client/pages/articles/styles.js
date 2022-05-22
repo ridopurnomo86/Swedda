@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainContainer } from "../../styles";
+import { MainContainer } from "@styles/index";
 
 const ArticleContainer = styled(MainContainer)`
     width: 100%;

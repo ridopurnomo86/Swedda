@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Form from "../../../../src/components/Form";
+import Form from "@components/Form";
+import CircularLoading from "@components/CircularLoading";
 import { PersonalInfoContainer, ButtonForm } from "./styles";
-import CircularLoading from "../../../../src/components/CircularLoading";
 
 const PersonalInfo = ({ register, handleSubmit, errors, isLoading, onSubmit, defaultValue }) => (
     <PersonalInfoContainer>

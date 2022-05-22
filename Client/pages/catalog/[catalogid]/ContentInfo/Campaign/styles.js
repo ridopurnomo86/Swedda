@@ -5,6 +5,7 @@ export const CampaignContainer = styled.div`
     overflow: hidden;
     background-color: ${({ theme }) => theme.shader.primary};
     display: grid;
-    gap: 32px;
+    grid-column-gap: 64px;
+    grid-row-gap: 32px;
     grid-template-columns: repeat(auto-fit, minmax(500px, auto));
 `;

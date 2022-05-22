@@ -4,7 +4,7 @@ import Link from "next/dist/client/link";
 import { CardCatalogContainer, SubtitleText, TitleText, TextContainer } from "./styles";
 
 const CardCatalog = ({ imgUrl, title, subtitle, direction }) => (
-    <Link href={`${direction}`} passHref as={`${direction}`}>
+    <Link href={`${direction}`} passHref>
         <CardCatalogContainer source={imgUrl}>
             <TextContainer>
                 <TitleText>{title}</TitleText>

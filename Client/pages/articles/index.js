@@ -1,19 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import dynamic from "next/dynamic";
-import Head from "next/head";
-// import nookies from "nookies";
+import HeadTemplate from "@components/Head";
 import ArticleContainer from "./styles";
+import { getArticles } from "../../lib/articles";
 
 const HeroSection = dynamic(() => import("./HeroSection"));
 const ListSection = dynamic(() => import("./ListSection"));
 
 const Articles = ({ data }) => (
     <>
-        <Head>
-            <title>Articles</title>
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
+        <HeadTemplate title="Articles" />
         <ArticleContainer>
             <HeroSection />
             <ListSection articles={data} />
@@ -26,11 +23,8 @@ Articles.propTypes = {
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export async function getServerSideProps() {
-    const res = await fetch(
-        `${process.env.NEWS_API_URL}top-headlines?country=us&category=business&apiKey=${process.env.NEWS_API_KEY}`
-    );
-    const { articles } = await res.json();
+export async function getStaticProps() {
+    const articles = await getArticles();
 
     return {
         props: {

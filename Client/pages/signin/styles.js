@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../src/components/Button";
+import Button from "@components/Button";
 
 export const SignupContainer = styled.div`
     width: 40%;

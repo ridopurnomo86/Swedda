@@ -4,12 +4,12 @@ import Head from "next/head";
 import nookies from "nookies";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useToasts } from "react-toast-notifications";
-import Form from "../../src/components/Form";
+import Form from "@components/Form";
+import CircularLoading from "@components/CircularLoading";
+import schemaValidation from "@modules/validation/signup";
 import OptionalContent from "./OptionalContent";
 import { SignupContainer, ButtonForm, Title } from "./styles";
-import usePOST from "../api/usePOST";
-import CircularLoading from "../../src/components/CircularLoading";
-import schemaValidation from "../../src/modules/validation/signup";
+import Post from "../api/usePOST";
 
 export async function getServerSideProps(context) {
     const cookie = nookies.get(context);
@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-const Signup = () => {
+const SignupPage = () => {
     const { addToast } = useToasts();
     const [isPOSTING, setIsPOSTING] = useState(false);
 
@@ -39,18 +39,23 @@ const Signup = () => {
         resolver: yupResolver(schemaValidation),
     });
 
-    const onSubmit = (values) => {
+    const handleSubmitForm = (values) => {
         if (!isPOSTING) {
-            usePOST({
+            Post({
                 path: "auth/signup",
                 body: values,
                 undefined,
                 setIsPOSTING,
                 callback: (res) => {
-                    if (res) return addToast(res?.message, { appearance: "success", autoDismiss: true });
+                    if (res)
+                        return addToast(res?.message, { appearance: "success", autoDismiss: true });
                 },
                 errorCallback: (err) => {
-                    if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
+                    if (err)
+                        return addToast("Something Gone Wrong...", {
+                            appearance: "error",
+                            autoDismiss: true,
+                        });
                 },
             });
         }
@@ -76,6 +81,7 @@ const Signup = () => {
                             maxLength: 20,
                             pattern: "/[a-zA-Z0-9]+/g",
                         },
+                        disabled: isPOSTING,
                     },
                     {
                         id: "email",
@@ -84,6 +90,7 @@ const Signup = () => {
                         placeholder: "Email...",
                         type: "email",
                         validation: { required: true },
+                        disabled: isPOSTING,
                     },
                     {
                         id: "Password",
@@ -92,12 +99,13 @@ const Signup = () => {
                         placeholder: "Password...",
                         type: "password",
                         validation: { required: true },
+                        disabled: isPOSTING,
                     },
                 ]}
                 register={register}
                 errors={errors}
                 handleSubmit={handleSubmit}
-                onSubmit={onSubmit}
+                onSubmit={handleSubmitForm}
             >
                 <ButtonForm classNames="mt-m" padding="16px" type="submit" disable={isPOSTING}>
                     {isPOSTING ? <CircularLoading /> : "Sign Up"}
@@ -108,4 +116,4 @@ const Signup = () => {
     );
 };
 
-export default Signup;
+export default SignupPage;

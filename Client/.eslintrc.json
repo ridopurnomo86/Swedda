@@ -1,22 +1,52 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": ["react"],
-    "rules": {
-        "indent": ["error", 4],
-        "linebreak-style": ["error", "unix"],
-        "quotes": ["error", "double"],
-        "semi": ["error", "always"]
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended", 
+    "plugin:react/recommended", 
+    "plugin:import/errors", 
+    "plugin:import/warnings", 
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "plugins": ["react", "react-hooks", "@babel"],
+  "rules": {
+    "indent": ["error", 4],
+    "import/no-unresolved": 0,
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], 
+    "react/display-name": 1,
+    "require-jsdoc": 0,
+    "no-empty": [0, "allow-empty-functions", "allow-empty-catch"]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js"],
+        "map": [
+          ["@src", "./src/*"],
+          ["@components", "./src/components/*"],
+          ["@assets", "./src/assets/*"],
+          ["@hooks", "./src/hooks/*"],
+          ["@modules", "./src/modules/*"],
+          ["@styles", "./styles/*"]
+        ]
+      }
     }
+}
 }

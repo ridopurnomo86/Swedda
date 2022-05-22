@@ -25,7 +25,7 @@ const ProfileMenu = () => {
             <EllipsisIcon />
             {show && (
                 <MenuContainer>
-                    <LinkNavigation href="/profile">
+                    <LinkNavigation href="/profile" passHref>
                         <FlexContainer>
                             <UserIcon />
                             <LinkText>Profile</LinkText>

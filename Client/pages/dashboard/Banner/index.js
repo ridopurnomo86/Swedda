@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BannerContainer, BannerContent, BannerTitle } from "./styles";
-import { MainContainer } from "../../../../styles/index";
+import { MainContainer } from "@styles/index";
 
 const Banner = ({ name }) => (
     <BannerContainer>

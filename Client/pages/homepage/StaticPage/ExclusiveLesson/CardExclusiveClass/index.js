@@ -6,12 +6,19 @@ import { Wrapper, CardContent, CardTitle, CardText, ViewMoreContainer } from "./
 
 const CardExclusiveClass = ({ imgSrc, title, desc, direction }) => (
     <Wrapper>
-        <Image src={imgSrc} width={300} height={150} alt="pic" objectFit="cover" layout="responsive" />
+        <Image
+            src={imgSrc}
+            width={300}
+            height={150}
+            alt="pic"
+            objectFit="cover"
+            layout="responsive"
+        />
         <CardContent>
             <CardTitle>{title}</CardTitle>
             <CardText>{desc}</CardText>
         </CardContent>
-        <Link href={`${direction}`}>
+        <Link href={`${direction}`} passHref>
             <ViewMoreContainer>
                 <CardText className="bold">View More</CardText>
             </ViewMoreContainer>
@@ -19,7 +26,7 @@ const CardExclusiveClass = ({ imgSrc, title, desc, direction }) => (
     </Wrapper>
 );
 
-export default CardExclusiveClass;
+export default React.memo(CardExclusiveClass, () => true);
 
 CardExclusiveClass.propTypes = {
     imgSrc: PropTypes.string,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { LogoContainer, MenuContainer, NavbarContainer, ChildContainer } from "./styles";
@@ -6,18 +6,10 @@ import Button from "../../Button";
 import Menu from "./Menu";
 
 import ProfileMenu from "./ProfileMenu";
+import useScrollSize from "../../../hooks/useScrollSIze";
 
 const Dekstop = ({ isUser }) => {
-    const [onScroll, setOnScroll] = useState(null);
-
-    useEffect(() => {
-        const media = document.body.getBoundingClientRect();
-        const onScrollY = () => setOnScroll(media.y);
-
-        window.addEventListener("scroll", onScrollY);
-
-        return () => window.removeEventListener("scroll", onScrollY);
-    }, [onScroll]);
+    const { onScroll } = useScrollSize();
 
     return (
         <>
@@ -25,7 +17,7 @@ const Dekstop = ({ isUser }) => {
                 <ChildContainer>
                     <MenuContainer>
                         <LogoContainer>
-                            <Link href="/">
+                            <Link href="/" passHref>
                                 <h1 className="pointer">Swedda</h1>
                             </Link>
                         </LogoContainer>

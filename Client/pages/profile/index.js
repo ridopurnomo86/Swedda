@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import dayjs from "dayjs";
 import { useToasts } from "react-toast-notifications";
-import nookies from "nookies";
+import dynamic from "next/dynamic";
 import Head from "next/head";
+import dayjs from "dayjs";
+import nookies from "nookies";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import useGET from "../api/useGET";
-import schemaValidation from "../../src/modules/validation/profile";
+import Get from "../api/useGET";
+import Put from "../api/usePUT";
+import schemaValidation from "@modules/validation/profile";
 import { ProfileContainer } from "./styles";
-import usePUT from "../api/usePUT";
 
 const CardProfile = dynamic(() => import("./CardProfile"), {
     ssr: true,
@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-const Profile = () => {
+const ProfilePage = () => {
     const { addToast } = useToasts();
     const [initialValues, setInitialValues] = useState(null);
     const [isPUTTING, setIsPUTTING] = useState(false);
@@ -51,32 +51,42 @@ const Profile = () => {
     });
 
     useEffect(() => {
-        useGET({
-            path: "/user/info",
-            callback: (res) => {
-                setInitialValues(res.info);
-                reset({
-                    name: res.info.name,
-                    email: res.info.email,
-                    gender: res.info.gender,
-                    birth_date: dayjs(res.info.birth_date).format("YYYY-MM-DD"),
-                });
-            },
-        });
+        const fetchData = () => {
+            Get({
+                path: "/user/info",
+                callback: (res) => {
+                    setInitialValues(res.info);
+                    reset({
+                        name: res.info.name,
+                        email: res.info.email,
+                        gender: res.info.gender,
+                        birth_date: dayjs(res.info.birth_date).format("YYYY-MM-DD"),
+                    });
+                },
+            });
+        };
+        fetchData();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onSubmit = (values) => {
         if (!isPUTTING) {
-            usePUT({
+            Put({
                 path: "/user/info",
                 body: { ...values, birth_date: dayjs(values.birth_date).format() },
                 config: undefined,
                 setIsPUTTING,
                 callback: (res) => {
-                    if (res) return addToast(res.message, { appearance: "success", autoDismiss: true });
+                    if (res)
+                        return addToast(res.message, { appearance: "success", autoDismiss: true });
                 },
                 errorCallback: (err) => {
-                    if (err) return addToast("Something Gone Wrong...", { appearance: "error", autoDismiss: true });
+                    if (err)
+                        return addToast("Something Gone Wrong...", {
+                            appearance: "error",
+                            autoDismiss: true,
+                        });
                 },
             });
         }
@@ -86,6 +96,8 @@ const Profile = () => {
         <ProfileContainer>
             <Head>
                 <title>Profile</title>
+                <meta charSet="UTF-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <CardProfile
@@ -100,4 +112,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ProfilePage;

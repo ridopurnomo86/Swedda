@@ -1,59 +1,32 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Head from "next/head";
 import dynamic from "next/dynamic";
-import nookies from "nookies";
+import HeadTemplate from "@components/Head";
+import { getUserToken } from "../../lib/events";
 
-const EventDashboard = dynamic(() => import("./Eventdashboard"), {
-    ssr: true,
-});
-const EventStatic = dynamic(() => import("./Static"), {
-    ssr: true,
-});
-
+const EventStatic = dynamic(() => import("./Static"));
 
 export async function getServerSideProps(context) {
-    const cookie = nookies.get(context);
-    const token = cookie[`${process.env.COOKIE_USER}`];
-    const res = await fetch(`${process.env.BACKEND_URL}/events/`);
-    const { data: events } = await res.json();
+    const token = await getUserToken(context);
+
+    if (token) {
+        return {
+            redirect: {
+                destination: "/events/dashboard",
+                permanent: false,
+            },
+        };
+    }
 
     return {
-        props: {
-            token: token ? token : null,
-            events: events ? events : null,
-        },
+        props: {},
     };
 }
 
+const EventsPage = () => (
+    <>
+        <HeadTemplate title="Event" />
+        <EventStatic />
+    </>
+);
 
-const Event = ({ token, events }) =>
-    token ? (
-        <>
-            <Head>
-                <title>Events</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <EventDashboard listEvent={events} />
-        </>
-    ) : (
-        <>
-            <Head>
-                <title>Events</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <EventStatic />
-        </>
-    );
-
-export default Event;
-
-Event.propTypes = {
-    token: PropTypes.string,
-    events: PropTypes.arrayOf(PropTypes.object),
-};
-
-Event.defaultProps = {
-    token: null,
-    events: null,
-};
+export default EventsPage;

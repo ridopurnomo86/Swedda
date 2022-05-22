@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { MainContainer } from "../../../../styles";
+import { MainContainer } from "@styles/index";
 
 export const HeroBanner = styled.div`
-    background: linear-gradient(to right, rgba(0, 131, 176) 100%, rgba(0, 180, 219) 0%) no-repeat center center;
+    background: linear-gradient(to right, rgba(0, 131, 176) 100%, rgba(0, 180, 219) 0%) no-repeat
+        center center;
     background-size: cover;
     color: ${({ theme }) => theme.shader.primary};
     padding: 64px 0px;

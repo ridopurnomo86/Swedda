@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DOMPurify from "dompurify";
-import { DescriptionContainer, Text, Title } from "./styles";
+// import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
+import { DescriptionContainer, Title } from "./styles";
 
 const Description = ({ html }) => (
     <DescriptionContainer>
         <Title>Description</Title>
-        <Text dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
+        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
     </DescriptionContainer>
 );
 

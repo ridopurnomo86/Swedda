@@ -1,22 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from "react";
+import { ThemeProvider } from "styled-components";
 import Head from "next/head";
 import Dynamic from "next/dynamic";
 import { ToastProvider } from "react-toast-notifications";
+import theme from "@styles/theme";
+import { GlobalStyle, NavbarTopSpacing } from "@styles/index";
+import Footer from "@components/Footer";
+import useRouteChange from "@hooks/useRouteChange";
 
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle, NavbarTopSpacing } from "../styles";
-import theme from "../styles/theme";
-
-import Footer from "../src/components/Footer";
-import useRouteChange from "../src/hooks/useRouteChange";
 import BlurContainer from "./styles";
 
-const Navbar = Dynamic(() => import("../src/components/Navbar"));
+const Navbar = Dynamic(() => import("@components/Navbar"));
 
 const MyApp = ({ Component, pageProps }) => {
     const { isLoading } = useRouteChange();
-
     return (
         <>
             <Head>

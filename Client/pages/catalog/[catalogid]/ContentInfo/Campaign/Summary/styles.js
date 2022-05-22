@@ -7,7 +7,7 @@ export const Title = styled.p`
 `;
 
 export const TextContent = styled.p`
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: 400;
     margin-bottom: 16px;
 `;

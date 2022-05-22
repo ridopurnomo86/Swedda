@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../../styles/breakpoint";
+import { devices } from "@styles/breakpoint";
 
 export const ListSectionContainer = styled.div`
     margin: 64px 0px;
@@ -34,6 +34,6 @@ export const CardDisplay = styled.div`
     padding-top: 40px;
     align-items: center;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
     grid-gap: 32px;
 `;

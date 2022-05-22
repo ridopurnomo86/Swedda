@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import button from "@components/Button";
 
-export const StudyToolsContainer = styled.div``;
+export const StudyToolsContainer = styled.div`
+    width: 100%;
+`;
 
 export const Title = styled.p`
     font-size: 18px;
@@ -16,3 +19,7 @@ export const SubTitle = styled.p`
 export const Text = styled.p`
     font-size: 14px;
 `;
+
+export const Button = styled(button).attrs({
+    width: "100%",
+})``;

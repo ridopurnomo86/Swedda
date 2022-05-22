@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../../../../styles/breakpoint";
+import { devices } from "@styles/breakpoint";
 
 export const CardWrapper = styled.div`
     overflow: hidden;
@@ -30,6 +30,16 @@ export const Text = styled.p`
     font-weight: 400px;
     text-align: justify;
     max-width: 900px;
+
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+
+    @media ${devices.tabletS} {
+        -webkit-line-clamp: 10;
+    }
 `;
 
 export const DirectingBy = styled.p`

@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { devices } from "../../../../styles/breakpoint";
+import { devices } from "@styles/breakpoint";
 
 export const SignupSectionContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0px 0px 64px 0px;
-
-    background-color: ${({theme}) => theme.shader.primary};
+    background-color: ${({ theme }) => theme.shader.primary};
 
     .image {
         border-radius: 0px;
@@ -25,14 +24,13 @@ export const SignupSectionContainer = styled.div`
     }
 `;
 
-
 export const TextContent = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0px 0px;
     margin: 32px 0px 0px 0px;
     padding: 0px 32px;
-    
+
     @media ${devices.tabletS} {
         padding: 0px 64px;
         align-items: flex-start;

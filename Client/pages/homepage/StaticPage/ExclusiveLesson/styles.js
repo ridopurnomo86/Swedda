@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MainContainer } from "../../../../styles";
-import { devices } from "../../../../styles/breakpoint";
+import { MainContainer } from "@styles/index";
+import { devices } from "@styles/breakpoint";
 
 export const ExclusiveLessonContainer = styled(MainContainer)`
     margin-top: 128px;
@@ -24,12 +24,12 @@ export const ListExclusiveClass = styled.div`
     gap: 32px;
     align-items: center;
     justify-content: space-around;
-    
+
     @media ${devices.tabletS} {
         grid-template-columns: repeat(2, auto);
     }
 
-    @media ${devices.tabletL}{
+    @media ${devices.tabletL} {
         grid-template-columns: repeat(4, auto);
     }
 `;

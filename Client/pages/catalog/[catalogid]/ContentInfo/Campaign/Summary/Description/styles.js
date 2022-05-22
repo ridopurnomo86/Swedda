@@ -11,7 +11,3 @@ export const Title = styled.p`
     font-weight: 700;
     margin-bottom: 16px;
 `;
-
-export const Text = styled.p`
-    margin: 0;
-`;

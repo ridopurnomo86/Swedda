@@ -25,7 +25,7 @@ const CardArticle = ({ imgSrc, title, url, date, desc }) => (
         </div>
         <ActionInfo>
             <DateText>{dayjs(date).format("YYYY MMM, hh:mm a")}</DateText>
-            <Link href={url} replace>
+            <Link href={url} passHref>
                 <ViewMoreWrapper>
                     <ViewMoreText>View More</ViewMoreText>
                     <i className="fa fa-eye grey"></i>

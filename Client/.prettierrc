@@ -1,10 +1,10 @@
 {
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "semi": true,
     "doubleQuote": true,
     "tabWidth": 4,
     "trailingComma": "es5",
-    "printWidth": 120,
+    "printWidth": 100,
     "useTabs": false,
     "bracketSameLine": false,
     "bracketSpacing": true

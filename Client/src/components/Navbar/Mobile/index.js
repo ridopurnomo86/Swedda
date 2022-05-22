@@ -17,11 +17,13 @@ const Mobile = ({ open = false, onClick, isUser, handleLogout, Ref }) => (
     <MobileContainer>
         <ContentContainer>
             <LogoContainer transition={open}>
-                <Link href="/">
+                <Link href="/" passHref>
                     <h1 className="pointer">Swedda</h1>
                 </Link>
             </LogoContainer>
-            <HumbergerContainer onClick={onClick}>{open ? <CloseIcon /> : <HumbergerIcon />}</HumbergerContainer>
+            <HumbergerContainer onClick={onClick}>
+                {open ? <CloseIcon /> : <HumbergerIcon />}
+            </HumbergerContainer>
             <Sidebar isOpen={open} isUser={isUser} handleLogout={handleLogout} sidebarRef={Ref} />
         </ContentContainer>
     </MobileContainer>

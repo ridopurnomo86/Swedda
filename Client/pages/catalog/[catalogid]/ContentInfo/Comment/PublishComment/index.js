@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useToasts } from "react-toast-notifications";
 import { yupResolver } from "@hookform/resolvers/yup";
-import usePOST from "../../../../../api/usePOST";
-import CircularLoading from "../../../../../../src/components/CircularLoading";
+import Form from "@components/Form";
+import CircularLoading from "@components/CircularLoading";
+import schemaValidation from "@modules/validation/comment";
+import Post from "../../../../../api/usePOST";
 import { PublishCommentContainer, ButtonSubmit } from "./styles";
-import Form from "../../../../../../src/components/Form";
-import schemaValidation from "../../../../../../src/modules/validation/comment";
 
 const PublishComment = ({ catalogid }) => {
     const [isPOSTING, setIsPOSTING] = useState(false);
@@ -21,7 +21,7 @@ const PublishComment = ({ catalogid }) => {
     });
     const onSubmit = (values) => {
         if (!isPOSTING) {
-            usePOST({
+            Post({
                 path: `/catalog/${catalogid}/comment`,
                 body: values,
                 undefined,
@@ -29,7 +29,11 @@ const PublishComment = ({ catalogid }) => {
                     if (res.data.message === "Success") return window.location.reload();
                 },
                 errorCallback: (err) => {
-                    if (err) return addToast("Sorry, You Must Login First", { appearance: "error", autoDismiss: true });
+                    if (err)
+                        return addToast("Sorry, You Must Login First", {
+                            appearance: "error",
+                            autoDismiss: true,
+                        });
                 },
                 setIsPOSTING,
             });

@@ -16,7 +16,7 @@ const Button = ({
     disabled,
 }) => {
     return direction ? (
-        <Link href={`${direction}`}>
+        <Link href={`${direction}`} passHref>
             <ButtonContainer
                 type={type}
                 padding={padding}

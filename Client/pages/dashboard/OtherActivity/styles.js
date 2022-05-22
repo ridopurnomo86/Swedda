@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainContainer } from "../../../../styles";
+import { MainContainer } from "@styles/index";
 
 export const ActivityContainer = styled(MainContainer)`
     background-color: ${({ theme }) => theme.shader.primary};

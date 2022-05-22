@@ -23,7 +23,7 @@ const ProfileMenu = () => {
             </MenuContainer>
             {show && (
                 <MenuListContainer>
-                    <Link href="/profile">
+                    <Link href="/profile" passHref>
                         <MenuList>
                             <TitleText className="link">Profile</TitleText>
                         </MenuList>

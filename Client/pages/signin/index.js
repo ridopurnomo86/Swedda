@@ -6,12 +6,12 @@ import nookies from "nookies";
 import Head from "next/head";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
-import usePOST from "../api/usePOST";
-import Form from "../../src/components/Form";
-import { SignupContainer, ButtonForm, OptionalText, Wrapper, Title } from "./styles";
-import CircularLoading from "../../src/components/CircularLoading";
+import CircularLoading from "@components/CircularLoading";
+import Form from "@components/Form";
+import schemaValidation from "@modules/validation/signin";
 import Session from "../../lib/Auth";
-import schemaValidation from "../../src/modules/validation/signin";
+import { SignupContainer, ButtonForm, OptionalText, Wrapper, Title } from "./styles";
+import Post from "../api/usePOST";
 
 export async function getServerSideProps(context) {
     const cookie = nookies.get(context);
@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
     };
 }
 
-const Signin = () => {
+const SigninPage = () => {
     const router = useRouter();
     const { addToast } = useToasts();
     const [isPOSTING, setIsPOSTING] = useState(false);
@@ -43,7 +43,7 @@ const Signin = () => {
 
     const onSubmit = (values) => {
         if (!isPOSTING) {
-            usePOST({
+            Post({
                 path: "/auth/signin",
                 body: values,
                 undefined,
@@ -51,12 +51,14 @@ const Signin = () => {
                 callback: (res) => {
                     setTimeout(() => {
                         Session.setUserFromCookie();
-                        router.push("/");
+                        router.push("/dashboard");
                     }, 2000);
-                    if (res) return addToast(res?.message, { appearance: "success", autoDismiss: true });
+                    if (res)
+                        return addToast(res?.message, { appearance: "success", autoDismiss: true });
                 },
                 errorCallback: (err) => {
-                    if (err) return addToast("Cannot Login", { appearance: "error", autoDismiss: true });
+                    if (err)
+                        return addToast("Cannot Login", { appearance: "error", autoDismiss: true });
                 },
             });
         }
@@ -101,7 +103,7 @@ const Signin = () => {
                     </ButtonForm>
                     <OptionalText>
                         Not a member yet?&nbsp;
-                        <Link href="/signup">
+                        <Link href="/signup" passHref>
                             <span className="underline">Sign Up</span>
                         </Link>
                     </OptionalText>
@@ -111,4 +113,4 @@ const Signin = () => {
     );
 };
 
-export default Signin;
+export default SigninPage;

@@ -19,7 +19,7 @@ const ListLink = () => (
         <QuickLink>
             <LinkTitle>Quick Link</LinkTitle>
             {Object.keys(MenuLink).map((link) => (
-                <Link href={link} key={link}>
+                <Link href={link} key={link} passHref>
                     <p className="pointer mx-s semibold">{MenuLink[link]}</p>
                 </Link>
             ))}
@@ -27,7 +27,7 @@ const ListLink = () => (
         <SupportList>
             <LinkTitle>Support</LinkTitle>
             {Object.keys(SupportLink).map((link) => (
-                <Link href={link} key={link}>
+                <Link href={link} key={link} passHref>
                     <p className="pointer mx-s semibold">{SupportLink[link]}</p>
                 </Link>
             ))}

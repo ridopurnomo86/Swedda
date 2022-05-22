@@ -1,14 +1,22 @@
 {
-  "name": "course-business-app",
+  "name": "swedda-app",
   "version": "1.0.0",
-  "description": "Course Business App",
+  "private": "true",
+  "description": "Swedda Application",
   "scripts": {
     "dev": "next dev -p 8080",
     "start": "next start",
     "build": "next build && next export",
-    "prettier": "prettier -write .",
-    "lint": "eslint ./"
+    "lint": "eslint ./pages/** -c ./.eslintrc.json",
+    "prettier:code": "prettier --check .",
+    "prettier:format": "prettier --write ."
   },
+  "workspaces": [
+    "styles/*",
+    "src/*",
+    "pages/*",
+    "libs/*"
+  ],
   "keywords": [],
   "author": "Ridho Purnomo",
   "license": "ISC",
@@ -16,7 +24,7 @@
     "@hookform/resolvers": "^2.8.8",
     "axios": "^0.24.0",
     "dayjs": "^1.11.1",
-    "dompurify": "^2.3.6",
+    "isomorphic-dompurify": "^0.18.0",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "next": "^12.0.4",
@@ -31,9 +39,16 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.12",
+    "@babel/eslint-plugin": "^7.17.7",
     "babel-plugin-styled-components": "^2.0.2",
     "eslint": "^8.3.0",
     "eslint-config-next": "^12.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "2.5.1"
   }
 }

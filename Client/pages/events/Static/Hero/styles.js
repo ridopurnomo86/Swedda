@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { devices } from "../../../../styles/breakpoint";
+import { devices } from "@styles/breakpoint";
 
 export const HeroContainer = styled.div`
     position: relative;
     width: 100%;
-
     .rounded {
         border-radius: 8px;
     }

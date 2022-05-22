@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LearningMethodContainer = styled.div`
-    margin-top: 16px;
+    margin: 16px 0px;
 `;
 
 export const Title = styled.p`
