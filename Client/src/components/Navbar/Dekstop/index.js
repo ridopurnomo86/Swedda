@@ -13,7 +13,7 @@ const Dekstop = ({ isUser }) => {
 
     return (
         <>
-            <NavbarContainer isScroll={Boolean(onScroll >= -21)}>
+            <NavbarContainer isScroll={Boolean(onScroll === 0)}>
                 <ChildContainer>
                     <MenuContainer>
                         <LogoContainer>

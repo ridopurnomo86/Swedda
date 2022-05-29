@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useToasts } from "react-toast-notifications";
+import { yupResolver } from "@hookform/resolvers/yup";
 import schemaValidation from "@modules/validation/imageProfile";
 import Form from "@components/Form";
 import {

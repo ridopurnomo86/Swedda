@@ -1,7 +1,7 @@
-import * as yup from "yup";
+import { object, string } from "yup";
 
-const schemaValidation = yup.object().shape({
-    title: yup.string().required,
-    comment: yup.string().required,
+const schemaValidation = object().shape({
+    title: string().required,
+    comment: string().required,
 });
 export default schemaValidation;

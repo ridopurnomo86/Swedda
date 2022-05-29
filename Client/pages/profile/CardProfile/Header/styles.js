@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import image from "next/image";
 import { devices } from "@styles/breakpoint";
-import BlankProfile from "@assets/images/blank_profile.png";
 
 export const HeaderContainer = styled.div`
     width: 100%;
@@ -22,7 +21,7 @@ export const SubtitleText = styled.p`
 `;
 
 export const ProfileImage = styled(image).attrs(({ imagesrc }) => ({
-    src: imagesrc ? imagesrc : BlankProfile,
+    src: imagesrc ? imagesrc : "/assets/images/black_profile.png",
     alt: `${imagesrc ? imagesrc : "Blank Profile"}`,
     layout: "fixed",
     width: 100,

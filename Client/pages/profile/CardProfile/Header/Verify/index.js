@@ -12,7 +12,7 @@ const Verify = ({ isVerified }) => (
         ) : (
             <>
                 <XmarkIcon />
-                <SubtitleText>This Account Not Verified</SubtitleText>)
+                <SubtitleText>This Account Not Verified</SubtitleText>
             </>
         )}
     </VerifyContainer>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import CatalogDetailsContainer from "./styles";
 import HeadTemplate from "@components/Head";
+import CatalogDetailsContainer from "./styles";
 import StaticDescription from "./ContentInfo/data-desc";
 import { getCatalog, getCatalogComment, getCatalogDetail } from "../../../lib/catalog";
 

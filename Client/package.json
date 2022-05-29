@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "private": "true",
   "description": "Swedda Application",
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
   "scripts": {
     "dev": "next dev -p 8080",
     "start": "next start",
     "build": "next build && next export",
-    "lint": "eslint ./pages/** -c ./.eslintrc.json",
+    "lint": "eslint ./pages/** ./src/** -c ./.eslintrc.json",
     "prettier:code": "prettier --check .",
     "prettier:format": "prettier --write ."
   },
