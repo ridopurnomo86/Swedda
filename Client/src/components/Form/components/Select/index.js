@@ -9,7 +9,11 @@ const Select = ({ form, errors, register }) => {
         <>
             <Label id={form.id}>{form.label}</Label>
             <RenderSelect name={form?.name} options={form?.options} register={register} />
-            {errors[form.name] && <ErrorMessage>{`${capitalizeFirstLetter(errors[form.name]?.message)}`}</ErrorMessage>}
+            {errors[form.name] && (
+                <ErrorMessage>{`${capitalizeFirstLetter(
+                    errors[form.name]?.message
+                )}`}</ErrorMessage>
+            )}
         </>
     );
 };

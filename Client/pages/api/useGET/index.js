@@ -1,6 +1,12 @@
 import instance from "../instance";
 
-const useGET = ({ path = "", config, setIsFetching = () => {}, callback = () => {}, errorCallback = () => {} }) => {
+const useGET = ({
+    path = "",
+    config,
+    setIsFetching = () => {},
+    callback = () => {},
+    errorCallback = () => {},
+}) => {
     setIsFetching(true);
     instance
         .get(path, config)

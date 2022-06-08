@@ -1,6 +1,13 @@
 import instance from "../instance";
 
-const usePOST = ({ path = "", body, config, setIsPOSTING, callback = () => {}, errorCallback = () => {} }) => {
+const usePOST = ({
+    path = "",
+    body,
+    config,
+    setIsPOSTING,
+    callback = () => {},
+    errorCallback = () => {},
+}) => {
     setIsPOSTING(true);
     instance
         .post(path, body, config)

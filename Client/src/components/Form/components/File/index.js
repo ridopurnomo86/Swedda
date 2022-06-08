@@ -14,7 +14,9 @@ const File = ({ form, errors, register }) => (
             {...register(form?.name, form?.validation && { ...form?.validation })}
             error={errors[form?.name]}
         />
-        {errors[form.name] && <ErrorMessage>{`${capitalizeFirstLetter(errors[form.name]?.message)}`}</ErrorMessage>}
+        {errors[form.name] && (
+            <ErrorMessage>{`${capitalizeFirstLetter(errors[form.name]?.message)}`}</ErrorMessage>
+        )}
     </>
 );
 

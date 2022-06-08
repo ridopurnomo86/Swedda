@@ -6,7 +6,11 @@ const schemaValidation = object().shape({
     file: mixed()
         .nullable()
         .required("You need to provide a file")
-        .test("size", "File size is too large Min.100 kb", (value) => !value || (value && value[0]?.size <= 100000))
+        .test(
+            "size",
+            "File size is too large Min.100 kb",
+            (value) => !value || (value && value[0]?.size <= 100000)
+        )
         .test(
             "format",
             "Unsupported File Format",

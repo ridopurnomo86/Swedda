@@ -1,6 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ExclusiveLessonContainer, ExclusiveText, ExclusiveTitle, ListExclusiveClass } from "./styles";
+import {
+    ExclusiveLessonContainer,
+    ExclusiveText,
+    ExclusiveTitle,
+    ListExclusiveClass,
+} from "./styles";
 import CardExclusiveClass from "./CardExclusiveClass";
 
 const ExclusiveLesson = ({ catalog }) => (

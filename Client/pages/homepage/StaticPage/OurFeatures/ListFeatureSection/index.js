@@ -1,5 +1,11 @@
 import React from "react";
-import { CardSectionContainer, CardSection, CardSectionTitle, CardSectionInfo, Wrapper } from "./styles";
+import {
+    CardSectionContainer,
+    CardSection,
+    CardSectionTitle,
+    CardSectionInfo,
+    Wrapper,
+} from "./styles";
 
 const ListFeatureSection = () => (
     <Wrapper>

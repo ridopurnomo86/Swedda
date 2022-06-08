@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PublishComment from "./PublishComment";
-import { CommentContianer, TextContent, Title, CommentWrapper, Author, TitleComment } from "./styles";
+import {
+    CommentContianer,
+    TextContent,
+    Title,
+    CommentWrapper,
+    Author,
+    TitleComment,
+} from "./styles";
 
 const Comment = ({ infoComments, catalogid }) => (
     <CommentContianer>

@@ -5,7 +5,9 @@ import { InfoEventContainer, TitleEvent, TitleText, FlexInfo } from "./styles";
 const InfoEvent = () => (
     <InfoEventContainer>
         <TitleEvent>Why Event So Important To You?</TitleEvent>
-        <TitleText>The following are the benefits that you will get if you actively join the Swedda event.</TitleText>
+        <TitleText>
+            The following are the benefits that you will get if you actively join the Swedda event.
+        </TitleText>
         <FlexInfo>
             <ListInfo
                 icon={<i className="fa fa-graduation-cap" style={{ fontSize: "64px" }}></i>}

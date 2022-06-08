@@ -16,7 +16,11 @@ const Input = ({ form, errors, register }) => {
                 error={errors[form?.name]}
                 disabled={form?.disabled}
             />
-            {errors[form.name] && <ErrorMessage>{`${capitalizeFirstLetter(errors[form.name]?.message)}`}</ErrorMessage>}
+            {errors[form.name] && (
+                <ErrorMessage>{`${capitalizeFirstLetter(
+                    errors[form.name]?.message
+                )}`}</ErrorMessage>
+            )}
         </>
     );
 };

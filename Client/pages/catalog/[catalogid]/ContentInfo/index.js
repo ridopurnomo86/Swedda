@@ -5,7 +5,13 @@ import { ContentInfoContainer } from "./styles";
 import Campaign from "./Campaign";
 import Comment from "./Comment";
 
-const ContentInfo = ({ activeIndexComp, campaignTextContent, campaignDescription, comments, catalogid }) => {
+const ContentInfo = ({
+    activeIndexComp,
+    campaignTextContent,
+    campaignDescription,
+    comments,
+    catalogid,
+}) => {
     const Template = [
         <Campaign textContent={campaignTextContent} description={campaignDescription} />,
         <Comment infoComments={comments} catalogid={catalogid} />,

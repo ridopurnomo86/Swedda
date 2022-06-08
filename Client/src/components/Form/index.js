@@ -8,12 +8,12 @@ import Input from "./components/Input";
 const Form = ({ FormList = [], register, handleSubmit, errors, onSubmit, children }) => {
     const renderItem = (type, fieldForm) => {
         switch (type) {
-        case "select":
-            return <Select errors={errors} register={register} form={fieldForm} />;
-        case "file":
-            return <File errors={errors} register={register} form={fieldForm} />;
-        default:
-            return <Input errors={errors} register={register} form={fieldForm} />;
+            case "select":
+                return <Select errors={errors} register={register} form={fieldForm} />;
+            case "file":
+                return <File errors={errors} register={register} form={fieldForm} />;
+            default:
+                return <Input errors={errors} register={register} form={fieldForm} />;
         }
     };
 

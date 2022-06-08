@@ -4,7 +4,14 @@ import Header from "./Header";
 import PersonalInfo from "./PersonalInfo";
 import { CardProfileContainer } from "./styles";
 
-const CardProfile = ({ defaultValue, errors, register, handleSubmit, onSubmit, isPUTTING = false }) => (
+const CardProfile = ({
+    defaultValue,
+    errors,
+    register,
+    handleSubmit,
+    onSubmit,
+    isPUTTING = false,
+}) => (
     <CardProfileContainer>
         <Header
             isVerified={defaultValue?.is_verified}

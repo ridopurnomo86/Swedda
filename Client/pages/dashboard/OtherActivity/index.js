@@ -8,7 +8,9 @@ const DATA = [];
 
 const renderItem = (data) => {
     if (data?.length > 0)
-        return data?.map((info) => <CardActivity key={info.id} title={info.title} status={info.status} />);
+        return data?.map((info) => (
+            <CardActivity key={info.id} title={info.title} status={info.status} />
+        ));
     return <EmptyState />;
 };
 

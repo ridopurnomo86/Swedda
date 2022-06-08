@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CardActivityContainer, ContentContainer, EllipsisIcon, SubtitleText, TitleText } from "./styles";
+import {
+    CardActivityContainer,
+    ContentContainer,
+    EllipsisIcon,
+    SubtitleText,
+    TitleText,
+} from "./styles";
 
 const CardActivity = ({ status, title }) => (
     <CardActivityContainer>

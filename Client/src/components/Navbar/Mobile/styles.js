@@ -53,5 +53,6 @@ export const HumbergerContainer = styled.div`
 export const LogoContainer = styled.div`
     z-index: 100;
     transition: 0.5s color ease-in-out;
-    color: ${({ theme, transition }) => (transition ? theme.shader.primary : theme.shader.secondary)};
+    color: ${({ theme, transition }) =>
+        transition ? theme.shader.primary : theme.shader.secondary};
 `;

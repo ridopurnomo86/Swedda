@@ -1,6 +1,13 @@
 import instance from "../instance";
 
-const usePUT = ({ path = "", body, config, setIsPUTTING, callback = () => {}, errorCallback = () => {} }) => {
+const usePUT = ({
+    path = "",
+    body,
+    config,
+    setIsPUTTING,
+    callback = () => {},
+    errorCallback = () => {},
+}) => {
     setIsPUTTING(true);
     instance
         .put(path, body, config)

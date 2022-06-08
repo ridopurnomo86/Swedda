@@ -9,7 +9,12 @@ const Breadcrumb = ({ stateLink, setStateLink }) => {
     return (
         <BreadcrumbInfo>
             {link.map((item, key) => (
-                <BreadcrumbLink key={key} active={stateLink === key} onClick={() => setStateLink(key)} ref={refLink}>
+                <BreadcrumbLink
+                    key={key}
+                    active={stateLink === key}
+                    onClick={() => setStateLink(key)}
+                    ref={refLink}
+                >
                     {item}
                 </BreadcrumbLink>
             ))}
