@@ -7,20 +7,24 @@ import Menu from "../Menu";
 
 const ProfileMenu = dynamic(() => import("../ProfileMenu"));
 
+const renderButton = (isUser, handleLogout) => {
+    return isUser ? (
+        <Button classNames="mt-m" onClick={handleLogout}>
+            <p>Logout</p>
+        </Button>
+    ) : (
+        <Button classNames="mt-m" direction="/signin">
+            <p>Sign In</p>
+        </Button>
+    );
+};
+
 const Sidebar = ({ isOpen = false, isUser, handleLogout, sidebarRef }) => (
     <SidebarMenu transition={isOpen} ref={sidebarRef}>
         <SidebarContainer>
             <Menu />
             {isUser && <ProfileMenu />}
-            {isUser ? (
-                <Button classNames="mt-m" onClick={handleLogout}>
-                    <p>Logout</p>
-                </Button>
-            ) : (
-                <Button classNames="mt-m" direction="/signin">
-                    <p>Sign In</p>
-                </Button>
-            )}
+            {renderButton(isUser, handleLogout)}
         </SidebarContainer>
     </SidebarMenu>
 );

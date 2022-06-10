@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const animated = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`;
 
 export const AccordionContainer = styled.div`
     display: block;
@@ -7,7 +16,6 @@ export const AccordionContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 16px;
-    border: 2px solid ${({ theme }) => theme.main.primary};
     border-radius: 6px;
     cursor: pointer;
 `;
@@ -23,4 +31,18 @@ export const ArrowIcon = styled.i.attrs({
     font-size: 18px;
     transition: 0.2s;
     transform: ${({ active }) => (active ? "rotate(180deg)" : "rotate(0deg)")};
+`;
+
+export const TextLinkContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    animation: ${animated} 0.2s linear;
+`;
+
+export const TextContainer = styled.div``;
+
+export const Text = styled.p`
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
 `;

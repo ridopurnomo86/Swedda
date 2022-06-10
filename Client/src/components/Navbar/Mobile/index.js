@@ -11,7 +11,7 @@ import {
     CloseIcon,
 } from "./styles";
 
-const Sidebar = dynamic(() => import("./Sidebar"));
+const Sidebar = dynamic(() => import("./Sidebar"), { ssr: false });
 
 const Mobile = ({ open = false, onClick, isUser, handleLogout, Ref }) => (
     <MobileContainer>
