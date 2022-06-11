@@ -16,8 +16,8 @@ export const AccordionContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 16px;
-    border-radius: 6px;
     cursor: pointer;
+    border-bottom: 1px solid ${({ theme }) => theme.shader.secondary};
 `;
 
 export const TextAccordion = styled.p`
@@ -39,10 +39,13 @@ export const TextLinkContainer = styled.div`
     animation: ${animated} 0.2s linear;
 `;
 
-export const TextContainer = styled.div``;
+export const TextContainer = styled.div`
+    cursor: pointer;
+`;
 
 export const Text = styled.p`
     font-size: 16px;
     font-weight: 500;
     padding: 8px 16px;
+    ${({ isActive }) => (isActive ? "font-weight: 600" : "font-weight: 500")};
 `;

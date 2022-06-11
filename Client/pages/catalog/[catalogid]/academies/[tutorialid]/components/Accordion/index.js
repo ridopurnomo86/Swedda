@@ -14,7 +14,6 @@ const Accordion = ({ text = "", data = [] }) => {
     const { replace, query } = useRouter();
     const [active, setActive] = useState(false);
     const handleChoosingModule = (id) => replace({ query: { ...query, tutorialid: id } });
-
     return (
         <>
             <AccordionContainer onClick={() => setActive((prev) => !prev)}>
@@ -28,7 +27,9 @@ const Accordion = ({ text = "", data = [] }) => {
                             onClick={() => handleChoosingModule(item.tutorial_id)}
                             key={item.tutorial_id}
                         >
-                            <Text>{item.title}</Text>
+                            <Text isActive={item.tutorial_id === parseInt(query.tutorialid)}>
+                                {item.title}
+                            </Text>
                         </TextContainer>
                     ))}
                 </TextLinkContainer>
