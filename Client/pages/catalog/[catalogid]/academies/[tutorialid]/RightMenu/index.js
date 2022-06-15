@@ -8,6 +8,8 @@ const RightMenu = ({
     tutorial = [],
     tutorialid,
     onClickNextPage = () => {},
+    disableNext = false,
+    disablePrev = false,
     onClickPreviousPage = () => {},
 }) => {
     const renderContent = (data, id) =>
@@ -21,16 +23,24 @@ const RightMenu = ({
                 }}
             />
             <FlexContainer>
-                <ButtonContainer>
-                    <Button onClick={onClickPreviousPage}>
-                        <p>Previous</p>
-                    </Button>
-                </ButtonContainer>
-                <ButtonContainer>
-                    <Button onClick={onClickNextPage}>
-                        <p>Next</p>
-                    </Button>
-                </ButtonContainer>
+                {!disablePrev ? (
+                    <ButtonContainer>
+                        <Button onClick={onClickPreviousPage}>
+                            <p>Previous</p>
+                        </Button>
+                    </ButtonContainer>
+                ) : (
+                    <div></div>
+                )}
+                {!disableNext ? (
+                    <ButtonContainer>
+                        <Button onClick={onClickNextPage}>
+                            <p>Next</p>
+                        </Button>
+                    </ButtonContainer>
+                ) : (
+                    <div></div>
+                )}
             </FlexContainer>
         </RightMenuContainer>
     );
@@ -43,6 +53,8 @@ RightMenu.propTypes = {
     onClickNextPage: PropTypes.func,
     onClickPreviousPage: PropTypes.func,
     tutorialid: PropTypes.string,
+    disableNext: PropTypes.bool,
+    disablePrev: PropTypes.bool,
 };
 
 RightMenu.defaultProps = {
@@ -50,4 +62,6 @@ RightMenu.defaultProps = {
     onClickNextPage: () => {},
     onClickPreviousPage: () => {},
     tutorialid: "",
+    disableNext: false,
+    disablePrev: false,
 };
