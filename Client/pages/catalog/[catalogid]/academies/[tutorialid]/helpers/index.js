@@ -1,13 +1,10 @@
-import { getCatalog, getCatalogDetail } from "lib/catalog";
 import STATIC_DATA from "../Static/static-data";
 
 export async function getStaticPaths() {
-    const data = await getCatalog();
-    const tutorialid = STATIC_DATA.map((item) => item.tutorial_id);
-    const paths = data.map((info, index) => ({
+    const paths = STATIC_DATA.map((info) => ({
         params: {
-            catalogid: "2",
-            tutorialid: `${tutorialid[index]}`,
+            catalogid: `${info.catalog_id}`,
+            tutorialid: `${info.tutorial_id}`,
         },
     }));
 
@@ -17,17 +14,9 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps(context) {
-    const { catalogid } = context.params;
-    const data = await getCatalogDetail(catalogid);
+export async function getStaticProps() {
     const tutorialData = STATIC_DATA;
     const pages = STATIC_DATA.map((value) => value.tutorial_id);
-
-    if (data === undefined || !data) {
-        return {
-            notFound: true,
-        };
-    }
 
     return {
         props: {

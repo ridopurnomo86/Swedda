@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import dynamic from "next/dynamic";
 import { TutorialContainer } from "./styles";
 import Head from "next/head";
+import { PageProvider } from "./context/page";
 
 const LeftMenu = dynamic(() => import("./LeftMenu"));
 const RightMenu = dynamic(() => import("./RightMenu"));
@@ -18,7 +19,7 @@ const Tutorial = ({ tutorial, pages }) => {
     const handleNextPage = async () => {
         if (currPageRef.current < 0 || currPageRef.current !== pages.length - 1) {
             currPageRef.current += 1;
-            await router.replace({
+            await router.push({
                 query: {
                     catalogid: "2",
                     tutorialid: pages[currPageRef.current],
@@ -26,7 +27,6 @@ const Tutorial = ({ tutorial, pages }) => {
             });
         }
     };
-
     const handlePreviousPage = async () => {
         if (currPageRef.current > 0 || currPageRef.current === pages.length - 1) {
             currPageRef.current -= 1;
@@ -39,14 +39,23 @@ const Tutorial = ({ tutorial, pages }) => {
         }
     };
 
+    useEffect(() => {
+        const page = pages.indexOf(parseInt(tutorialid));
+        const renderPage = () => {
+            currPageRef.current = page;
+        };
+
+        renderPage();
+    }, [pages]);
+
     return (
-        <>
+        <PageProvider>
             <Head>
                 <title>Academic</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <TutorialContainer>
-                <LeftMenu tutorialid={tutorialid} />
+                <LeftMenu />
                 <RightMenu
                     tutorial={tutorial}
                     tutorialid={tutorialid}
@@ -56,7 +65,7 @@ const Tutorial = ({ tutorial, pages }) => {
                     onClickPreviousPage={handlePreviousPage}
                 />
             </TutorialContainer>
-        </>
+        </PageProvider>
     );
 };
 

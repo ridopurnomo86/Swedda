@@ -1,6 +1,6 @@
 const STATIC_DATA = [
     {
-        catalog_id: 1,
+        catalog_id: 2,
         tutorial_id: 213,
         title: "Copyright Approval",
         content: `<div style='border: 1px solid #808080; border-radius: 8px; padding: 8px;'><p style='font-size: 20px; font-style: italic; line-height: 1.6; text-align: center;'>This class 
@@ -10,7 +10,7 @@ const STATIC_DATA = [
         to the next material, you agree to the copyright information above the modules in this class.</p>`,
     },
     {
-        catalog_id: 1,
+        catalog_id: 2,
         tutorial_id: 277,
         title: "Learning Mechanism",
         content: `<div><p style='font-size: 20px;'>Welcome to the Swedish Academy. Before starting to study in this class, you need to know the stages and how to learn along with the 
@@ -27,7 +27,7 @@ const STATIC_DATA = [
         </div>`,
     },
     {
-        catalog_id: 1,
+        catalog_id: 2,
         tutorial_id: 222,
         title: "Reference list",
         content: `<div>

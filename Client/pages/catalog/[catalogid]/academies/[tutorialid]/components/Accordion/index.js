@@ -11,9 +11,15 @@ import {
 } from "./styles";
 
 const Accordion = ({ text = "", data = [] }) => {
-    const { replace, query } = useRouter();
+    const { query, replace } = useRouter();
     const [active, setActive] = useState(false);
-    const handleChoosingModule = (id) => replace({ query: { ...query, tutorialid: id } });
+
+    const handleChoosingModule = (id) => {
+        replace({
+            query: { ...query, tutorialid: id },
+        });
+    };
+
     return (
         <>
             <AccordionContainer onClick={() => setActive((prev) => !prev)}>
