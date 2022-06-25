@@ -1,11 +1,13 @@
 import React from "react";
-import STATIC_DATA from "../Static/static-data";
+import STUDY_PREPERATION from "../Static/Accountant";
 import { LeftMenuContainer } from "./styles";
 import Accordion from "../components/Accordion";
 
 const LeftMenu = () => (
     <LeftMenuContainer>
-        <Accordion text="Study Preparation" data={STATIC_DATA} />
+        {STUDY_PREPERATION.map((info) => (
+            <Accordion text={info.name} key={info.id} data={info.content} />
+        ))}
     </LeftMenuContainer>
 );
 

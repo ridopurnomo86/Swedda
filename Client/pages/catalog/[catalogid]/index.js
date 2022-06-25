@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import HeadTemplate from "@components/Head";
 import CatalogDetailsContainer from "./styles";
 import StaticDescription from "./ContentInfo/data-desc";
-import { getCatalog, getCatalogComment, getCatalogDetail } from "../../../lib/catalog";
+import { getCatalog, getCatalogComment, getCatalogDetail } from "lib/catalog";
 
 const HeaderCatalog = Dynamic(() => import("./HeaderCatalog"));
 const ContentInfo = Dynamic(() => import("./ContentInfo"));

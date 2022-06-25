@@ -1,27 +1,27 @@
-import STATIC_DATA from "../Static/static-data";
+import ACCOUNTANT from "../Static/Accountant";
+// import Static from "../static/";
 
-export async function getStaticPaths() {
-    const paths = STATIC_DATA.map((info) => ({
-        params: {
-            catalogid: `${info.catalog_id}`,
-            tutorialid: `${info.tutorial_id}`,
-        },
-    }));
-
-    return {
-        paths,
-        fallback: false,
+export async function getServerSideProps(context) {
+    // console.log(Static[parseInt(context.params.catalogid)]);
+    const convertPathId = () => {
+        const paths = [];
+        ACCOUNTANT.map(({ content }) => {
+            content.map((item) => paths.push(item.tutorial_id));
+        });
+        return paths;
     };
-}
-
-export async function getStaticProps() {
-    const tutorialData = STATIC_DATA;
-    const pages = STATIC_DATA.map((value) => value.tutorial_id);
+    const convertTutorialData = () => {
+        const data = [];
+        ACCOUNTANT.map(({ content }) => {
+            content.map((item) => data.push(item));
+        });
+        return data;
+    };
 
     return {
         props: {
-            tutorial: tutorialData ? tutorialData : null,
-            pages: pages ? pages : null,
+            tutorial: convertTutorialData() || [],
+            pages: convertPathId() || [],
         },
     };
 }

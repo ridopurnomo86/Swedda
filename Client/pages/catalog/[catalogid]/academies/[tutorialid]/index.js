@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
@@ -9,7 +10,7 @@ import { PageProvider } from "./context/page";
 const LeftMenu = dynamic(() => import("./LeftMenu"));
 const RightMenu = dynamic(() => import("./RightMenu"));
 
-export { getStaticPaths, getStaticProps } from "./helpers";
+export { getServerSideProps } from "./helpers";
 
 const Tutorial = ({ tutorial, pages }) => {
     const router = useRouter();
