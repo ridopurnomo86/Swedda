@@ -14,7 +14,7 @@ export { getServerSideProps } from "./helpers";
 
 const Tutorial = ({ tutorial, pages }) => {
     const router = useRouter();
-    const { tutorialid } = router.query;
+    const { tutorialid, catalogid } = router.query;
     const currPageRef = useRef(0);
 
     const handleNextPage = async () => {
@@ -22,7 +22,7 @@ const Tutorial = ({ tutorial, pages }) => {
             currPageRef.current += 1;
             await router.push({
                 query: {
-                    catalogid: "2",
+                    catalogid,
                     tutorialid: pages[currPageRef.current],
                 },
             });
@@ -33,7 +33,7 @@ const Tutorial = ({ tutorial, pages }) => {
             currPageRef.current -= 1;
             await router.replace({
                 query: {
-                    catalogid: "2",
+                    catalogid,
                     tutorialid: pages[currPageRef.current],
                 },
             });
@@ -56,7 +56,7 @@ const Tutorial = ({ tutorial, pages }) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <TutorialContainer>
-                <LeftMenu />
+                <LeftMenu catalogid={catalogid} />
                 <RightMenu
                     tutorial={tutorial}
                     tutorialid={tutorialid}

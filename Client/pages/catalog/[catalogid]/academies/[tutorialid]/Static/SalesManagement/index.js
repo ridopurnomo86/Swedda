@@ -2,10 +2,11 @@ const STATIC_DATA = [
     {
         id: 1,
         name: "Study Preperation",
+        catalog_id: 1,
         content: [
             {
                 catalog_id: 1,
-                tutorial_id: 213,
+                tutorial_id: 629530,
                 title: "Copyright Approval",
                 content: `<div style='border: 1px solid #808080; border-radius: 8px; padding: 8px;'><p style='font-size: 20px; font-style: italic; line-height: 1.6; text-align: center;'>This class 
                 module in printed (book) or electronic form has been registered with the Director General of Intellectual Property Rights. All forms of reproduction and or commercialization, in part 
@@ -15,7 +16,7 @@ const STATIC_DATA = [
             },
             {
                 catalog_id: 1,
-                tutorial_id: 277,
+                tutorial_id: 857266,
                 title: "Learning Mechanism",
                 content: `<div><p style='font-size: 20px;'>Welcome to the Swedish Academy. Before starting to study in this class, you need to know the stages and how to learn along with the 
                 facilities available so that the learning process is more enjoyable.</p><h2 style='margin: 16px 0px;'>Learning materials</h2><ul><li style='margin: 16px 0px;'><div><h3 style='margin-bottom: 8px;'>Electronic Reading Material</h3>
@@ -32,7 +33,7 @@ const STATIC_DATA = [
             },
             {
                 catalog_id: 1,
-                tutorial_id: 222,
+                tutorial_id: 130214,
                 title: "Reference list",
                 content: `<div>
                 <h2>Reference List</h2>
@@ -48,13 +49,14 @@ const STATIC_DATA = [
     {
         id: 2,
         name: "Introduce Sales Management",
+        catalog_id: 1,
         content: [
             {
                 catalog_id: 1,
-                tutorial_id: 912,
+                tutorial_id: 86881,
                 title: "Introduct Sales Management",
                 content: `<div>
-                <h2 style="margin-bottom: 8px;"><strong>Introduce Accountant</strong></h2>
+                <h2 style="margin-bottom: 8px;"><strong>Introduce Sales Management</strong></h2>
                 <p>Before you start learning something new, it's important that you understand what you're going to learn and what you can do with it. In this case we will start to know the Accountant.</p>
                 <p>&nbsp;</p>
                 <p style="margin-bottom: 16px;">By the end of this module, you are expected to be able to:</p>
@@ -68,7 +70,7 @@ const STATIC_DATA = [
             },
             {
                 catalog_id: 1,
-                tutorial_id: 312,
+                tutorial_id: 22373,
                 title: "What is Sales Management",
                 content: "<h1>Sales Management is ......</h1>",
             },

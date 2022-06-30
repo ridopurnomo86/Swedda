@@ -1,6 +1,6 @@
+import React, { useMemo } from "react";
 import DOMPurify from "isomorphic-dompurify";
 import PropTypes from "prop-types";
-import React from "react";
 import Button from "src/components/Button";
 import { ButtonContainer, FlexContainer, RightMenuContainer } from "./styles";
 
@@ -15,11 +15,15 @@ const RightMenu = ({
     const renderContent = (data, id) =>
         data.filter((item) => item.tutorial_id === parseInt(id)).map((info) => info.content);
 
+    const renderFilteredContent = useMemo(() => {
+        return renderContent(tutorial, tutorialid);
+    }, [tutorial, tutorialid]);
+
     return (
         <RightMenuContainer>
             <div
                 dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(renderContent(tutorial, tutorialid)),
+                    __html: DOMPurify.sanitize(renderFilteredContent),
                 }}
             />
             <FlexContainer>

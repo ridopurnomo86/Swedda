@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Accountant from "./accountant";
+import Accountant from "./Accountant";
 import SalesManagement from "./SalesManagement";
 
 const StaticDescription = {

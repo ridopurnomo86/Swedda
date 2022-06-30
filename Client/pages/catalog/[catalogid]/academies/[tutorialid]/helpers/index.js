@@ -1,27 +1,32 @@
-import ACCOUNTANT from "../Static/Accountant";
-// import Static from "../static/";
+import Static from "../Static/";
 
 export async function getServerSideProps(context) {
-    // console.log(Static[parseInt(context.params.catalogid)]);
-    const convertPathId = () => {
+    const { catalogid, tutorialid } = context.params;
+
+    const listPathId = () => {
         const paths = [];
-        ACCOUNTANT.map(({ content }) => {
+        Static[parseInt(catalogid)].map(({ content }) => {
             content.map((item) => paths.push(item.tutorial_id));
         });
         return paths;
     };
-    const convertTutorialData = () => {
+    const dataContents = () => {
         const data = [];
-        ACCOUNTANT.map(({ content }) => {
+        Static[parseInt(catalogid)].map(({ content }) => {
             content.map((item) => data.push(item));
         });
         return data;
     };
+    if (!listPathId().includes(parseInt(tutorialid))) {
+        return {
+            notFound: true,
+        };
+    }
 
     return {
         props: {
-            tutorial: convertTutorialData() || [],
-            pages: convertPathId() || [],
+            tutorial: dataContents() ? dataContents() : undefined,
+            pages: listPathId() ? listPathId() : undefined,
         },
     };
 }

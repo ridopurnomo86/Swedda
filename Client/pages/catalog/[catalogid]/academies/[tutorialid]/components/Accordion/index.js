@@ -44,7 +44,7 @@ const Accordion = ({ text = "", data = [] }) => {
     );
 };
 
-export default React.memo(Accordion, () => true);
+export default Accordion;
 
 Accordion.propTypes = {
     text: PropTypes.string,

@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import LearningMethod from "./LearningMethod";
 import Requirement from "./Requirement";
 import { StudyToolsContainer, SubTitle, Title, Text, Button } from "./styles";
+import StaticDescription from "../../../academies/[tutorialid]/Static/";
 
 const StudyTools = () => {
     const { push, query } = useRouter();
-    const initialCurrPage = useRef("213").current;
+    const initPage = StaticDescription[query.catalogid][0].content[0].tutorial_id;
+    const initialCurrPage = useRef(initPage).current;
     const handleLearningCourse = () =>
         push({
             pathname: `/catalog/${query.catalogid}/academies/${initialCurrPage}`,

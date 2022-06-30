@@ -46,6 +46,11 @@ export const TextContainer = styled.div`
 export const Text = styled.p`
     font-size: 16px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     padding: 8px 16px;
     ${({ isActive }) => (isActive ? "font-weight: 600" : "font-weight: 500")};
 `;
