@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import dynamic from "next/dynamic";
 import { TutorialContainer } from "./styles";
 import Head from "next/head";
-import { PageProvider } from "./context/page";
 
 const LeftMenu = dynamic(() => import("./LeftMenu"));
 const RightMenu = dynamic(() => import("./RightMenu"));
@@ -50,7 +49,7 @@ const Tutorial = ({ tutorial, pages }) => {
     }, [pages]);
 
     return (
-        <PageProvider>
+        <>
             <Head>
                 <title>Academic</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -66,7 +65,7 @@ const Tutorial = ({ tutorial, pages }) => {
                     onClickPreviousPage={handlePreviousPage}
                 />
             </TutorialContainer>
-        </PageProvider>
+        </>
     );
 };
 
