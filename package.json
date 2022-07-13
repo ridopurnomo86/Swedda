@@ -15,7 +15,10 @@
     "nx": "^14.4.2"
   },
   "scripts": {
-    "client": "yarn workspace @swedda/client",
-    "server": "yarn workspace @swedda/server" 
+    "server": "yarn workspace @swedda/server",
+    "test": "mocha --recursive --exit",
+    "start": "yarn workspace @swedda/server start",
+    "dev": "yarn workspace @swedda/server dev",
+    "lint": "yarn workspace @swedda/server eslint ./" 
   }
 }
