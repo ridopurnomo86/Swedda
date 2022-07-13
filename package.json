@@ -1,0 +1,21 @@
+{
+  "name": "@Swedda/root",
+  "version": "0.0.1",
+  "repository": "https://github.com/ridopurnomo86/Swedda.git",
+  "author": "Ridho Purnomo <72849578+ridopurnomo86@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "lerna": "^5.1.8",
+    "nx": "^14.4.2"
+  },
+  "scripts": {
+    "client": "yarn workspace @swedda/client",
+    "server": "yarn workspace @swedda/server" 
+  }
+}
