@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import dynamic from "next/dynamic";
-import HeadTemplate from "@components/Head";
-import ArticleContainer from "./styles";
+import HeadTemplate from "components/Head";
+import { getArticles } from "lib/articles";
+import ArticlesViews from "views/articles";
 
-const HeroSection = dynamic(() => import("./HeroSection"));
-const ListSection = dynamic(() => import("./ListSection"));
+export async function getStaticProps() {
+    const articles = await getArticles();
 
-export { getStaticProps } from "./helpers";
+    return {
+        props: {
+            data: articles ? articles : null,
+        },
+    };
+}
 
 const Articles = ({ data }) => (
     <>
         <HeadTemplate title="Articles" />
-        <ArticleContainer>
-            <HeroSection />
-            <ListSection articles={data} />
-        </ArticleContainer>
+        <ArticlesViews data={data} />
     </>
 );
 export default Articles;

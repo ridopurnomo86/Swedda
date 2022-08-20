@@ -1,29 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import HeadTemplate from "@src/components/Head";
-import dynamic from "next/dynamic";
-import EventsContainer from "./styles";
-import { getEvents, getUserToken } from "../../../lib/events";
+import HeadTemplate from "src/components/Head";
+import { getEvents } from "../../../lib/events";
+import EventsDashboardViews from "views/events/dashboard";
 
-const Hero = dynamic(() => import("./Hero"));
-const ListEvent = dynamic(() => import("./ListEvent"));
-
-export async function getServerSideProps(context) {
-    const token = await getUserToken(context);
+export async function getStaticProps() {
     const events = await getEvents();
-
-    if (!token) {
-        return {
-            redirect: {
-                destination: "/events",
-                permanent: false,
-            },
-        };
-    }
 
     return {
         props: {
-            token: token ? token : null,
             events: events ? events : null,
         },
     };
@@ -32,10 +17,7 @@ export async function getServerSideProps(context) {
 const EventsDashboard = ({ events }) => (
     <>
         <HeadTemplate title="Events" />
-        <EventsContainer>
-            <Hero />
-            <ListEvent events={events} />
-        </EventsContainer>
+        <EventsDashboardViews events={events} />
     </>
 );
 

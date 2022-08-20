@@ -1,13 +1,8 @@
-import React, { useState } from "react";
-import Dynamic from "next/dynamic";
+import React from "react";
 import PropTypes from "prop-types";
-import HeadTemplate from "@components/Head";
-import CatalogDetailsContainer from "./styles";
-import StaticDescription from "./ContentInfo/data-desc";
+import HeadTemplate from "components/Head";
 import { getCatalog, getCatalogComment, getCatalogDetail } from "lib/catalog";
-
-const HeaderCatalog = Dynamic(() => import("./HeaderCatalog"));
-const ContentInfo = Dynamic(() => import("./ContentInfo"));
+import CatalogDetail from "views/catalog/[catalogid]";
 
 export async function getStaticPaths() {
     const data = await getCatalog();
@@ -43,25 +38,12 @@ export async function getStaticProps(context) {
     };
 }
 
-const CatalogDetails = ({ data, comments, catalogid }) => {
-    const [indexLink, setIndexLink] = useState(0);
-
-    return (
-        <>
-            <HeadTemplate title={`${data?.title}`} />
-            <CatalogDetailsContainer>
-                <HeaderCatalog stateLink={indexLink} setStateLink={setIndexLink} data={data} />
-                <ContentInfo
-                    activeIndexComp={indexLink}
-                    campaignTextContent={data?.text_content}
-                    comments={comments}
-                    catalogid={catalogid}
-                    campaignDescription={StaticDescription[catalogid]?.type}
-                />
-            </CatalogDetailsContainer>
-        </>
-    );
-};
+const CatalogDetails = ({ data, comments, catalogid }) => (
+    <>
+        <HeadTemplate title={`${data?.title}`} />
+        <CatalogDetail catalogid={catalogid} comments={comments} data={data} />
+    </>
+);
 
 export default CatalogDetails;
 

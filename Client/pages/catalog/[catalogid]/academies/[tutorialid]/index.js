@@ -1,73 +1,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import PropTypes from "prop-types";
-import dynamic from "next/dynamic";
-import { TutorialContainer } from "./styles";
-import Head from "next/head";
+import Static from "views/catalog/[catalogid]/academies/[tutorialid]/Static";
+import HeadTemplate from "src/components/Head";
+import TutorialAcademies from "views/catalog/[catalogid]/academies/[tutorialid]";
 
-const LeftMenu = dynamic(() => import("./LeftMenu"));
-const RightMenu = dynamic(() => import("./RightMenu"));
+export async function getServerSideProps(context) {
+    const { catalogid, tutorialid } = context.params;
 
-export { getServerSideProps } from "./helpers";
-
-const Tutorial = ({ tutorial, pages }) => {
-    const router = useRouter();
-    const { tutorialid, catalogid } = router.query;
-    const currPageRef = useRef(0);
-
-    const handleNextPage = async () => {
-        if (currPageRef.current < 0 || currPageRef.current !== pages.length - 1) {
-            currPageRef.current += 1;
-            await router.push({
-                query: {
-                    catalogid,
-                    tutorialid: pages[currPageRef.current],
-                },
-            });
-        }
+    const listPathId = () => {
+        const paths = [];
+        Static[parseInt(catalogid)].map(({ content }) => {
+            content.map((item) => paths.push(item.tutorial_id));
+        });
+        return paths;
     };
-    const handlePreviousPage = async () => {
-        if (currPageRef.current > 0 || currPageRef.current === pages.length - 1) {
-            currPageRef.current -= 1;
-            await router.replace({
-                query: {
-                    catalogid,
-                    tutorialid: pages[currPageRef.current],
-                },
-            });
-        }
+    const dataContents = () => {
+        const data = [];
+        Static[parseInt(catalogid)].map(({ content }) => {
+            content.map((item) => data.push(item));
+        });
+        return data;
     };
 
-    useEffect(() => {
-        const page = pages.indexOf(parseInt(tutorialid));
-        const renderPage = () => {
-            currPageRef.current = page;
+    if (!listPathId().includes(parseInt(tutorialid))) {
+        return {
+            notFound: true,
         };
+    }
 
-        renderPage();
-    }, [pages]);
+    return {
+        props: {
+            tutorial: dataContents() ? dataContents() : undefined,
+            pages: listPathId() ? listPathId() : undefined,
+        },
+    };
+}
 
-    return (
-        <>
-            <Head>
-                <title>Academic</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <TutorialContainer>
-                <LeftMenu catalogid={catalogid} />
-                <RightMenu
-                    tutorial={tutorial}
-                    tutorialid={tutorialid}
-                    disableNext={Boolean(currPageRef.current === pages.length - 1)}
-                    disablePrev={Boolean(currPageRef.current === 0)}
-                    onClickNextPage={handleNextPage}
-                    onClickPreviousPage={handlePreviousPage}
-                />
-            </TutorialContainer>
-        </>
-    );
-};
+const Tutorial = ({ tutorial, pages }) => (
+    <>
+        <HeadTemplate title="Academies" />
+        <TutorialAcademies tutorial={tutorial} pages={pages} />
+    </>
+);
 
 export default Tutorial;
 

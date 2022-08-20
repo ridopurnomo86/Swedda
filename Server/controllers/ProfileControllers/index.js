@@ -59,12 +59,16 @@ module.exports = {
 				{ public_id: userId, folder: "avatars" },
 				(err, result) => {
 					if (result) {
+						fs.unlinkSync(req.file.path);
 						User.findByIdAndUpdate(
 							userId,
-							{ $set: { image_poster: result.url } },
-							{ new: true }
+							{ $set: { image_poster: result.secure_url } },
+							{ new: true },
+							(err, result) => {
+								if (err) return console.log(err);
+								if (result) return console.log(result);
+							}
 						);
-						fs.unlinkSync(req.file.path);
 						res.status(200).json({
 							message: "Success Uploaded",
 							result,
@@ -73,7 +77,7 @@ module.exports = {
 					if (err) {
 						fs.unlinkSync(req.file.path);
 						res.status(400).json({
-							messge: "someting went wrong while upload Image",
+							message: "someting went wrong while upload Image",
 							data: err,
 						});
 					}
@@ -89,8 +93,8 @@ module.exports = {
 		const token = await req.cookies["swedda-login"];
 		const verifyCredential = verifyToken(token);
 		const { email, id } = verifyCredential;
-
 		const confirmationToken = createToken(id);
+		console.log(verifyCredential);
 		try {
 			if (token && email) {
 				const info = await transporter.sendMail({
@@ -106,6 +110,7 @@ module.exports = {
 			}
 			if (!token || !email) return res.status(500).send("Internal Server Error");
 		} catch (err) {
+			console.log(err);
 			if (err) return res.status(500).send("Internal Server Error");
 		}
 	},

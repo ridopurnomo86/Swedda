@@ -5,11 +5,12 @@ module.exports = {
 		const authHeader = req.headers["authorization"];
 		const token = authHeader && authHeader.split(" ")[1];
 
-		if (token === null || !token)
-			return res.status(401).json({
+		if (token === null || !token) {
+			res.status(401).json({
 				type: "error",
 				message: "Unauthorize",
 			});
+		}
 
 		const userVerify = verifyToken(token).is_verified;
 
@@ -18,12 +19,12 @@ module.exports = {
 				type: "error",
 				message: "User need verify the email",
 			});
+		} else {
+			res.status(200).json({
+				type: "success",
+				message: "Success",
+			});
 		}
-
-		res.status(200).json({
-			type: "success",
-			message: "Success",
-		});
 
 		next();
 	},

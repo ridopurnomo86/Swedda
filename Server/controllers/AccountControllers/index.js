@@ -5,9 +5,9 @@ const handleErrors = require("../../modules/handleError");
 
 module.exports = {
 	signup_post: async (req, res, next) => {
-		const data = req.body;
+		const { username, email, password, name } = req.body;
 		try {
-			const user = await User.create(data);
+			const user = await User.create({ name, username, email, password });
 			if (!user) return res.status(500).send("Internal Server Error");
 			res.status(200).json({
 				user: user._id,
@@ -29,7 +29,7 @@ module.exports = {
 			res.cookie("swedda-login", token, {
 				maxAge: 18000000, // 5 Hours/ms,
 			});
-			res.status(200).json({ user: user._id, message: "Success Login" });
+			res.status(200).json({ user: user._id, message: "Success Login", token });
 		} catch (error) {
 			const errors = handleErrors(error);
 			res.status(401).json({ error: "Cannot Login", errorMessage: errors });

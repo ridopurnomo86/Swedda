@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import dynamic from "next/dynamic";
 import { loadCatalog, getUserToken } from "../lib/homepage";
-import HeadTemplate from "@components/Head";
-
-const StaticPage = dynamic(() => import("./homepage/StaticPage"));
+import HeadTemplate from "components/Head";
+import LandingPageViews from "views/landing";
 
 export async function getServerSideProps(context) {
     const data = await loadCatalog();
@@ -26,15 +24,15 @@ export async function getServerSideProps(context) {
     };
 }
 
-const HomePage = ({ data }) => (
+const LandingPage = ({ data }) => (
     <>
         <HeadTemplate title="Swedda" />
-        <StaticPage data={data} />
+        <LandingPageViews data={data} />
     </>
 );
 
-HomePage.propTypes = {
+LandingPage.propTypes = {
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default HomePage;
+export default LandingPage;

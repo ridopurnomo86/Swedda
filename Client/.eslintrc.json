@@ -26,7 +26,7 @@
     "indent": ["error", 4],
     "import/no-unresolved": 0,
     "import/no-namespace": "error",
-    "linebreak-style": ["error", "unix"],
+    // "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "react/react-in-jsx-scope": "off",
@@ -41,12 +41,12 @@
       "alias": {
         "extensions": [".js"],
         "map": [
-          ["@src", "./src/*"],
-          ["@components", "./src/components/*"],
-          ["@assets", "./src/assets/*"],
-          ["@hooks", "./src/hooks/*"],
-          ["@modules", "./src/modules/*"],
-          ["@styles", "./styles/*"]
+          ["src", "./src/*"],
+          ["components", "./src/components/*"],
+          ["assets", "./src/assets/*"],
+          ["hooks", "./src/hooks/*"],
+          ["modules", "./src/modules/*"],
+          ["styles", "./styles/*"]
         ]
       }
     }
