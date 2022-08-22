@@ -1,13 +1,10 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-	service: "gmail",
+	service: "SendinBlue",
 	auth: {
-		user: process.env.EMAIL_USER_NODEMAILER,
-		pass: process.env.PASSWORD_USER_NODEMAILER,
-	},
-	tls: {
-		rejectUnauthorized: false,
+		user: process.env.EMAIL_TRANSPORTER,
+		pass: process.env.PASSWORD_TRANSPORTER,
 	},
 });
 

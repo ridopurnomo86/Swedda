@@ -92,13 +92,19 @@ module.exports = {
 	verify_user_post: async (req, res) => {
 		const token = await req.cookies["swedda-login"];
 		const verifyCredential = verifyToken(token);
-		const { email, id } = verifyCredential;
+		const { email, id, is_verified } = verifyCredential;
 		const confirmationToken = createToken(id);
-		console.log(verifyCredential);
+
+		if (is_verified === true)
+			return res.status(200).send({
+				message: "Email has verified",
+				type: "success",
+			});
+
 		try {
 			if (token && email) {
 				const info = await transporter.sendMail({
-					from: `Swedda-Team ${process.env.EMAIL_USER_NODEMAILER}`,
+					from: `Swedda-Team ${process.env.EMAIL_TRANSPORTER}`,
 					to: email,
 					subject: "Email Verification Swedda",
 					html: emailTemplate(confirmationToken),
@@ -108,10 +114,11 @@ module.exports = {
 					message: "Send Verification To Email",
 				});
 			}
-			if (!token || !email) return res.status(500).send("Internal Server Error");
+			if (!token || !email)
+				return res.status(500).send({ message: "Credential not exist", type: "error" });
 		} catch (err) {
-			console.log(err);
-			if (err) return res.status(500).send("Internal Server Error");
+			if (err)
+				return res.status(500).send({ message: "Internal Server Error", type: "error" });
 		}
 	},
 	verify_user_get: async (req, res) => {

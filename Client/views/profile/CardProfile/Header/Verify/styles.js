@@ -4,6 +4,7 @@ export const VerifyContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin: 16px 0px;
 
     .click-here {
         text-decoration: underline;
