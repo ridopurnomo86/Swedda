@@ -1,21 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { loadCatalog, getUserToken } from "../lib/homepage";
+import { loadCatalog } from "lib/homepage";
 import HeadTemplate from "components/Head";
 import LandingPageViews from "views/landing";
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
     const data = await loadCatalog();
-    const token = await getUserToken(context);
-
-    if (token) {
-        return {
-            redirect: {
-                destination: "/dashboard",
-                permanent: false,
-            },
-        };
-    }
 
     return {
         props: {

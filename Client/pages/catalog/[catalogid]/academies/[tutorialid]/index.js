@@ -10,14 +10,15 @@ export async function getServerSideProps(context) {
 
     const listPathId = () => {
         const paths = [];
-        Static[parseInt(catalogid)].map(({ content }) => {
+        Static[parseInt(catalogid)]?.map(({ content }) => {
             content.map((item) => paths.push(item.tutorial_id));
         });
         return paths;
     };
+
     const dataContents = () => {
         const data = [];
-        Static[parseInt(catalogid)].map(({ content }) => {
+        Static[parseInt(catalogid)]?.map(({ content }) => {
             content.map((item) => data.push(item));
         });
         return data;

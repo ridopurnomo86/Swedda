@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HeadTemplate from "src/components/Head";
-import { getEvents } from "../../../lib/events";
+import { getEvents } from "lib/events";
 import EventsDashboardViews from "views/events/dashboard";
 
 export async function getStaticProps() {

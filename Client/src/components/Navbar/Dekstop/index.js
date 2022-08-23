@@ -21,7 +21,7 @@ const Dekstop = ({ isUser }) => {
                                 <h1 className="pointer">Swedda</h1>
                             </Link>
                         </LogoContainer>
-                        <Menu />
+                        <Menu isUser={isUser} />
                     </MenuContainer>
                     <MenuContainer>
                         {isUser ? (
