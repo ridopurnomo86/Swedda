@@ -7,8 +7,7 @@ import { useForm } from "react-hook-form";
 import Get from "hooks/api/useGET";
 import Put from "hooks/api/usePUT";
 import schemaValidation from "modules/validation/profile";
-import { NotificationIcon, ProfileContainer, RemoveButton } from "./styles";
-import Modal from "src/components/Modal";
+import { ProfileContainer } from "./styles";
 
 const CardProfile = dynamic(() => import("./CardProfile"), {
     ssr: false,
@@ -72,25 +71,16 @@ const Profile = () => {
     };
 
     return (
-        <>
-            <Modal
-                title="Are you sure?"
-                icon={<NotificationIcon />}
-                message="are you sure you wanna delete your profile picture?"
-            >
-                <RemoveButton>Delete</RemoveButton>
-            </Modal>
-            <ProfileContainer>
-                <CardProfile
-                    errors={errors}
-                    handleSubmit={handleSubmit}
-                    register={register}
-                    onSubmit={onSubmit}
-                    isPUTTING={isPUTTING}
-                    defaultValue={initialValues}
-                />
-            </ProfileContainer>
-        </>
+        <ProfileContainer>
+            <CardProfile
+                errors={errors}
+                handleSubmit={handleSubmit}
+                register={register}
+                onSubmit={onSubmit}
+                isPUTTING={isPUTTING}
+                defaultValue={initialValues}
+            />
+        </ProfileContainer>
     );
 };
 

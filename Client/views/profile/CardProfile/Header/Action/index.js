@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ActionContainer, AddButton, CreateIcon, RemoveButton, TrashIcon } from "./styles";
+import { ActionContainer, AddButton, CreateIcon } from "./styles";
 
 const Action = ({ isLoading }) => (
     <ActionContainer>
@@ -8,10 +8,6 @@ const Action = ({ isLoading }) => (
             <CreateIcon />
             Add Photo
         </AddButton>
-        <RemoveButton disabled>
-            <TrashIcon />
-            Remove Photo
-        </RemoveButton>
     </ActionContainer>
 );
 

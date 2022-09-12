@@ -14,13 +14,11 @@ const renderItem = (data) => {
     return <EmptyState />;
 };
 
-const OtherActivity = () => {
-    return (
-        <ActivityContainer>
-            <Header />
-            <ContentActivity>{renderItem(DATA)}</ContentActivity>
-        </ActivityContainer>
-    );
-};
+const OtherActivity = () => (
+    <ActivityContainer>
+        <Header />
+        <ContentActivity>{renderItem(DATA)}</ContentActivity>
+    </ActivityContainer>
+);
 
 export default OtherActivity;
