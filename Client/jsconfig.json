@@ -1,9 +1,12 @@
 {
     "compilerOptions": {
       "baseUrl": ".",
+      "module": "CommonJS",
+      "target": "ES6",
       "paths": {
         "src/*": ["/src/*"],
         "lib/*": ["/lib/*"],
+        "static/*": ["/static/*"],
         "components/*": ["/src/components/*"],
         "assets/*": ["/src/assets/*"],
         "hooks/*": ["/src/hooks/*"],

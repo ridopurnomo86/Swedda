@@ -6,7 +6,7 @@ import Button from "../../Button";
 import Menu from "./Menu";
 
 import ProfileMenu from "./ProfileMenu";
-import useScrollSize from "../../../hooks/useScrollSIze";
+import useScrollSize from "src/hooks/useScrollSIze";
 
 const Dekstop = ({ isUser }) => {
     const { onScroll } = useScrollSize();

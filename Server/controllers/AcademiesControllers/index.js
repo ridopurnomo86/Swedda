@@ -5,7 +5,7 @@ module.exports = {
 		const authHeader = req.headers["authorization"];
 		const token = authHeader && authHeader.split(" ")[1];
 
-		if (token === null || !token) {
+		if (token === null || !token || token === undefined) {
 			res.status(401).json({
 				type: "error",
 				message: "Unauthorize",

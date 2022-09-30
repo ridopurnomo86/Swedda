@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import LearningMethod from "./LearningMethod";
 import Requirement from "./Requirement";
 import { StudyToolsContainer, SubTitle, Title, Text, Button } from "./styles";
-import StaticDescription from "../../../academies/[tutorialid]/Static/";
+import StaticDescription from "static/academies/tutorial";
 import POST from "pages/api/usePOST";
 import nookies from "nookies";
 import { useToasts } from "react-toast-notifications";

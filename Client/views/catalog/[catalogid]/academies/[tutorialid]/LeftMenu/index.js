@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Static from "../Static";
+import Static from "static/academies/tutorial/index";
 import { LeftMenuContainer } from "./styles";
 import Accordion from "../components/Accordion";
 

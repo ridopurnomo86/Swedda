@@ -17,8 +17,20 @@ export const ProfileMenuContainer = styled.div`
     cursor: pointer;
 `;
 
+export const Overlay = styled.div`
+    display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+`;
+
 export const MenuContainer = styled.div`
-    display: none;
     position: absolute;
     top: 30px;
     right: 30px;
@@ -62,6 +74,10 @@ export const EllipsisIcon = styled.i.attrs({
 
 export const UserIcon = styled.i.attrs({
     className: "fa fa-user",
+})``;
+
+export const DashboardIcon = styled.i.attrs({
+    className: "fa-solid fa-landmark",
 })``;
 
 export const RightBracketIcon = styled.i.attrs({

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import PropTypes from "prop-types";
-import Static from "views/catalog/[catalogid]/academies/[tutorialid]/Static";
+import Static from "static/academies/tutorial";
 import HeadTemplate from "src/components/Head";
 import TutorialAcademies from "views/catalog/[catalogid]/academies/[tutorialid]";
 

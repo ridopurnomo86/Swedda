@@ -32,7 +32,7 @@ export async function getStaticProps(context) {
     return {
         props: {
             catalogid,
-            comments: comments,
+            comments,
             data: data ? data : undefined,
         },
     };
