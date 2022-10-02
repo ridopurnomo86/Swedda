@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "start": "next start",
-    "build": "next build && next export",
+    "build": "next build",
     "lint": "eslint ./pages/** ./src/** -c ./.eslintrc.json",
     "prettier:code": "prettier --check .",
     "prettier:format": "prettier --write ."

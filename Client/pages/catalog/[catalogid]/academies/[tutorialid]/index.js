@@ -5,7 +5,14 @@ import Static from "static/academies/tutorial";
 import HeadTemplate from "src/components/Head";
 import TutorialAcademies from "views/catalog/[catalogid]/academies/[tutorialid]";
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+    return {
+        paths: [],
+        fallback: true,
+    };
+}
+
+export async function getStaticProps(context) {
     const { catalogid, tutorialid } = context.params;
 
     const listPathId = () => {

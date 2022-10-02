@@ -6,7 +6,7 @@ import Accordion from "../components/Accordion";
 
 const LeftMenu = ({ catalogid }) => (
     <LeftMenuContainer>
-        {Static[catalogid].map((info) => (
+        {Static[catalogid]?.map((info) => (
             <Accordion text={info.name} key={info.id} data={info.content} />
         ))}
     </LeftMenuContainer>

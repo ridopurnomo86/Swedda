@@ -5,11 +5,9 @@ import {
     MenuContainer,
     ProfileMenuContainer,
     LinkText,
-    UserIcon,
     EllipsisIcon,
     FlexContainer,
     RightBracketIcon,
-    DashboardIcon,
     Overlay,
 } from "./styles";
 import useClickOutside from "src/hooks/useClickOutside";

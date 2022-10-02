@@ -37,7 +37,7 @@ const TutorialAcademies = ({ tutorial, pages }) => {
     };
 
     useEffect(() => {
-        const page = pages.indexOf(parseInt(tutorialid));
+        const page = pages?.indexOf(parseInt(tutorialid));
         const renderPage = () => {
             currPageRef.current = page;
         };
@@ -51,7 +51,7 @@ const TutorialAcademies = ({ tutorial, pages }) => {
             <RightMenu
                 tutorial={tutorial}
                 tutorialid={tutorialid}
-                disableNext={Boolean(currPageRef.current === pages.length - 1)}
+                disableNext={Boolean(currPageRef.current === pages?.length - 1)}
                 disablePrev={Boolean(currPageRef.current === 0)}
                 onClickNextPage={handleNextPage}
                 onClickPreviousPage={handlePreviousPage}
