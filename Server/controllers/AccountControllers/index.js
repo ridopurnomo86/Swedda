@@ -28,6 +28,7 @@ module.exports = {
 			const token = createToken(user._id, userInfo);
 			res.cookie("swedda-login", token, {
 				maxAge: 18000000, // 5 Hours/ms,
+				httpOnly: true,
 			});
 			res.status(200).json({ user: user._id, message: "Success Login", token });
 		} catch (error) {
