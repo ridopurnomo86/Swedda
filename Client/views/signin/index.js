@@ -36,8 +36,10 @@ const SigninPage = () => {
                         Session.setUserFromCookie();
                         router.push("/dashboard");
                     }, 2000);
-                    if (res)
-                        return addToast(res?.message, { appearance: "success", autoDismiss: true });
+                    if (res) {
+                        Session.setCookieFromResponse(res?.token);
+                        addToast(res?.message, { appearance: "success", autoDismiss: true });
+                    }
                 },
                 errorCallback: (err) => {
                     if (err)

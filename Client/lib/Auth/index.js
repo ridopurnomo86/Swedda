@@ -2,18 +2,23 @@ import Cookies from "js-cookie";
 import instance from "../../pages/api/instance";
 import jwt from "jsonwebtoken";
 
-const TOKEN_NAME = process.env.COOKIE_USER || "swedda-login";
+const TOKEN_NAME = process.env.COOKIE_USER || "swedda_st";
 
 export const getCookiesUser = Cookies.get(TOKEN_NAME);
 
 let user;
 
 const Session = {
+    setCookieFromResponse: (res) => {
+        if (res) return Cookies.set(TOKEN_NAME, res);
+    },
     setUserFromCookie: () => {
         try {
             const tokenUser = Cookies.get(TOKEN_NAME);
-            const verifyUser = jwt.verify(tokenUser, process.env.JWT_TOKENKEY);
-            window.localStorage.setItem(TOKEN_NAME, JSON.stringify(verifyUser));
+            if (tokenUser) {
+                const verifyUser = jwt.verify(tokenUser, process.env.JWT_TOKENKEY);
+                window.localStorage.setItem(TOKEN_NAME, JSON.stringify(verifyUser));
+            }
         } catch (error) {
             console.log("Server-Side-Rendering");
         }
