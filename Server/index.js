@@ -20,11 +20,20 @@ async () => await mongoConnection();
 
 app.use(
 	cors({
-		origin: process.env.CLIENT_ORIGIN,
+		origin: `${
+			process.env === "production" ? process.env.CLIENT_ORIGIN : "http://localhost:8080"
+		}`,
 		methods: "GET,PUT,POST,DELETE",
 		credentials: true,
-		preflightContinue: false,
-		optionsSuccessStatus: 204,
+		preflightContinue: true,
+		exposedHeaders: [
+			"cookie",
+			"Origin",
+			"X-Requested-With",
+			"Content-Type",
+			"Accept",
+			"Authorization",
+		],
 	})
 );
 

@@ -1,8 +1,14 @@
 import instance from "../instance";
 
+const defaultConfig = {
+    headers: {
+        Authorization: `Bearer ${process.env.COOKIE_USER}`,
+    },
+};
+
 const useGET = ({
     path = "",
-    config,
+    config = defaultConfig,
     setIsFetching = () => {},
     callback = () => {},
     errorCallback = () => {},

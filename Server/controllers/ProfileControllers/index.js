@@ -9,7 +9,7 @@ const createToken = require("../../modules/createToken");
 
 module.exports = {
 	user_info_get: async (req, res, next) => {
-		const token = await req.cookies["swedda-login"];
+		const token = await req.cookies[`${process.env.COOKIE_USER}`];
 		try {
 			if (token) {
 				const userId = verifyToken(token).id;
@@ -35,7 +35,7 @@ module.exports = {
 		next();
 	},
 	user_info_put: async (req, res, next) => {
-		const token = await req.cookies["swedda-login"];
+		const token = await req.cookies[`${process.env.COOKIE_USER}`];
 		const body = req.body;
 		try {
 			if (token) {
@@ -51,7 +51,7 @@ module.exports = {
 		next();
 	},
 	user_profile_img_post: async (req, res, next) => {
-		const token = await req.cookies["swedda-login"];
+		const token = await req.cookies[`${process.env.COOKIE_USER}`];
 		if (token) {
 			const userId = verifyToken(token).id;
 			await cloudinary.uploader.upload(
@@ -90,7 +90,7 @@ module.exports = {
 		next();
 	},
 	verify_user_post: async (req, res) => {
-		const token = await req.cookies["swedda-login"];
+		const token = await req.cookies[`${process.env.COOKIE_USER}`];
 		const verifyCredential = verifyToken(token);
 		const { email, id, is_verified } = verifyCredential;
 		const confirmationToken = createToken(id);

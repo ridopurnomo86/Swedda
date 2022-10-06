@@ -10,7 +10,7 @@ const usePOST = ({
 }) => {
     setIsPOSTING(true);
     instance
-        .post(path, body, config)
+        .post(path, body, { ...config, withCredentials: true })
         .then((res) => {
             callback(res.data);
             setIsPOSTING(false);
