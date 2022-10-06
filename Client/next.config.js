@@ -4,6 +4,7 @@ module.exports = {
         domains: ["source.unsplash.com", "res.cloudinary.com"],
     },
     env: {
+        NODE_ENV: process.env.NODE_ENV,
         COOKIE_USER: process.env.COOKIE_USER,
         BACKEND_URL: process.env.BACKEND_URL,
         JWT_TOKENKEY: process.env.JWT_TOKENKEY,
