@@ -9,17 +9,8 @@ const createToken = require("../../modules/createToken");
 
 module.exports = {
 	user_info_get: async (req, res, next) => {
-		const authHeader = req.headers["authorization"];
-		const token = authHeader && authHeader.split(" ")[1];
-
+		const token = await req.cookies[`${process.env.COOKIE_USER}`];
 		try {
-			if (token === null || !token || token === undefined) {
-				res.status(401).json({
-					type: "error",
-					message: "Unauthorize",
-				});
-			}
-
 			if (token) {
 				const userId = verifyToken(token).id;
 				const userInfo = await User.findById(userId);
