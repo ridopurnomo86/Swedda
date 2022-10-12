@@ -29,6 +29,8 @@ module.exports = {
 			res.cookie(`${process.env.COOKIE_USER}`, token, {
 				maxAge: 18000000, // 5 Hours/ms,
 				httpOnly: true,
+				secure: true,
+				domain: ".vercel.app",
 			});
 			res.status(200).json({ user: user._id, message: "Success Login", token });
 		} catch (error) {
