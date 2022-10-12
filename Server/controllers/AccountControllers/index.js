@@ -31,6 +31,7 @@ module.exports = {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
 				path: "/",
+				sameSite: "Strict",
 				domain: ".vercel.app",
 			});
 			res.status(200).json({ user: user._id, message: "Success Login", token });
