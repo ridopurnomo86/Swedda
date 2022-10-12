@@ -30,7 +30,6 @@ module.exports = {
 				maxAge: 18000000, // 5 Hours/ms,
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
-				signed: true,
 				path: "/",
 				domain: ".vercel.app",
 			});
