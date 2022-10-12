@@ -4,23 +4,7 @@ import EmptyState from "./EmptyState";
 import Header from "./Header";
 import { ActivityContainer, ContentActivity } from "./styles";
 
-const DATA = [
-    {
-        id: "1",
-        title: "Dasar-dasar Akutansi",
-        status: "On Progress",
-    },
-    {
-        id: "2",
-        title: "Dasar-dasar Administrasi Bisnis",
-        status: "On Progress",
-    },
-    {
-        id: "3",
-        title: "Dasar-dasar Sales",
-        status: "On Progress",
-    },
-];
+const DATA = [];
 
 const renderItem = (data) => {
     if (data?.length > 0)

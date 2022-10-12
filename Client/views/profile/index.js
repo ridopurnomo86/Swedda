@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import nookies from "nookies";
 import { useToasts } from "react-toast-notifications";
 import dynamic from "next/dynamic";
 import dayjs from "dayjs";
@@ -17,6 +18,7 @@ const Profile = () => {
     const { addToast } = useToasts();
     const [initialValues, setInitialValues] = useState(null);
     const [isPUTTING, setIsPUTTING] = useState(false);
+    const token = nookies.get()[process.env.COOKIE_USER];
 
     const {
         register,
@@ -32,6 +34,11 @@ const Profile = () => {
         const fetchData = () => {
             Get({
                 path: "/user/info",
+                config: {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                },
                 callback: (res) => {
                     setInitialValues(res.info);
                     reset({
