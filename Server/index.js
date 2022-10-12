@@ -2,7 +2,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 const express = require("express");
 const mongoConnection = require("./config/MongoDB");
 const routes = require("./routes");
@@ -20,20 +19,14 @@ app.set("trust proxy", 1);
 async () => await mongoConnection();
 
 app.use(
-	session({
-		secret: process.env.JWT_TOKENKEY,
-		cookie: { domain: ".vercel.app", httpOnly: true, secure: true },
-	})
-);
-
-app.use(
 	cors({
 		origin: `${process.env.CLIENT_ORIGIN}`,
 		methods: "GET,PUT,POST,DELETE",
 		credentials: true,
 		preflightContinue: true,
+		optionsSuccessStatus: 200,
 		exposedHeaders: [
-			"cookie",
+			"Cookie",
 			"Origin",
 			"X-Requested-With",
 			"Content-Type",
