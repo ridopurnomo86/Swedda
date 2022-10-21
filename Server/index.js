@@ -1,6 +1,5 @@
 const morgan = require("morgan");
 const helmet = require("helmet");
-const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const mongoConnection = require("./config/MongoDB");
@@ -18,16 +17,10 @@ app.use(morgan("combined"));
 app.set("trust proxy", 1);
 async () => await mongoConnection();
 
-app.use(
-	cors({
-		origin: `${process.env.CLIENT_ORIGIN}`,
-		optionsSuccessStatus: 200,
-	})
-);
-
 app.use((req, res, next) => {
-	res.header("Content-Type", "application/json;charset=UTF-8");
+	res.header("Access-Control-Allow-Origin", `${process.env.CLIENT_ORIGIN}`);
 	res.header("Access-Control-Allow-Credentials", true);
+	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
