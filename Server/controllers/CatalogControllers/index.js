@@ -25,7 +25,7 @@ module.exports = {
 		const { id } = await req.params;
 		const { title, comment } = await req.body;
 		try {
-			const token = await req.cookies[`${process.env.COOKIE_USER}`];
+			const token = await req.cookies[`${process.env.COOKIE_USER || "swedda_cust"}`];
 			const username = await verifyToken(token).username;
 			if (!token || !username) return res.status(401).send("Unauthorized");
 			if (token && username) {

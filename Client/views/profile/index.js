@@ -18,7 +18,7 @@ const Profile = () => {
     const { addToast } = useToasts();
     const [initialValues, setInitialValues] = useState(null);
     const [isPUTTING, setIsPUTTING] = useState(false);
-    const token = nookies.get()[process.env.COOKIE_USER];
+    const token = nookies.get()[process.env.COOKIE_USER || "swedda_cust"];
 
     const {
         register,

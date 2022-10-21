@@ -14,7 +14,7 @@ const StudyTools = () => {
     const [isPOSTING, setIsPOSTING] = useState(false);
     const initPage = StaticDescription[query.catalogid]?.[0]?.content[0].tutorial_id;
     const initialCurrPage = useRef(initPage).current;
-    const token = nookies.get()[process.env.COOKIE_USER];
+    const token = nookies.get()[process.env.COOKIE_USER || "swedda_cust"];
 
     const handleLearningCourse = () => {
         POST({

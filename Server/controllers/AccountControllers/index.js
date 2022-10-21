@@ -26,7 +26,7 @@ module.exports = {
 			const user = await User.login(email, password);
 			const userInfo = filterData(filteredKeys, user);
 			const token = createToken(user._id, userInfo);
-			res.cookie(`${process.env.COOKIE_USER}`, token, {
+			res.cookie(`${process.env.COOKIE_USER || "swedda_cust"}`, token, {
 				maxAge: 18000000, // 5 Hours/ms,
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
@@ -43,7 +43,7 @@ module.exports = {
 	logout_get: async (req, res, next) => {
 		try {
 			if (res.cookie) {
-				res.cookie(`${process.env.COOKIE_USER}`, "", { maxAge: 0 });
+				res.cookie(`${process.env.COOKIE_USER || "swedda_cust"}`, "", { maxAge: 0 });
 				res.status(200).json({
 					message: "Success Logout",
 				});

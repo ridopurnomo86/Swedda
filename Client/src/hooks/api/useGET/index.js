@@ -2,7 +2,7 @@ import instance from "../instance";
 
 const defaultConfig = {
     headers: {
-        Authorization: `Bearer ${process.env.COOKIE_USER}`,
+        Authorization: `Bearer ${process.env.COOKIE_USER || "swedda_cust"}`,
     },
 };
 
