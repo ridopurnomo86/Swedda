@@ -21,20 +21,16 @@ async () => await mongoConnection();
 app.use(
 	cors({
 		origin: `${process.env.CLIENT_ORIGIN}`,
-		methods: "GET,PUT,POST,DELETE",
-		credentials: true,
-		preflightContinue: true,
 		optionsSuccessStatus: 200,
-		exposedHeaders: [
-			"Cookie",
-			"Origin",
-			"X-Requested-With",
-			"Content-Type",
-			"Accept",
-			"Authorization",
-		],
 	})
 );
+
+app.use((req, res, next) => {
+	res.header("Content-Type", "application/json;charset=UTF-8");
+	res.header("Access-Control-Allow-Credentials", true);
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 app.get("/", (req, res) => {
 	res.status(200).json("Server is Running");
