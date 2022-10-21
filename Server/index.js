@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const express = require("express");
+const session = require("express-session");
 const mongoConnection = require("./config/MongoDB");
 const routes = require("./routes");
 const path = require("path");
@@ -17,6 +18,21 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("combined"));
 app.set("trust proxy", 1);
 async () => await mongoConnection();
+
+app.use(
+	session({
+		secret: process.env.JWT_TOKENKEY,
+		resave: true,
+		cookie: {
+			maxAge: 18000000, // 5 Hours/ms,
+			httpOnly: true,
+			secure: process.env.NODE_ENV === "production",
+			path: "/",
+			sameSite: "none",
+			domain: ".vercel.app",
+		},
+	})
+);
 
 app.use(
 	cors({
