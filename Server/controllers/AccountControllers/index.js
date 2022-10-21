@@ -30,7 +30,7 @@ module.exports = {
 				maxAge: 18000000, // 5 Hours/ms,
 				httpOnly: true,
 				secure: process.env.NODE_ENV === "production",
-				sameSite: "none",
+				sameSite: "Lax",
 				domain: ".vercel.app",
 			});
 			res.status(200).json({ user: user._id, message: "Success Login", token });
