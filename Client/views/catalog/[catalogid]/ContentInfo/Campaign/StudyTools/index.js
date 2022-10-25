@@ -5,7 +5,6 @@ import Requirement from "./Requirement";
 import { StudyToolsContainer, SubTitle, Title, Text, Button } from "./styles";
 import StaticDescription from "static/academies/tutorial";
 import POST from "pages/api/usePOST";
-import nookies from "nookies";
 import { useToasts } from "react-toast-notifications";
 
 const StudyTools = () => {
@@ -14,17 +13,12 @@ const StudyTools = () => {
     const [isPOSTING, setIsPOSTING] = useState(false);
     const initPage = StaticDescription[query.catalogid]?.[0]?.content[0].tutorial_id;
     const initialCurrPage = useRef(initPage).current;
-    const token = nookies.get()[process.env.COOKIE_USER];
 
     const handleLearningCourse = () => {
         POST({
             path: "/academies",
             body: undefined,
-            config: {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            },
+            config: {},
             setIsPOSTING,
             callback: (res) => {
                 if (res.type === "error" || res.statusCode) {
