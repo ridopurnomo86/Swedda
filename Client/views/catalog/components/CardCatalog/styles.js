@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardCatalogContainer = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 2;
+    min-height: 180px;
     background: linear-gradient(to top, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.4) 100%),
         url(${({ source }) => source}) no-repeat center center;
     background-size: cover;
