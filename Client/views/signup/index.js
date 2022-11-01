@@ -9,11 +9,12 @@ import schemaValidation from "modules/validation/signup";
 import OptionalContent from "./OptionalContent";
 import { SignupContainer, ButtonForm, Title } from "./styles";
 import Post from "hooks/api/usePOST";
+import { useRouter } from "next/router";
 
 const SignupPage = () => {
     const { addToast } = useToasts();
     const [isPOSTING, setIsPOSTING] = useState(false);
-
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -30,8 +31,12 @@ const SignupPage = () => {
                 undefined,
                 setIsPOSTING,
                 callback: (res) => {
-                    if (res)
-                        return addToast(res?.message, { appearance: "success", autoDismiss: true });
+                    if (res) {
+                        addToast(res?.message, { appearance: "success", autoDismiss: true });
+                        setTimeout(() => {
+                            router.push("/signin");
+                        }, 3000);
+                    }
                 },
                 errorCallback: (err) => {
                     if (err?.message)

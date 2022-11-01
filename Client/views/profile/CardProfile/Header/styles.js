@@ -35,7 +35,7 @@ export const HeaderImage = styled(image).attrs({
     src: "https://source.unsplash.com/-G3rw6Y02D0",
     alt: "https://source.unsplash.com/-G3rw6Y02D0",
     layout: "responsive",
-    quality: 100,
+    quality: 80,
     width: 100,
     height: 30,
     objectFit: "cover",

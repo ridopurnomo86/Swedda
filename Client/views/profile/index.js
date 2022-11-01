@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useToasts } from "react-toast-notifications";
 import dynamic from "next/dynamic";
 import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import Get from "hooks/api/useGET";
 import Put from "hooks/api/usePUT";
 import schemaValidation from "modules/validation/profile";
 import { ProfileContainer } from "./styles";
@@ -13,40 +13,17 @@ const CardProfile = dynamic(() => import("./CardProfile"), {
     ssr: false,
 });
 
-const Profile = () => {
+const Profile = ({ info }) => {
     const { addToast } = useToasts();
-    const [initialValues, setInitialValues] = useState(null);
     const [isPUTTING, setIsPUTTING] = useState(false);
-
     const {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
     } = useForm({
         resolver: yupResolver(schemaValidation),
-        defaultValues: initialValues,
+        defaultValues: info,
     });
-
-    useEffect(() => {
-        const fetchData = () => {
-            Get({
-                path: "/user/info",
-                callback: (res) => {
-                    setInitialValues(res.info);
-                    reset({
-                        name: res.info.name,
-                        email: res.info.email,
-                        gender: res.info.gender,
-                        birth_date: dayjs(res.info.birth_date).format("YYYY-MM-DD"),
-                    });
-                },
-            });
-        };
-        fetchData();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const onSubmit = (values) => {
         if (!isPUTTING) {
@@ -78,10 +55,14 @@ const Profile = () => {
                 register={register}
                 onSubmit={onSubmit}
                 isPUTTING={isPUTTING}
-                defaultValue={initialValues}
+                defaultValue={info}
             />
         </ProfileContainer>
     );
 };
 
 export default Profile;
+
+Profile.propTypes = {
+    info: PropTypes.any.isRequired,
+};

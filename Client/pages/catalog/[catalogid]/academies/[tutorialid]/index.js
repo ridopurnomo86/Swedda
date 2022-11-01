@@ -1,19 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import nookies from "nookies";
 import PropTypes from "prop-types";
 import Static from "static/academies/tutorial";
 import HeadTemplate from "src/components/Head";
 import TutorialAcademies from "views/catalog/[catalogid]/academies/[tutorialid]";
 
-export async function getStaticPaths() {
-    return {
-        paths: [],
-        fallback: true,
-    };
-}
+// export async function getStaticPaths() {
+//     return {
+//         paths: [],
+//         fallback: true,
+//     };
+// }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { catalogid, tutorialid } = context.params;
+    const cookie = nookies.get(context)[process.env.COOKIE_USER_CRENDETIAL];
+    const res = await fetch(`${process.env.BACKEND_URL}/academies`, {
+        method: "POST",
+        headers: {
+            Cookie: `${process.env.COOKIE_USER_CRENDETIAL}=${cookie}`,
+        },
+    });
+
+    const { type } = await res.json();
+
+    if (type !== "success") {
+        return {
+            redirect: {
+                permanent: false,
+                destination: "/",
+            },
+        };
+    }
 
     const listPathId = () => {
         const paths = [];

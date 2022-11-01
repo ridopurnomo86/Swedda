@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
 	},
 	username: {
 		type: String,
-		minlength: 8,
+		minlength: 5,
 		required: [true, "username has Required..."],
 	},
 	email: {
@@ -32,8 +32,7 @@ const userSchema = new mongoose.Schema({
 	image_poster: {
 		type: String,
 		unique: true,
-		trim: true,
-		default: "",
+		default: null,
 	},
 	birth_date: {
 		type: Date,
@@ -58,6 +57,7 @@ userSchema.pre("save", async function (next) {
 	this.password = await bcrypt.hash(this.password, salt);
 	this.created_at = dateNow;
 	this.updated_at = dateNow;
+	this.image_poster = null;
 	next();
 });
 

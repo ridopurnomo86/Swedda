@@ -25,5 +25,4 @@ const handleErrors = (err) => {
 	return errors;
 };
 
-
 module.exports = handleErrors;
