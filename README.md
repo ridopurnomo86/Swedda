@@ -11,16 +11,16 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Getting Started](#Getting-Started)
 - [Built With](#built-with)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
+- [Support](#support)
 
 <!-- OVERVIEW -->
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+![screenshot](https://raw.githubusercontent.com/ridopurnomo86/Swedda/master/public/screenshot/screenshot.png)
 
 This application/site was created as a portofolio from me. Because i like to build something, challange my self, and improving my self.
 
@@ -31,6 +31,9 @@ This application/site was created as a portofolio from me. Because i like to bui
 - [Nextjs](https://nextjs.org/)
 - [Express.js](https://expressjs.com/)
 - [Styled-Components](https://styled-components.com/)
+- [Styled-Components](https://styled-components.com/)
+- [Mongodb](https://www.mongodb.com/)
+- [Supabase](https://supabase.com/)
 
 ## Acknowledgements
 
