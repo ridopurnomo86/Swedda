@@ -31,7 +31,6 @@ This application/site was created as a portofolio from me. Because i like to bui
 - [Nextjs](https://nextjs.org/)
 - [Express.js](https://expressjs.com/)
 - [Styled-Components](https://styled-components.com/)
-- [Styled-Components](https://styled-components.com/)
 - [Mongodb](https://www.mongodb.com/)
 - [Supabase](https://supabase.com/)
 
